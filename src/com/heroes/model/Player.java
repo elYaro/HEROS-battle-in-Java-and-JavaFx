@@ -10,17 +10,23 @@ public class Player {
     private int leftUnits;
     private boolean startsOnLeftSide;
 
-    Player(String name1,Boolean canMove1){
+
+    Player(String name1,Boolean canMove1, boolean leftSide){
         name = name1;
         canMove = canMove1;
         leftUnits = 7;
+        startsOnLeftSide = leftSide;
     }
+
 
     public String getName() {
         return name;
     }
     public boolean getIfCanMove() {
         return canMove;
+    }
+    public List<Unit> getUnitList(){
+        return unitList;
     }
     public int getLeftUnits() {
         return leftUnits;
@@ -29,9 +35,14 @@ public class Player {
         return startsOnLeftSide;
     }
 
+
     public void setIfCanMove(boolean yORn) {
         this.canMove = yORn;
     }
-
-
+    public void setUnitList(List<Unit> listOfUnits){
+        this.unitList = listOfUnits;
+    }
+    public void setLeftUnits(int numb){
+        this.leftUnits = numb;
+    }
 }
