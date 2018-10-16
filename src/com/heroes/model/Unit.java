@@ -11,8 +11,8 @@ public abstract class Unit {
     protected Player owner;
     protected int attackPower;
     protected int defencePower;
-    protected int minAttackDomage;
-    protected int maxAttackDomage;
+    protected int minAttackDamage;
+    protected int maxAttackDamage;
     protected int healthPoints;
     protected int healthPointsLeft;
     protected int moveRange;
@@ -21,6 +21,75 @@ public abstract class Unit {
     protected int x;
     protected int y;
     protected boolean isDefending;
+
+    public boolean isShooter() {
+        return shooter;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public int getAttackPower() {
+        return attackPower;
+    }
+
+    public int getDefencePower() {
+        return defencePower;
+    }
+
+    public int getMinAttackDamage() {
+        return minAttackDamage;
+    }
+
+    public int getMaxAttackDamage() {
+        return maxAttackDamage;
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public int getHealthPointsLeft() {
+        return healthPointsLeft;
+    }
+
+    public int getMoveRange() {
+        return moveRange;
+    }
+
+    public int getInitiative() {
+        return initiative;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public boolean isDefending() {
+        return isDefending;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getTown() {
+        return town;
+    }
+
     protected boolean isDead;
 //    protected UnitView unitView;
 //
@@ -37,11 +106,4 @@ public abstract class Unit {
     public void defend(){
 
     }
-
-
-//    public Unit(String name) {
-//        this.name = name;
-//        this.town = town;
-//        this.owner = owner;
-//    }
 }

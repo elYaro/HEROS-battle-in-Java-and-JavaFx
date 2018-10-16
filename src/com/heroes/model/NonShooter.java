@@ -10,8 +10,8 @@ public class NonShooter extends Unit{
         town = UnitParameters.get("town");
         attackPower = Integer.parseInt(UnitParameters.get("attackPower"));
         defencePower = Integer.parseInt(UnitParameters.get("defencePower"));
-        minAttackDomage = Integer.parseInt(UnitParameters.get("minAttackDomage"));
-        maxAttackDomage = Integer.parseInt(UnitParameters.get("maxAttackDomage"));
+        minAttackDamage = Integer.parseInt(UnitParameters.get("minAttackDamage"));
+        maxAttackDamage = Integer.parseInt(UnitParameters.get("maxAttackDamage"));
         healthPoints = Integer.parseInt(UnitParameters.get("healthPoints"));
         healthPointsLeft = Integer.parseInt(UnitParameters.get("healthPointsLeft"));
         moveRange = Integer.parseInt(UnitParameters.get("moveRange"));
