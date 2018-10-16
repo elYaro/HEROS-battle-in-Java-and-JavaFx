@@ -21,6 +21,12 @@ public abstract class Unit {
     protected int x;
     protected int y;
     protected boolean isDefending;
+    protected boolean isDead;
+//    protected UnitView unitView;
+//
+//    public void setUnitView(UnitView arg){
+//        unitView = arg;
+//    }
 
     public boolean isShooter() {
         return shooter;
@@ -90,20 +96,10 @@ public abstract class Unit {
         return town;
     }
 
-    protected boolean isDead;
-//    protected UnitView unitView;
-//
-//    public void setUnitView(UnitView arg){
-//        unitView = arg;
-//    }
-    public void move(){
-//        return "i can move";
-    }
+    public void move(){ }
     public int calculateAttackBonus(){
         return 69;
     }
 //    public void attack(bonus){}
-    public void defend(){
-
-    }
+    public void defend(){ }
 }

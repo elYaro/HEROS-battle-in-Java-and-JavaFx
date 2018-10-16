@@ -21,7 +21,5 @@ public class NonShooter extends Unit{
         y = Integer.parseInt(UnitParameters.get("y"));
         isDefending = Boolean.parseBoolean(UnitParameters.get("isDefending"));
         isDead = Boolean.parseBoolean(UnitParameters.get("isDead"));
-
-
     }
 }
