@@ -22,8 +22,11 @@ public abstract class Unit {
     protected int y;
     protected boolean isDefending;
     protected boolean isDead;
-//    protected UnitVeiw unitview;
-
+//    protected UnitView unitView;
+//
+//    public void setUnitView(UnitView arg){
+//        unitView = arg;
+//    }
     public void move(){
 //        return "i can move";
     }
