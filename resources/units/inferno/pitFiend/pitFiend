@@ -1,4 +1,5 @@
 name,Pit Fiend
+shooter,false
 town,Inferno
 attackPower,13
 defencePower,13
@@ -13,4 +14,3 @@ x,1
 y,1
 isDefending,false
 isDead,false
-unitview,xxx

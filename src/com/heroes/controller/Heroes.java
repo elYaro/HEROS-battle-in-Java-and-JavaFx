@@ -1,6 +1,8 @@
 package com.heroes.controller;
 import com.heroes.model.Game;
+import com.heroes.view.UnitView;
 
+import com.heroes.view.UnitView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -43,7 +45,6 @@ public class Heroes extends Application {
         primaryStage.setFullScreen(true);
         primaryStage.show();
         System.out.println(screen.getVisualBounds());
-
 
     }
 

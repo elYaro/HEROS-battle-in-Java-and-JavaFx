@@ -2,10 +2,9 @@
 ### Java template
 # Compiled class file
 *.class
-*.idea //added by yaro
+.idea/
 # Log file
 *.log
-
 # BlueJ files
 *.ctxt
 
