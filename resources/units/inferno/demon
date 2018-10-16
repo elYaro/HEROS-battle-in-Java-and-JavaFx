@@ -1,0 +1,15 @@
+name                Demon
+town                Inferno
+attackPower         10
+defencePower        10
+minAttackDomage     7
+maxAttackDomage     9
+healthPoints        35
+healthPointsLeft    35
+moveRange           5
+initiative          5
+quantity            10
+location            xxx
+isDefending         false
+isDead              false
+unitview            xxx

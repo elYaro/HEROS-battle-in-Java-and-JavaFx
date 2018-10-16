@@ -1,0 +1,15 @@
+name                Pit Fiend
+town                Inferno
+attackPower         13
+defencePower        13
+minAttackDomage     13
+maxAttackDomage     17
+healthPoints        45
+healthPointsLeft    45
+moveRange           6
+initiative          6
+quantity            10
+location            xxx
+isDefending         false
+isDead              false
+unitview            xxx

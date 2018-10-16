@@ -1,0 +1,15 @@
+name                Imp
+town                Inferno
+attackPower         2
+defencePower        3
+minAttackDomage     1
+maxAttackDomage     2
+healthPoints        4
+healthPointsLeft    4
+moveRange           5
+initiative          5
+quantity            10
+location            xxx
+isDefending         false
+isDead              false
+unitview            xxx

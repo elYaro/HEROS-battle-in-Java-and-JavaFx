@@ -1,0 +1,15 @@
+name                Efreet
+town                Inferno
+attackPower         16
+defencePower        12
+minAttackDomage     16
+maxAttackDomage     24
+healthPoints        90
+healthPointsLeft    90
+moveRange           9
+initiative          9
+quantity            10
+location            xxx
+isDefending         false
+isDead              false
+unitview            xxx
