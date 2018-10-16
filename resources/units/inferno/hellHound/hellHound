@@ -1,4 +1,5 @@
 name,Hell Hound
+shooter,false
 town,Inferno
 attackPower,10
 defencePower,6

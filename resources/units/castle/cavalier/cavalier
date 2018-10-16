@@ -1,4 +1,5 @@
 name,Cavalier
+shooter,false
 town,Castle
 attackPower,15
 defencePower,15

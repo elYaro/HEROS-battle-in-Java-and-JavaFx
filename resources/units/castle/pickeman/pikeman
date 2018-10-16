@@ -1,4 +1,5 @@
 name,Pikeman
+shooter,false
 town,Castle
 attackPower,4
 defencePower,5

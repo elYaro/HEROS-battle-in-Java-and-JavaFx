@@ -1,4 +1,5 @@
 name,Angel
+shooter,false
 town,Castle
 attackPower,20
 defencePower,20

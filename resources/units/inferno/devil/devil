@@ -1,4 +1,5 @@
 name,Devil
+shooter,false
 town,Inferno
 attackPower,19
 defencePower,21

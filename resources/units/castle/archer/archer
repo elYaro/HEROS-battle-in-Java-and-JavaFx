@@ -1,4 +1,5 @@
 name,Archer
+shooter,true
 town,Castle
 attackPower,6
 defencePower,3

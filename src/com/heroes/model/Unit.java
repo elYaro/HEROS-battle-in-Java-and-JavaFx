@@ -1,35 +1,44 @@
 package com.heroes.model;
 
+
+
 import java.lang.reflect.Array;
 
 public abstract class Unit {
-    private String name;
-    private String town;
-//    private Player owner;
-    private int attackPower;
-    private int defencePower;
-    private int minAttackDomage;
-    private int maxAttackDomage;
-    private int healthPoints;
-    private int healthPointsLeft;
-    private int moveRange;
-    private int initiative;
-    private int quantity;
+    protected String name;
+    protected String town;
+    protected boolean shooter;
+    protected Player owner;
+    protected int attackPower;
+    protected int defencePower;
+    protected int minAttackDomage;
+    protected int maxAttackDomage;
+    protected int healthPoints;
+    protected int healthPointsLeft;
+    protected int moveRange;
+    protected int initiative;
+    protected int quantity;
+    protected int x;
+    protected int y;
+    protected boolean isDefending;
+    protected boolean isDead;
+//    protected UnitVeiw unitview;
 
-    private int[] location;
-    private boolean isDefending;
-    private boolean isDead;
-//    private UnitVeiw unitview;
-
-    public abstract void move();
-    public abstract int calculateAttackBonus();
-//    public abstract void attack(bonus);
-    public abstract void defend();
-
-
-    public Unit(String name) {
-        this.name = name;
-        this.town = town;
-//        this.owner = owner;
+    public void move(){
+//        return "i can move";
     }
+    public int calculateAttackBonus(){
+        return 69;
+    }
+//    public void attack(bonus){}
+    public void defend(){
+
+    }
+
+
+//    public Unit(String name) {
+//        this.name = name;
+//        this.town = town;
+//        this.owner = owner;
+//    }
 }

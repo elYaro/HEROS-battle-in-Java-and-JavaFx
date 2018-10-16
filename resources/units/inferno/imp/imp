@@ -1,4 +1,5 @@
 name,Imp
+shooter,false
 town,Inferno
 attackPower,2
 defencePower,3

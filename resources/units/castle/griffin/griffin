@@ -1,4 +1,5 @@
 name,Griffin
+shooter,false
 town,Castle
 attackPower,8
 defencePower,8

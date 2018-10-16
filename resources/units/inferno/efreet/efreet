@@ -1,4 +1,5 @@
 name,Efreet
+shooter,false
 town,Inferno
 attackPower,16
 defencePower,12
