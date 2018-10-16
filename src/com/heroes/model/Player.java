@@ -13,7 +13,7 @@ public class Player {
     private int leftUnits;
     private boolean startsOnLeftSide;
 
-    private List<HashMap> ListOfUnitsProperties =  Utilis.fileRead();
+//    private List<HashMap> ListOfUnitsProperties =  Utilis.fileRead();
 
 
     Player(String name, boolean leftSide, String town){
@@ -24,21 +24,21 @@ public class Player {
     }
 
     public void createUnitsObjects(Player player){
-        for(unitProperties:ListOfUnitsProperties) {
-            if (unitProperties.get("town") == this.town) {
-                if (unitProperties.get("shooter")) {
-                    Unit unit = new Shooter(unitProperties, player);
-                    unitList.add(unit);
-                    UnitView unitView = new UnitView(unit);
-                    unit.setUnitView(unitView);
-                }if (!unitProperties.get("shooter")){
-                    Unit unit = new NonShooter(unitProperties, player);
-                    unitList.add(unit);
-                    UnitView unitView = new UnitView(unit);
-                    unit.setUnitView(unitView);
-                }
-            }
-        }
+//        for(unitProperties:ListOfUnitsProperties) {
+//            if (unitProperties.get("town") == this.town) {
+//                if (unitProperties.get("shooter")) {
+//                    Unit unit = new Shooter(unitProperties, player);
+//                    unitList.add(unit);
+//                    UnitView unitView = new UnitView(unit);
+//                    unit.setUnitView(unitView);
+//                }if (!unitProperties.get("shooter")){
+//                    Unit unit = new NonShooter(unitProperties, player);
+//                    unitList.add(unit);
+//                    UnitView unitView = new UnitView(unit);
+//                    unit.setUnitView(unitView);
+//                }
+//            }
+//        }
     }
 
 
