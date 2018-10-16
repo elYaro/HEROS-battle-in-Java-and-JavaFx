@@ -1,0 +1,15 @@
+name,Cavalier
+town,Castle
+attackPower,15
+defencePower,15
+minAttackDomage,15
+maxAttackDomage,25
+healthPoints,100
+healthPointsLeft,100
+moveRange,7
+initiative,7
+quantity,10
+location,xxx
+isDefending,false
+isDead,false
+unitview,xxx

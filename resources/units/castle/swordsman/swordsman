@@ -1,0 +1,15 @@
+name,Swordsman
+town,Castle
+attackPower,10
+defencePower,12
+minAttackDomage,6
+maxAttackDomage,9
+healthPoints,35
+healthPointsLeft,35
+moveRange,5
+initiative,5
+quantity,10
+location,xxx
+isDefending,false
+isDead,false
+unitview,xxx

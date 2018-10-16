@@ -1,0 +1,15 @@
+name,Angel
+town,Castle
+attackPower,20
+defencePower,20
+minAttackDomage,50
+maxAttackDomage,50
+healthPoints,200
+healthPointsLeft,200
+moveRange,12
+initiative,12
+quantity,10
+location,xxx
+isDefending,false
+isDead,false
+unitview,xxx
