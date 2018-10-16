@@ -1,4 +1,5 @@
 name,Imp
+shooter,false
 town,Inferno
 attackPower,2
 defencePower,3
@@ -12,4 +13,3 @@ quantity,10
 location,xxx
 isDefending,false
 isDead,false
-unitview,xxx

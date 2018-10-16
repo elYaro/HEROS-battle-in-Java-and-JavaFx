@@ -1,4 +1,5 @@
 name,Devil
+shooter,false
 town,Inferno
 attackPower,19
 defencePower,21
@@ -12,4 +13,3 @@ quantity,10
 location,xxx
 isDefending,false
 isDead,false
-unitview,xxx

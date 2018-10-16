@@ -1,4 +1,5 @@
 name,Monk
+shooter,true
 town,Castle
 attackPower,12
 defencePower,7
@@ -12,4 +13,3 @@ quantity,10
 location,xxx
 isDefending,false
 isDead,false
-unitview,xxx

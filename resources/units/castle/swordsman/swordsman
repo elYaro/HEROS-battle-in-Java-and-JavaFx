@@ -1,4 +1,5 @@
 name,Swordsman
+shooter,false
 town,Castle
 attackPower,10
 defencePower,12
@@ -12,4 +13,3 @@ quantity,10
 location,xxx
 isDefending,false
 isDead,false
-unitview,xxx

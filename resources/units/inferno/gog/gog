@@ -1,4 +1,5 @@
 name,Gog
+shooter,true
 town,Inferno
 attackPower,6
 defencePower,4
@@ -12,4 +13,3 @@ quantity,10
 location,xxx
 isDefending,false
 isDead,false
-unitview,xxx

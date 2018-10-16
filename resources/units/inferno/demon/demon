@@ -1,4 +1,5 @@
 name,Demon
+shooter,false
 town,Inferno
 attackPower,10
 defencePower,10
@@ -12,4 +13,3 @@ quantity,10
 location,xxx
 isDefending,false
 isDead,false
-unitview,xxx
