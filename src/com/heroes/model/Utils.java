@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Utils {
     /**
@@ -32,7 +33,31 @@ public class Utils {
         reader.close();
         return unitProporties;
     }
+
+    /**
+     * creates ArryList of Strings containing full paths to txt files in directory units.
+     * it is needed to reach those txt files and read all data from them.
+     * @return ArrayList</String>
+     */
+    public static ArrayList<String> createPath() {
+        ArrayList<String> pathsToFilesInUnits = new ArrayList<>();
+        List<String> castleFileNames = List.of("angel", "archer", "cavalier", "griffin", "monk", "pickeman", "swordsman");
+        List<String> infernoFileNames = List.of("demon", "devil", "efreet", "gog", "hellHound", "imp", "pitFiend");
+
+        for (int i = 0; i < castleFileNames.size(); i++) {
+            String pathToAdd = "resources/units/castle/" + castleFileNames.get(i) + "/" + castleFileNames.get(i);
+            pathsToFilesInUnits.add(pathToAdd);
+        }
+
+        for (int i = 0; i < infernoFileNames.size(); i++) {
+            String pathToAdd = "resources/units/inferno/" + infernoFileNames.get(i) + "/" + infernoFileNames.get(i);
+            pathsToFilesInUnits.add(pathToAdd);
+        }
+        return pathsToFilesInUnits;
+
+    }
 }
+
 
 
 
