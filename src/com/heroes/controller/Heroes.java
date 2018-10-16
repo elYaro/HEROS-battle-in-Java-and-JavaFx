@@ -24,18 +24,15 @@ public class Heroes extends Application {
     public void start(Stage primaryStage) {
         Game game = new Game();
         game.setTableBackground(new Image("map/Map1.png"));
-        primaryStage.setTitle("HEROES OF MIGHT & MAGIC");
-
+        primaryStage.setTitle("Heroes");
+        primaryStage.setScene(new Scene(game, WINDOW_WIDTH, WINDOW_HEIGHT));
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
-
         primaryStage.setX(bounds.getMinX());
         primaryStage.setY(bounds.getMinY());
         primaryStage.setWidth(bounds.getWidth());
         primaryStage.setHeight(bounds.getHeight());
-
-        StackPane root = new StackPane();
-        root.setStyle(
+        game.setStyle(
                 "-fx-background-image: url(" +
                         "'map/Map1.png'" +
                         "); " +
@@ -43,10 +40,11 @@ public class Heroes extends Application {
                         "-fx-background-position: center center;"+
                         "-fx-background-repeat: stretch;"
         );
-        primaryStage.setScene(new Scene(root));
-
-//        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
+        System.out.println(screen.getVisualBounds());
+
+
     }
 
 
