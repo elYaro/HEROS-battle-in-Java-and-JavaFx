@@ -18,18 +18,19 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class Game extends Pane {
 
     private List<Square> squaresList = FXCollections.observableArrayList();
+    private Player P1;
+    private Player P2;
 
 
     public Game(){
         createSquares();
+        createPlayersAndTheirsUnits();
+
     }
 
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
@@ -37,6 +38,14 @@ public class Game extends Pane {
         System.out.println(square.getLocationX());
         System.out.println(square.getLocationY());
     };
+
+    public void createPlayersAndTheirsUnits(){
+        this.P1 = new Player("P1",true,"Castle");
+        this.P1.createUnitsObjects(this.P1);
+        this.P2 = new Player("P2",false,"Inferno");
+        this.P1.createUnitsObjects(this.P2);
+
+    }
 
 
     public void addMouseEventHandlers(Square gamesquare) {
@@ -64,5 +73,7 @@ public class Game extends Pane {
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
+
+
 
 }
