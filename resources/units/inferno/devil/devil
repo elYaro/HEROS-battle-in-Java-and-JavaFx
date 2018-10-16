@@ -9,7 +9,8 @@ healthPointsLeft,160
 moveRange,11
 initiative,11
 quantity,10
-location,xxx
+x,1
+y,1
 isDefending,false
 isDead,false
 unitview,xxx
