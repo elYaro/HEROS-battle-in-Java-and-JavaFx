@@ -29,13 +29,13 @@ public class Player {
         Utils utils = new Utils();
         List<HashMap> ListOfUnitsProperties =  utils.fileRead(utils.createPath());
         for(HashMap<String, String> unitProperties:ListOfUnitsProperties) {
-            if (unitProperties.get("town") == this.town) {
-                if (unitProperties.get("shooter") == "true") {
+            if (unitProperties.get("town").equals(this.town)) {
+                if (unitProperties.get("shooter").equals("true")) {
                     Unit unit = new Shooter(unitProperties, player);
                     unitList.add(unit);
                     UnitView unitView = new UnitView(unit);
                     unit.setUnitView(unitView);
-                }if (unitProperties.get("shooter") == "false"){
+                }if (unitProperties.get("shooter").equals("false")){
                     Unit unit = new NonShooter(unitProperties, player);
                     unitList.add(unit);
                     UnitView unitView = new UnitView(unit);

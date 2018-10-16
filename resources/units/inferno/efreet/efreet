@@ -3,8 +3,8 @@ shooter,false
 town,Inferno
 attackPower,16
 defencePower,12
-minAttackDomage,16
-maxAttackDomage,24
+minAttackDamage,16
+maxAttackDamage,24
 healthPoints,90
 healthPointsLeft,90
 moveRange,9

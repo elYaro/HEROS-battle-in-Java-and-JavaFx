@@ -3,8 +3,8 @@ shooter,true
 town,Inferno
 attackPower,6
 defencePower,4
-minAttackDomage,2
-maxAttackDomage,4
+minAttackDamage,2
+maxAttackDamage,4
 healthPoints,13
 healthPointsLeft,13
 moveRange,4

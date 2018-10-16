@@ -3,8 +3,8 @@ shooter,false
 town,Castle
 attackPower,10
 defencePower,12
-minAttackDomage,6
-maxAttackDomage,9
+minAttackDamage,6
+maxAttackDamage,9
 healthPoints,35
 healthPointsLeft,35
 moveRange,5

@@ -31,7 +31,7 @@ public class Game extends Pane {
     public Game() throws IOException {
         createSquares();
         createPlayersAndTheirsUnits();
-        System.out.println(this.P1.getUnitList());
+        System.out.println(this.P1.getUnitList().get(0).getAttackPower());
 
     }
 
