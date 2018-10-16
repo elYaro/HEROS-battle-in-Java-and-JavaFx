@@ -1,15 +1,15 @@
-name                Gog
-town                Inferno
-attackPower         6
-defencePower        4
-minAttackDomage     2
-maxAttackDomage     4
-healthPoints        13
-healthPointsLeft    13
-moveRange           4
-initiative          4
-quantity            10
-location            xxx
-isDefending         false
-isDead              false
-unitview            xxx
+name,Gog
+town,Inferno
+attackPower,6
+defencePower,4
+minAttackDomage,2
+maxAttackDomage,4
+healthPoints,13
+healthPointsLeft,13
+moveRange,4
+initiative,4
+quantity,10
+location,xxx
+isDefending,false
+isDead,false
+unitview,xxx

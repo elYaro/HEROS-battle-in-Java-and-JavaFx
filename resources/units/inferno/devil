@@ -1,15 +1,15 @@
-name                Devil
-town                Inferno
-attackPower         19
-defencePower        21
-minAttackDomage     30
-maxAttackDomage     40
-healthPoints        160
-healthPointsLeft    160
-moveRange           11
-initiative          11
-quantity            10
-location            xxx
-isDefending         false
-isDead              false
-unitview            xxx
+name,Devil
+town,Inferno
+attackPower,19
+defencePower,21
+minAttackDomage,30
+maxAttackDomage,40
+healthPoints,160
+healthPointsLeft,160
+moveRange,11
+initiative,11
+quantity,10
+location,xxx
+isDefending,false
+isDead,false
+unitview,xxx

@@ -1,15 +1,15 @@
-name                Hell Hound
-town                Inferno
-attackPower         10
-defencePower        6
-minAttackDomage     2
-maxAttackDomage     7
-healthPoints        25
-healthPointsLeft    25
-moveRange           7
-initiative          7
-quantity            10
-location            xxx
-isDefending         false
-isDead              false
-unitview            xxx
+name,Hell Hound
+town,Inferno
+attackPower,10
+defencePower,6
+minAttackDomage,2
+maxAttackDomage,7
+healthPoints,25
+healthPointsLeft,25
+moveRange,7
+initiative,7
+quantity,10
+location,xxx
+isDefending,false
+isDead,false
+unitview,xxx
