@@ -46,6 +46,37 @@ public class Player {
     }
 
 
+    public void setUnitSeeding(List<Square> squaresList){
+        if (this.startsOnLeftSide){
+            for (int i = 1; i <= this.unitList.size(); i++){
+                this.unitList.get(i-1).setX(0);
+                this.unitList.get(i-1).setY((i));
+                String squareName = String.valueOf(0) + "/" + String.valueOf((i));
+                for(int j = 1; j <= squaresList.size(); j++){
+                    if (squaresList.get(j).getName().equals(squareName)) {
+                        squaresList.get(j).setStandable(false);
+                        unitList.get(i-1).setPosition(squaresList.get(j));
+                        break;
+                    }
+                }
+
+            }
+        } else {
+            for (int i = 1; i <= this.unitList.size(); i++){
+                this.unitList.get(i-1).setX(10);
+                this.unitList.get(i-1).setY(i);
+                String squareName = String.valueOf(10) + "/" + String.valueOf((i));
+                for(int j = 1; j <= squaresList.size(); j++){
+                    if (squaresList.get(j).getName().equals(squareName)) {
+                        squaresList.get(j).setStandable(false);
+                        unitList.get(i-1).setPosition(squaresList.get(j));
+                        break;
+                    }
+                }
+        }
+    }
+    }
+
 
     public String getName() {
         return name;

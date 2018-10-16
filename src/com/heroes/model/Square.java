@@ -24,11 +24,13 @@ public class Square extends Pane {
     private int squareWidth = 53;
     private int locationX;
     private int locationY;
+    private String name;
 
 
     public Square(int locationX, int locationY) {
         this.locationX = locationX;
         this.locationY = locationY;
+        this.setName();
     }
 
 
@@ -52,7 +54,17 @@ public class Square extends Pane {
         return locationY;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName() {
+        this.name = String.valueOf(this.locationX) + "/" + String.valueOf(this.locationY);
+    }
+
+    public void setStandable(boolean standable) {
+        isStandable = standable;
+    }
 
     public void setBlurredBackground() {
         setPrefSize(squareHeigth, squareWidth);
@@ -62,5 +74,6 @@ public class Square extends Pane {
         setBackground(background);
 //        setEffect(gaussianBlur);
     }
+
 
 }

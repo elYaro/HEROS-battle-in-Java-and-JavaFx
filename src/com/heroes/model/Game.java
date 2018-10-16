@@ -31,22 +31,30 @@ public class Game extends Pane {
     public Game() throws IOException {
         createSquares();
         createPlayersAndTheirsUnits();
-        System.out.println(this.P1.getUnitList().get(0).getAttackPower());
-
     }
 
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
-        System.out.println(square.getLocationX());
-        System.out.println(square.getLocationY());
+//        System.out.println(square.getLocationX());
+//        System.out.println(square.getLocationY());
+        System.out.println(square.getName());
     };
 
     public void createPlayersAndTheirsUnits() throws IOException {
         this.P1 = new Player("P1",true,"Castle");
         this.P1.createUnitsObjects(this.P1);
+        this.P1.setUnitSeeding(squaresList);
+        System.out.println(this.P1.getUnitList().get(0).getPosition().getName());
+        System.out.println(this.P1.getUnitList().get(6).getPosition().getName());
+
 
         this.P2 = new Player("P2",false,"Inferno");
-        this.P1.createUnitsObjects(this.P2);
+        this.P2.createUnitsObjects(this.P2);
+        this.P2.setUnitSeeding(squaresList);
+        System.out.println(this.P2.getUnitList().get(0).getPosition().getName());
+        System.out.println(this.P2.getUnitList().get(6).getPosition().getName());
+//        System.out.println(this.P1.getUnitList().get(0).getPosition());
+
 
     }
 

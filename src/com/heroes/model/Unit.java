@@ -26,6 +26,8 @@ public abstract class Unit {
     protected boolean isDead;
     protected UnitView unitView;
 
+    protected Square position;
+
     public void setUnitView(UnitView arg){
         unitView = arg;
     }
@@ -96,6 +98,22 @@ public abstract class Unit {
 
     public String getTown() {
         return town;
+    }
+
+    public Square getPosition() {
+        return position;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setPosition(Square position) {
+        this.position = position;
     }
 
     public void move(){ }
