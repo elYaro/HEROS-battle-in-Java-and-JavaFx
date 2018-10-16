@@ -58,11 +58,12 @@ public class UnitView extends ImageView {
 
     public UnitView(Unit unit){
         this.unit = unit;
+        this.loadAnimations();
     }
 
 
 
-    public void loadAnimations() {
+    private void loadAnimations() {
         String pathToUnitVisualFiles = "resources/units/" + unit.getTown() + unit.getName() + "/visual";
         File file = new File(pathToUnitVisualFiles);
         File[] files = file.listFiles();

@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 
+import java.io.IOException;
 import java.util.*;
 
 public class Game extends Pane {
@@ -27,9 +28,10 @@ public class Game extends Pane {
     private Player P2;
 
 
-    public Game(){
+    public Game() throws IOException {
         createSquares();
         createPlayersAndTheirsUnits();
+        System.out.println(this.P1.getUnitList());
 
     }
 
@@ -39,9 +41,10 @@ public class Game extends Pane {
         System.out.println(square.getLocationY());
     };
 
-    public void createPlayersAndTheirsUnits(){
+    public void createPlayersAndTheirsUnits() throws IOException {
         this.P1 = new Player("P1",true,"Castle");
         this.P1.createUnitsObjects(this.P1);
+
         this.P2 = new Player("P2",false,"Inferno");
         this.P1.createUnitsObjects(this.P2);
 

@@ -1,5 +1,7 @@
 package com.heroes.model;
 
+import com.heroes.view.*;
+
 
 
 import java.lang.reflect.Array;
@@ -22,11 +24,11 @@ public abstract class Unit {
     protected int y;
     protected boolean isDefending;
     protected boolean isDead;
-//    protected UnitView unitView;
-//
-//    public void setUnitView(UnitView arg){
-//        unitView = arg;
-//    }
+    protected UnitView unitView;
+
+    public void setUnitView(UnitView arg){
+        unitView = arg;
+    }
 
     public boolean isShooter() {
         return shooter;

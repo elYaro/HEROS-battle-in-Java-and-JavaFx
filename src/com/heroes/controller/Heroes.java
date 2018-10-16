@@ -1,8 +1,8 @@
 package com.heroes.controller;
 import com.heroes.model.Game;
-//import com.heroes.view.UnitView;
-//
-//import com.heroes.view.UnitView;
+import com.heroes.view.UnitView;
+
+import com.heroes.view.UnitView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -11,6 +11,8 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.*;
+
+import java.io.IOException;
 
 
 public class Heroes extends Application {
@@ -23,7 +25,7 @@ public class Heroes extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         Game game = new Game();
         game.setTableBackground(new Image("map/Map1.png"));
         primaryStage.setTitle("Heroes");
