@@ -13,6 +13,7 @@ public class Player {
     Player(String name1,Boolean canMove1){
         name = name1;
         canMove = canMove1;
+        leftUnits = 7;
     }
 
     public String getName() {
