@@ -1,0 +1,15 @@
+name,Monk
+town,Castle
+attackPower,12
+defencePower,7
+minAttackDomage,10
+maxAttackDomage,12
+healthPoints,30
+healthPointsLeft,30
+moveRange,5
+initiative,5
+quantity,10
+location,xxx
+isDefending,false
+isDead,false
+unitview,xxx
