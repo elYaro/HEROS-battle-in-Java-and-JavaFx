@@ -1,0 +1,15 @@
+name                Griffin
+town                Castle
+attackPower         8
+defencePower        8
+minAttackDomage     3
+maxAttackDomage     6
+healthPoints        25
+healthPointsLeft    25
+moveRange           6
+initiative          6
+quantity            10
+location            xxx
+isDefending         false
+isDead              false
+unitview            xxx

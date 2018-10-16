@@ -1,70 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4aa6ec87-be2d-455d-96bb-0a4769064829" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HEROS-battle-in-Java-and-JavaFx.iml" beforeDir="false" afterPath="$PROJECT_DIR$/HEROS-battle-in-Java-and-JavaFx.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/map/map1.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/map/map1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/units/inferno/demon" beforeDir="false" afterPath="$PROJECT_DIR$/resources/units/inferno/demon/demon" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/units/inferno/devil" beforeDir="false" afterPath="$PROJECT_DIR$/resources/units/inferno/devil/devil" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/units/inferno/efreet" beforeDir="false" afterPath="$PROJECT_DIR$/resources/units/inferno/efreet/efreet" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/units/inferno/gog" beforeDir="false" afterPath="$PROJECT_DIR$/resources/units/inferno/gog/gog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/units/inferno/hellHound" beforeDir="false" afterPath="$PROJECT_DIR$/resources/units/inferno/hellHound/hellHound" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/units/inferno/imp" beforeDir="false" afterPath="$PROJECT_DIR$/resources/units/inferno/imp/imp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/units/inferno/pitFiend" beforeDir="false" afterPath="$PROJECT_DIR$/resources/units/inferno/pitFiend/pitFiend" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/heroes/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/heroes/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../gittie.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/.vscode/settings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/data/application_process_sample_data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/data_manager.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/database_common.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/static/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/add_new_applicant_Markus.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/delete_applicant_by_email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/find_CAROL.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/find_her_by_email.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/footer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/layout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/mentor_names.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/mentor_nick_names.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/show_applicants_table.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/show_mentors_table.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../web-app-1-another-try/2ndTRY-web-application-process-elYaro/templates/update_Jemima_Foremanadd.html" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1333451681">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="archer" value="1" />
+          <entry key="demon" value="1" />
+          <entry key="devil" value="1" />
+          <entry key="efreet" value="1" />
+          <entry key="gog" value="1" />
+          <entry key="griffin" value="1" />
+          <entry key="hellHound" value="1" />
+          <entry key="imp" value="1" />
+          <entry key="java" value="8" />
+          <entry key="pikeman" value="1" />
+          <entry key="pitFiend" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="8" />
+          <entry key="PLAIN_TEXT" value="10" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.19" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="40" selection-start="106" selection-end="106" vertical-scroll-proportion="0.057757646">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/com/heroes/model/Player.java" />
+        <option value="$PROJECT_DIR$/src/com/heroes/model/Unit.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+    <option name="x" value="20" />
+    <option name="y" value="88" />
     <option name="width" value="1440" />
-    <option name="height" value="835" />
+    <option name="height" value="733" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
+    <navigator proportions="" version="1">
+      <autoscrollFromSource ProjectPane="true" />
+      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
       <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelloWorld" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelloWorld" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelloWorld" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelloWorld" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="HelloWorld" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="units" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="units" type="462c0819:PsiDirectoryNode" />
+              <item name="castle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="units" type="462c0819:PsiDirectoryNode" />
+              <item name="inferno" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="heroes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="heroes" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="b2602c69:ProjectViewProjectNode" />
+              <item name="HEROS-battle-in-Java-and-JavaFx" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="heroes" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
     </panes>
@@ -72,17 +196,279 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/units/inferno/_pitFiend" />
+      <recent name="$PROJECT_DIR$/resources/units/inferno/_hellHound" />
+      <recent name="$PROJECT_DIR$/resources/units/inferno/_imp" />
+      <recent name="$PROJECT_DIR$/resources/units/inferno/_gog" />
+      <recent name="$PROJECT_DIR$/resources/units/inferno/_efreet" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="Heros" type="Application" factoryName="Application" temporary="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="10" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="com.heroes.controller.Heroes" />
       <module name="HEROS-battle-in-Java-and-JavaFx" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Heros" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4aa6ec87-be2d-455d-96bb-0a4769064829" name="Default Changelist" comment="" />
+      <created>1539604638625</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1539604638625</updated>
+      <workItem from="1539604640080" duration="590000" />
+      <workItem from="1539673530927" duration="8623000" />
+      <workItem from="1539683412903" duration="887000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1253000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="20" y="88" width="1440" height="733" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25679544" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Learn" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32917318" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.95319813" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32917318" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Main.java" />
+    <entry file="file://$PROJECT_DIR$/resources/units/castle/swordsman" />
+    <entry file="file://$PROJECT_DIR$/resources/units/castle/monk" />
+    <entry file="file://$PROJECT_DIR$/resources/units/castle/cavalier" />
+    <entry file="file://$PROJECT_DIR$/resources/units/castle/angel" />
+    <entry file="file://$PROJECT_DIR$/resources/units/castle/pixie" />
+    <entry file="file://$PROJECT_DIR$/src/com/heroes/model/Utils.java" />
+    <entry file="file://$PROJECT_DIR$/src/com/heroes/model/Square.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heroes/model/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="34" column="63" selection-start-line="34" selection-start-column="63" selection-end-line="34" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#888#889#0" expanded="true" />
+            <element signature="e#919#920#0" expanded="true" />
+            <element signature="e#1206#1207#0" expanded="true" />
+            <element signature="e#1273#1274#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heroes/model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" selection-start-line="4" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heroes/controller/Heroes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/heroes/model/Unit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="28" lean-forward="true" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/units/castle/pikeman">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="14" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/units/inferno/demon/demon">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/units/inferno/devil/devil">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/units/inferno/efreet/efreet">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/units/inferno/imp/imp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/units/inferno/hellHound/hellHound">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/units/inferno/pitFiend/pitFiend">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/units/inferno/gog/gog">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/units/castle/griffin">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/units/castle/archer">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>HEROS-battle-in-Java-and-JavaFx</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
