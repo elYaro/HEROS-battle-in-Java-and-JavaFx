@@ -1,7 +1,5 @@
 package com.heroes.view;
 
-import com.heroes.model.Square;
-
 import com.heroes.model.Unit;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,31 +12,48 @@ import java.util.List;
 
 public class UnitView extends ImageView {
 
-    public Image getDefaultPhoto() {
+
+    private ImageView defaultPhoto;
+    private ImageView deathphoto;
+    private List<ImageView> moveAnimation = FXCollections.observableArrayList();
+    private List<ImageView> hitAnimation = FXCollections.observableArrayList();
+    private List<ImageView> deathAnimation = FXCollections.observableArrayList();
+    private List<ImageView> attackAnimation = FXCollections.observableArrayList();
+    private List<ImageView> shootAnimation = FXCollections.observableArrayList();
+
+    private Unit unit;
+
+    public UnitView(Unit unit){
+        this.unit = unit;
+        this.loadAnimations(unit);
+    }
+
+
+    public ImageView getDefaultPhoto() {
         return defaultPhoto;
     }
 
-    public Image getDeathphoto() {
+    public ImageView getDeathphoto() {
         return deathphoto;
     }
 
-    public List<Image> getMoveAnimation() {
+    public List<ImageView> getMoveAnimation() {
         return moveAnimation;
     }
 
-    public List<Image> getHitAnimation() {
+    public List<ImageView> getHitAnimation() {
         return hitAnimation;
     }
 
-    public List<Image> getDeathAnimation() {
+    public List<ImageView> getDeathAnimation() {
         return deathAnimation;
     }
 
-    public List<Image> getAttackAnimation() {
+    public List<ImageView> getAttackAnimation() {
         return attackAnimation;
     }
 
-    public List<Image> getShootAnimation() {
+    public List<ImageView> getShootAnimation() {
         return shootAnimation;
     }
 
@@ -46,25 +61,10 @@ public class UnitView extends ImageView {
         return unit;
     }
 
-    private Image defaultPhoto;
-    private Image deathphoto;
-    private List<Image> moveAnimation = FXCollections.observableArrayList();
-    private List<Image> hitAnimation = FXCollections.observableArrayList();
-    private List<Image> deathAnimation = FXCollections.observableArrayList();
-    private List<Image> attackAnimation = FXCollections.observableArrayList();
-    private List<Image> shootAnimation = FXCollections.observableArrayList();
-
-    private Unit unit;
-
-    public UnitView(Unit unit){
-        this.unit = unit;
-        this.loadAnimations();
-    }
 
 
-
-    private void loadAnimations() {
-        String pathToUnitVisualFiles = "resources/units/" + unit.getTown() + unit.getName() + "/visual";
+    private void loadAnimations(Unit unit) {
+        String pathToUnitVisualFiles = "resources/units/" + unit.getTown().toLowerCase() + "/" + unit.getName().toLowerCase() + "/visual";
         File file = new File(pathToUnitVisualFiles);
         File[] files = file.listFiles();
         if (files != null) {
@@ -72,35 +72,57 @@ public class UnitView extends ImageView {
                 File innerfile = new File(child.getPath());
                 File[] innerfiles = innerfile.listFiles();
                 for (File innerchild : innerfiles) {
-                    System.out.println(innerchild.getParent());
-                    Image img = new Image(innerchild.getPath().substring(10));
-                    switch (innerchild.getParent()) {
-                        case "resources/units/inferno/imp/visual/attack":
-                            attackAnimation.add(img);
-                            break;
-                        case "resources/units/inferno/imp/visual/death":
-                            deathAnimation.add(img);
-                            break;
-                        case "resources/units/inferno/imp/visual/hit":
-                            hitAnimation.add(img);
-                            break;
-                        case "resources/units/inferno/imp/visual/move":
-                            moveAnimation.add(img);
-                            break;
-                        case "resources/units/inferno/imp/visual/shoot":
-                            shootAnimation.add(img);
-                            break;
-                        case "resources/units/inferno/imp/visual/defaultphoto":
-                            defaultPhoto = img;
-                            break;
-                        case "resources/units/inferno/imp/visual/deathphoto":
-                            deathphoto = img;
-                            break;
+                    ImageView img = new ImageView( new Image (innerchild.getPath().substring(10)) );
+                    if (innerchild.getParent().substring(innerchild.getParent().length() - 6).equals("attack")){
+                        attackAnimation.add(img);
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 5).equals("death")){
+                        deathAnimation.add(img);
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 3).equals("hit")){
+                        hitAnimation.add(img);
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 4).equals("move")){
+                        moveAnimation.add(img);
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 5).equals("shoot")){
+                        shootAnimation.add(img);
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 12).equals("defaultphoto")){
+                        defaultPhoto = img;
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 10).equals("deathphoto")){
+                        deathphoto = img;
+                    }
+
+
+
+//
+//                    switch (innerchild.getParent()) {
+//                        case
+//                            break;
+//                        case "resources/units/inferno/imp/visual/death":
+//                            deathAnimation.add(img);
+//                            break;
+//                        case "resources/units/inferno/imp/visual/hit":
+//                            hitAnimation.add(img);
+//                            break;
+//                        case "resources/units/inferno/imp/visual/move":
+//                            moveAnimation.add(img);
+//                            break;
+//                        case "resources/units/inferno/imp/visual/shoot":
+//                            shootAnimation.add(img);
+//                            break;
+//                        case "resources/units/inferno/imp/visual/defaultphoto":
+//                            defaultPhoto = img;
+//                            break;
+//                        case "resources/units/inferno/imp/visual/deathphoto":
+//                            deathphoto = img;
+//                            break;
 
                     }
                 }
             }
         }
-    }
+
+
+//    public void attachPhoto() {
+//        this.unit.getPosition().getChildren().add(this.defaultPhoto());
+//    }
+
 }
 

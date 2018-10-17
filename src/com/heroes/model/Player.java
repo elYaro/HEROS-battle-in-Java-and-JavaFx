@@ -1,12 +1,14 @@
 package com.heroes.model;
 
 import com.heroes.view.*;
+import javafx.scene.layout.Pane;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Player {
+public class Player extends Pane {
 
     private String name;
     private String town;
@@ -61,6 +63,20 @@ public class Player {
             }
         }
     }
+
+    public void attachPhoto(Player player){
+        for(Unit unit : player.getUnitList()){
+            unit.getPosition().getChildren().add(unit.getUnitView().getDefaultPhoto());
+            unit.getPosition().getChildren().get(0).getParent().toBack();
+        }
+    }
+
+
+//    public void addDefaultPhoto(Player player){
+//        for (Unit unit : player.getUnitList()){
+//            unit
+//        }
+//    }
 
 
     public String getName() {

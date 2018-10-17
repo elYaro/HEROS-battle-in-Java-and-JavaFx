@@ -1,11 +1,13 @@
 package com.heroes.model;
 
+import com.heroes.view.UnitView;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -42,10 +44,15 @@ public class Game extends Pane {
         this.P1 = new Player("P1",true,"Castle");
         this.P1.createUnitsObjects(this.P1);
         this.P1.setUnitSeeding(squaresList);
+        this.P1.attachPhoto(this.P1);
+//
+
 
         this.P2 = new Player("P2",false,"Inferno");
         this.P2.createUnitsObjects(this.P2);
         this.P2.setUnitSeeding(squaresList);
+        this.P2.attachPhoto(this.P2);
+
     }
 
 
@@ -61,9 +68,12 @@ public class Game extends Pane {
                 gameSquare.setBlurredBackground();
                 gameSquare.setLayoutX(((listWidth - 1) * 55) + 270);
                 gameSquare.setLayoutY(((listHeigth - 1) * 55) + 140);
+                gameSquare.setId(gameSquare.getName());
                 addMouseEventHandlers(gameSquare);
                 squaresList.add(gameSquare);
                 getChildren().add(gameSquare);
+                System.out.println(gameSquare.ge);
+
             }
         }
     }

@@ -5,6 +5,7 @@ import com.heroes.view.UnitView;
 import com.heroes.view.UnitView;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.geometry.Rectangle2D;
@@ -29,13 +30,15 @@ public class Heroes extends Application {
         Game game = new Game();
         game.setTableBackground(new Image("map/Map1.png"));
         primaryStage.setTitle("Heroes");
+//        Label lbl = new Label("lol");
+//        game.getChildren().add(lbl);
         primaryStage.setScene(new Scene(game, WINDOW_WIDTH, WINDOW_HEIGHT));
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-        primaryStage.setX(bounds.getMinX());
-        primaryStage.setY(bounds.getMinY());
-        primaryStage.setWidth(bounds.getWidth());
-        primaryStage.setHeight(bounds.getHeight());
+//        Screen screen = Screen.getPrimary();
+//        Rectangle2D bounds = screen.getVisualBounds();
+//        primaryStage.setX(bounds.getMinX());
+//        primaryStage.setY(bounds.getMinY());
+//        primaryStage.setWidth(bounds.getWidth());
+//        primaryStage.setHeight(bounds.getHeight());
         game.setStyle(
                 "-fx-background-image: url(" +
                         "'map/Map1.png'" +
@@ -46,7 +49,6 @@ public class Heroes extends Application {
         );
         primaryStage.setFullScreen(true);
         primaryStage.show();
-        System.out.println(screen.getVisualBounds());
 
     }
 

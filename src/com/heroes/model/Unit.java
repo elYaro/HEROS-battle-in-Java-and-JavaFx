@@ -1,12 +1,14 @@
 package com.heroes.model;
 
 import com.heroes.view.*;
+import javafx.scene.Node;
+
 
 
 
 import java.lang.reflect.Array;
 
-public abstract class Unit {
+public abstract class Unit extends Node {
     protected String name;
     protected String town;
     protected boolean shooter;
@@ -100,9 +102,15 @@ public abstract class Unit {
         return town;
     }
 
+    public UnitView getUnitView() {
+        return unitView;
+    }
+
     public Square getPosition() {
         return position;
     }
+
+
 
     public void setX(int x) {
         this.x = x;
