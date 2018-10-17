@@ -1,11 +1,7 @@
 package com.heroes.model;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.geometry.Bounds;
-import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -14,8 +10,8 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+
+import java.util.Comparator;
 
 
 import java.io.IOException;
@@ -74,6 +70,38 @@ public class Game extends Pane {
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
+
+
+
+
+public ArrayList<Unit> createArrayListOfAllUnitsInTheGame(){   //yaro
+        //tworzymy arrayList of unit Objects
+        ArrayList<Unit> unitsInTheGame = new ArrayList<>();
+        for (Unit unit: P1.getUnitList()) {
+            unitsInTheGame.add(unit);       //mamy liste unitow P1
+        }
+        for (Unit unit: P2.getUnitList()) {
+            unitsInTheGame.add(unit);       //mamy liste unitow P1 + P2
+        }
+
+        // sortujemy inity w arrayList wg jednego z atrybutow : tu wg inicjatywa
+        Collections.sort(unitsInTheGame, new Comparator<>() {
+            public int compare(Unit u1, Unit u2) {
+                return Integer.valueOf(u2.initiative).compareTo(u1.initiative); //example of decending sort, to have ascending switch to: u1 i u2
+            }
+        });
+        for (int i = 0; i < unitsInTheGame.size();i++){
+            System.out.println(unitsInTheGame.get(i).name + " posiada inicjatywe = " + unitsInTheGame.get(i).initiative);
+        }
+    return unitsInTheGame;
+}
+
+public void ruchGracza(){
+        ArrayList<Unit>unitsInTheGame = createArrayListOfAllUnitsInTheGame();
+
+
+}
+
 
 
 
