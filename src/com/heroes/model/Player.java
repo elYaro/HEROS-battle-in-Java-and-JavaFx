@@ -2,6 +2,7 @@ package com.heroes.model;
 
 import com.heroes.view.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.transform.Rotate;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,7 +68,19 @@ public class Player extends Pane {
     public void attachPhoto(Player player){
         for(Unit unit : player.getUnitList()){
             unit.getPosition().getChildren().add(unit.getUnitView().getDefaultPhoto());
-            unit.getPosition().getChildren().get(0).getParent().toBack();
+            unit.getPosition().getChildren().get(0).getParent().toFront();
+            unit.getUnitView().getDefaultPhoto().setTranslateX(-170);
+            unit.getUnitView().getDefaultPhoto().setTranslateY(-220);
+            if(unit.getTown().equals("Inferno")){
+//                unit.getUnitView().getDefaultPhoto().setTranslateZ(unit.getUnitView().getDefaultPhoto().getBoundsInLocal().getWidth() / 2.0);
+                unit.getUnitView().getDefaultPhoto().setTranslateX(-230);
+                unit.getUnitView().getDefaultPhoto().setRotationAxis(Rotate.Y_AXIS);
+                unit.getUnitView().getDefaultPhoto().setRotate(180);
+
+//                unit.getUnitView().getDefaultPhoto().setStyle("-fx-rotate:180");
+
+            }
+
         }
     }
 

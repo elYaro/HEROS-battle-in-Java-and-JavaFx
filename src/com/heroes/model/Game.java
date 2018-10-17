@@ -33,6 +33,9 @@ public class Game extends Pane {
     public Game() throws IOException {
         createSquares();
         createPlayersAndTheirsUnits();
+
+//        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setTranslateX(-175);
+//        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setTranslateY(-220);
     }
 
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
@@ -72,7 +75,7 @@ public class Game extends Pane {
                 addMouseEventHandlers(gameSquare);
                 squaresList.add(gameSquare);
                 getChildren().add(gameSquare);
-                System.out.println(gameSquare.ge);
+//                System.out.println(gameSquare.ge);
 
             }
         }
