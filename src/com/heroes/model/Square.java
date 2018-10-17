@@ -19,7 +19,7 @@ import java.util.ListIterator;
 
 public class Square extends Pane {
 
-    private boolean isStandable = false;
+    private boolean isStandable = true;
     private int squareHeigth = 53;
     private int squareWidth = 53;
     private int locationX;

@@ -14,6 +14,8 @@ public class Player {
     private List<Unit> unitList = new ArrayList<Unit>();
     private int leftUnits;
     private boolean startsOnLeftSide;
+    public int[] P1seeding = {0, 31, 45, 76, 105, 121, 150};
+    private int[] P2seeding = {14, 43, 59, 88, 119, 133, 164};
 
 //    private List<HashMap> ListOfUnitsProperties =  Utils.fileRead();
 
@@ -49,32 +51,15 @@ public class Player {
     public void setUnitSeeding(List<Square> squaresList){
         if (this.startsOnLeftSide){
             for (int i = 1; i <= this.unitList.size(); i++){
-                this.unitList.get(i-1).setX(0);
-                this.unitList.get(i-1).setY((i));
-                String squareName = String.valueOf(0) + "/" + String.valueOf((i));
-                for(int j = 1; j <= squaresList.size(); j++){
-                    if (squaresList.get(j).getName().equals(squareName)) {
-                        squaresList.get(j).setStandable(false);
-                        unitList.get(i-1).setPosition(squaresList.get(j));
-                        break;
-                    }
-                }
-
+                unitList.get(i-1).setPosition(squaresList.get(P1seeding[i-1]));
+                squaresList.get(P1seeding[i-1]).setStandable(false);
             }
         } else {
             for (int i = 1; i <= this.unitList.size(); i++){
-                this.unitList.get(i-1).setX(10);
-                this.unitList.get(i-1).setY(i);
-                String squareName = String.valueOf(10) + "/" + String.valueOf((i));
-                for(int j = 1; j <= squaresList.size(); j++){
-                    if (squaresList.get(j).getName().equals(squareName)) {
-                        squaresList.get(j).setStandable(false);
-                        unitList.get(i-1).setPosition(squaresList.get(j));
-                        break;
-                    }
-                }
+                unitList.get(i-1).setPosition(squaresList.get(P2seeding[i-1]));
+                squaresList.get(P2seeding[i-1]).setStandable(false);
+            }
         }
-    }
     }
 
 

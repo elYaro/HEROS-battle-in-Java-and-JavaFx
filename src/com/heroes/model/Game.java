@@ -35,8 +35,6 @@ public class Game extends Pane {
 
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
-//        System.out.println(square.getLocationX());
-//        System.out.println(square.getLocationY());
         System.out.println(square.getName());
     };
 
@@ -44,18 +42,10 @@ public class Game extends Pane {
         this.P1 = new Player("P1",true,"Castle");
         this.P1.createUnitsObjects(this.P1);
         this.P1.setUnitSeeding(squaresList);
-        System.out.println(this.P1.getUnitList().get(0).getPosition().getName());
-        System.out.println(this.P1.getUnitList().get(6).getPosition().getName());
-
 
         this.P2 = new Player("P2",false,"Inferno");
         this.P2.createUnitsObjects(this.P2);
         this.P2.setUnitSeeding(squaresList);
-        System.out.println(this.P2.getUnitList().get(0).getPosition().getName());
-        System.out.println(this.P2.getUnitList().get(6).getPosition().getName());
-//        System.out.println(this.P1.getUnitList().get(0).getPosition());
-
-
     }
 
 
@@ -65,12 +55,12 @@ public class Game extends Pane {
 
 
     private void createSquares(){
-        for(int listWidth = 0; listWidth < 15; listWidth++) {
-            for (int listHeigth = 0; listHeigth < 11; listHeigth++) {
+        for(int listHeigth = 1; listHeigth <= 11; listHeigth++) {
+            for (int listWidth = 1; listWidth <= 15; listWidth++) {
                 Square gameSquare = new Square(listWidth, listHeigth);
                 gameSquare.setBlurredBackground();
-                gameSquare.setLayoutX((listWidth * 55) + 270);
-                gameSquare.setLayoutY((listHeigth * 55) + 140);
+                gameSquare.setLayoutX(((listWidth - 1) * 55) + 270);
+                gameSquare.setLayoutY(((listHeigth - 1) * 55) + 140);
                 addMouseEventHandlers(gameSquare);
                 squaresList.add(gameSquare);
                 getChildren().add(gameSquare);
