@@ -17,8 +17,6 @@ public class Player {
     public int[] P1seeding = {0, 31, 45, 76, 105, 121, 150};
     private int[] P2seeding = {14, 43, 59, 88, 119, 133, 164};
 
-//    private List<HashMap> ListOfUnitsProperties =  Utils.fileRead();
-
 
     Player(String name, boolean leftSide, String town){
         this.town = town;

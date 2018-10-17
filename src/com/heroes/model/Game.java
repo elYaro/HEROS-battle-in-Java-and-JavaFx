@@ -20,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Game extends Pane {
 
@@ -31,6 +32,8 @@ public class Game extends Pane {
     public Game() throws IOException {
         createSquares();
         createPlayersAndTheirsUnits();
+
+        whereCanMove(P1.getUnitList().get(5));
     }
 
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
@@ -53,6 +56,45 @@ public class Game extends Pane {
         gamesquare.setOnMouseClicked(onMouseClickedHandler);
     }
 
+
+    private ArrayList<Object> whereCanMove(Unit unit){
+        int range = unit.getMoveRange();
+        Square actualPosition = unit.getPosition();
+        int actualPositionNumber = ((actualPosition.getLocationY()-1)*15+actualPosition.getLocationX()-1);
+        int[] yBorderNumbers = {0, 15, 30, 45, 60, 75, 90, 105, 120 ,135, 150,
+                                14, 29, 44, 59, 74, 89, 104, 119, 134, 149, 164};
+
+        int[] xBorderNumbers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+                                150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164};
+
+        List<Integer> possibleX = new ArrayList<Integer>();
+        boolean contains = IntStream.of(xBorderNumbers).anyMatch(x -> x == 4);
+        ArrayList<Object> array = new ArrayList<Object>();
+//        System.out.println(actualPosition.getLocationX());
+        possibleX.add(actualPosition.getLocationX());
+        for(int a = actualPosition.getLocationX()+1; a<=actualPosition.getLocationX()+range ;a++){
+            if (a>15) {
+                break;
+            }
+            System.out.println("x za "+a);
+            possibleX.add(a);
+
+        }
+        for(int a = actualPosition.getLocationX()-1; a>=actualPosition.getLocationX()-range ;a--){
+            if (a<1) {
+                break;
+            }
+            System.out.println("x przed "+a);
+            possibleX.add(a);
+
+        }
+        System.out.println(possibleX);
+
+
+        return array ;
+
+
+    }
 
     private void createSquares(){
         for(int listHeigth = 1; listHeigth <= 11; listHeigth++) {
