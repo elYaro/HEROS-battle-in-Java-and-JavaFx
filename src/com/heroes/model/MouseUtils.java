@@ -36,7 +36,7 @@ public class MouseUtils extends Pane {
 //        targetX = square.getLayoutX() - 165;
         finaltarget = targetX;
         targetY = square.getLayoutY() - 215;
-//        System.out.println(t);
+
         double sourceX = unit.getUnitView().getDefaultPhoto().getLayoutX() + unit.getUnitView().getDefaultPhoto().getTranslateX();
         double sourceY = unit.getUnitView().getDefaultPhoto().getLayoutY() + unit.getUnitView().getDefaultPhoto().getTranslateY();
 
@@ -52,9 +52,12 @@ public class MouseUtils extends Pane {
         timeLine.setCycleCount(Animation.INDEFINITE);
         timeLine.play();
 
+        double moveTime = (Math.sqrt(Math.pow((targetX-sourceX),2) + Math.pow((sourceY - targetY),2)))*6;
 
-        animateCardMovement(timeLine,unit, sourceX, sourceY,
-                targetX, targetY, Duration.millis(Math.abs((targetX+targetY) - (sourceX + sourceY))*7), e -> {
+        System.out.println(moveTime);
+
+        animateCardMovement(unit, sourceX, sourceY,
+                targetX, targetY, Duration.millis(moveTime), e -> {
 //                    unit.getDropShadow().setRadius(2);
 //                    unit.getDropShadow().setOffsetX(0);
 //                    unit.getDropShadow().setOffsetY(0);
@@ -63,7 +66,7 @@ public class MouseUtils extends Pane {
 
         new Thread(() -> {
             try {
-                Thread.sleep((long) (Math.abs((finaltarget +targetY) - (sourceX + sourceY))*7));
+                Thread.sleep((long) (Math.abs(moveTime)));
                 timeLine.stop();
                 unit.getUnitView().getDefaultPhoto().setImage(unit.getUnitView().getStandPhoto());
             }
@@ -71,12 +74,11 @@ public class MouseUtils extends Pane {
                 System.err.println(e);
             }
         }).start();
-//        timeLine.stop();
 
     }
 
     private static void animateCardMovement(
-            Timeline timeLine, Unit unit, double sourceX, double sourceY,
+            Unit unit, double sourceX, double sourceY,
             double targetX, double targetY, Duration duration,
             EventHandler<ActionEvent> doAfter) {
 
@@ -97,7 +99,6 @@ public class MouseUtils extends Pane {
 
         ParallelTransition pt = new ParallelTransition(unit.getUnitView().getDefaultPhoto(), pathTransition);
         pt.play();
-//        timeLine.stop();
     }
 
 
