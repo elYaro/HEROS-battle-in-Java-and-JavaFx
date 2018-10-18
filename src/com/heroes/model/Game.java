@@ -42,7 +42,7 @@ public class Game extends Pane {
      */
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
-        MouseUtils.slideToDestCard(this.unitsInTheGame.get(iterUnit).getUnitView(), square);
+        MouseUtils.slideToDestCard(this.unitsInTheGame.get(iterUnit), square);
         if (iterUnit < 13) {
             iterUnit++;
         } else iterUnit = 0;
