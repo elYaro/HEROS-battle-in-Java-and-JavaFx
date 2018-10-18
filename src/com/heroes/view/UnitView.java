@@ -137,23 +137,8 @@ public class UnitView extends ImageView {
                 }
             }
         }
-
     }
-
-//    public static void animation(Unit unit){
-//        Timeline timeLine = new Timeline();
-//        Collection<KeyFrame> frames = timeLine.getKeyFrames();
-//        Duration frameGap = Duration.millis(256);
-//        Duration frameTime = Duration.ZERO ;
-//        for (Image img : unit.getUnitView().getMoveAnimation()) {
-//            frameTime = frameTime.add(frameGap);
-//            frames.add(new KeyFrame(frameTime, e -> unit.getUnitView().getDefaultPhoto().setImage(img)));
-//        }
-//        timeLine.setCycleCount(Timeline.INDEFINITE);
-//        timeLine.play();
-
-
-    }
+}
 
 
 

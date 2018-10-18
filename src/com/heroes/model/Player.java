@@ -20,8 +20,6 @@ public class Player extends Pane {
     public int[] P1seeding = {0, 31, 45, 76, 105, 121, 150};
     private int[] P2seeding = {14, 43, 59, 88, 119, 133, 164};
 
-//    private List<HashMap> ListOfUnitsProperties =  Utils.fileRead();
-
 
     Player(String name, boolean leftSide, String town){
         this.town = town;
@@ -29,6 +27,33 @@ public class Player extends Pane {
         this.leftUnits = 7;
         this.startsOnLeftSide = leftSide;
     }
+
+    public String getName() {
+        return name;
+    }
+    public boolean getIfCanMove() {
+        return canMove;
+    }
+    public List<Unit> getUnitList(){
+        return unitList;
+    }
+    public int getLeftUnits() {
+        return leftUnits;
+    }
+    public boolean getIfStartsOnLeftSide() {
+        return startsOnLeftSide;
+    }
+
+    public void setIfCanMove(boolean yORn) {
+        this.canMove = yORn;
+    }
+    public void setUnitList(List<Unit> listOfUnits){
+        this.unitList = listOfUnits;
+    }
+    public void setLeftUnits(int numb){
+        this.leftUnits = numb;
+    }
+
 
     public void createUnitsObjects(Player player)throws IOException {
         Utils utils = new Utils();
@@ -65,52 +90,6 @@ public class Player extends Pane {
         }
     }
 
-//    public void attachPhoto(Player player){
-//        for(Unit unit : player.getUnitList()){
-//            unit.getPosition().getChildren().add(unit.getUnitView().getDefaultPhoto());
-//            unit.getPosition().getChildren().get(0).getParent().toFront();
-//            unit.getUnitView().getDefaultPhoto().setTranslateX(-170);
-//            unit.getUnitView().getDefaultPhoto().setTranslateY(-220);
-//            if(unit.getTown().equals("Inferno")){
-//                unit.getUnitView().getDefaultPhoto().setTranslateX(-230);
-//                unit.getUnitView().getDefaultPhoto().setRotationAxis(Rotate.Y_AXIS);
-//                unit.getUnitView().getDefaultPhoto().setRotate(180);
-//            }
-//        }
-//    }
 
 
-//    public void addDefaultPhoto(Player player){
-//        for (Unit unit : player.getUnitList()){
-//            unit
-//        }
-//    }
-
-
-    public String getName() {
-        return name;
-    }
-    public boolean getIfCanMove() {
-        return canMove;
-    }
-    public List<Unit> getUnitList(){
-        return unitList;
-    }
-    public int getLeftUnits() {
-        return leftUnits;
-    }
-    public boolean getIfStartsOnLeftSide() {
-        return startsOnLeftSide;
-    }
-
-
-    public void setIfCanMove(boolean yORn) {
-        this.canMove = yORn;
-    }
-    public void setUnitList(List<Unit> listOfUnits){
-        this.unitList = listOfUnits;
-    }
-    public void setLeftUnits(int numb){
-        this.leftUnits = numb;
-    }
 }

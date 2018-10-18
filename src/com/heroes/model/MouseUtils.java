@@ -20,22 +20,19 @@ import java.util.List;
 public class MouseUtils extends Pane {
 
 
-    public static void slideToDestCard(Unit unit, Square square) {
+    public static void moveToSquare(Unit unit, Square square) {
         if (unit.getUnitView().getDefaultPhoto() == null)
             return;
 
-        double targetX = square.getLayoutX();
-        double finaltarget;
-        double targetY;
+        double targetX = 0;
+        double targetY = square.getLayoutY() - 215;
+
         if(unit.getOwner().getName().equals("P2")){
             targetX = square.getLayoutX() - 225;
         }
         if(unit.getOwner().getName().equals("P1")){
             targetX = square.getLayoutX() - 165;
         }
-//        targetX = square.getLayoutX() - 165;
-        finaltarget = targetX;
-        targetY = square.getLayoutY() - 215;
 
         double sourceX = unit.getUnitView().getDefaultPhoto().getLayoutX() + unit.getUnitView().getDefaultPhoto().getTranslateX();
         double sourceY = unit.getUnitView().getDefaultPhoto().getLayoutY() + unit.getUnitView().getDefaultPhoto().getTranslateY();
@@ -54,14 +51,7 @@ public class MouseUtils extends Pane {
 
         double moveTime = (Math.sqrt(Math.pow((targetX-sourceX),2) + Math.pow((sourceY - targetY),2)))*6;
 
-        System.out.println(moveTime);
-
-        animateCardMovement(unit, sourceX, sourceY,
-                targetX, targetY, Duration.millis(moveTime), e -> {
-//                    unit.getDropShadow().setRadius(2);
-//                    unit.getDropShadow().setOffsetX(0);
-//                    unit.getDropShadow().setOffsetY(0);
-                });
+        animateCardMovement(unit, sourceX, sourceY, targetX, targetY, Duration.millis(moveTime));
 
 
         new Thread(() -> {
@@ -79,8 +69,7 @@ public class MouseUtils extends Pane {
 
     private static void animateCardMovement(
             Unit unit, double sourceX, double sourceY,
-            double targetX, double targetY, Duration duration,
-            EventHandler<ActionEvent> doAfter) {
+            double targetX, double targetY, Duration duration) {
 
 
 
@@ -90,7 +79,6 @@ public class MouseUtils extends Pane {
 
         PathTransition pathTransition = new PathTransition(duration, path, unit.getUnitView().getDefaultPhoto());
         pathTransition.setInterpolator(Interpolator.EASE_IN);
-        pathTransition.setOnFinished(doAfter);
 
 
 
