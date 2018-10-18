@@ -58,7 +58,7 @@ public class Utils {
         public ArrayList<String> createPath () {
             ArrayList<String> pathsToFilesInUnits = new ArrayList<>();
             List<String> castleFileNames = List.of("angel", "archer", "cavalier", "griffin", "monk", "pikeman", "swordsman");
-            List<String> infernoFileNames = List.of("demon", "devil", "efreet", "gog", "hellHound", "imp", "pitFiend");
+            List<String> infernoFileNames = List.of("demon", "devil", "efreet", "gog", "hellhound", "imp", "pitfiend");
 
             for (int i = 0; i < castleFileNames.size(); i++) {
                 String pathToAdd = "resources/units/castle/" + castleFileNames.get(i) + "/" + castleFileNames.get(i);

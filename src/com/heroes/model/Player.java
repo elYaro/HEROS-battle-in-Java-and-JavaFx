@@ -1,12 +1,15 @@
 package com.heroes.model;
 
 import com.heroes.view.*;
+import javafx.scene.layout.Pane;
+import javafx.scene.transform.Rotate;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Player {
+public class Player extends Pane {
 
     private String name;
     private String town;
@@ -61,6 +64,27 @@ public class Player {
             }
         }
     }
+
+//    public void attachPhoto(Player player){
+//        for(Unit unit : player.getUnitList()){
+//            unit.getPosition().getChildren().add(unit.getUnitView().getDefaultPhoto());
+//            unit.getPosition().getChildren().get(0).getParent().toFront();
+//            unit.getUnitView().getDefaultPhoto().setTranslateX(-170);
+//            unit.getUnitView().getDefaultPhoto().setTranslateY(-220);
+//            if(unit.getTown().equals("Inferno")){
+//                unit.getUnitView().getDefaultPhoto().setTranslateX(-230);
+//                unit.getUnitView().getDefaultPhoto().setRotationAxis(Rotate.Y_AXIS);
+//                unit.getUnitView().getDefaultPhoto().setRotate(180);
+//            }
+//        }
+//    }
+
+
+//    public void addDefaultPhoto(Player player){
+//        for (Unit unit : player.getUnitList()){
+//            unit
+//        }
+//    }
 
 
     public String getName() {
