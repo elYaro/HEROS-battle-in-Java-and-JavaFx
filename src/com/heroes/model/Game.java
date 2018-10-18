@@ -28,34 +28,35 @@ public class Game extends Pane {
     private List<Square> squaresList = FXCollections.observableArrayList();
     private Player P1;
     private Player P2;
+    private Player[] arrayOfPlayers = new Player[2];
 
 
     public Game() throws IOException {
         createSquares();
         createPlayersAndTheirsUnits();
-
-//        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setTranslateX(-175);
-//        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setTranslateY(-220);
     }
 
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
-        System.out.println(square.getName());
+        MouseUtils.slideToDestCard(this.P1.getUnitList().get(0).getUnitView(), square);
+
     };
 
     public void createPlayersAndTheirsUnits() throws IOException {
-        this.P1 = new Player("P1",true,"Castle");
-        this.P1.createUnitsObjects(this.P1);
-        this.P1.setUnitSeeding(squaresList);
-        this.P1.attachPhoto(this.P1);
-//
+        this.P1 = new Player("P1", true, "Castle");
+        this.P2 = new Player("P2", false, "Inferno");
+        arrayOfPlayers[0] = P1;
+        arrayOfPlayers[1] = P2;
+        for (Player player : arrayOfPlayers) {
+            player.createUnitsObjects(player);
+            player.setUnitSeeding(squaresList);
+            UnitView.attachPhoto(player, this);
+            UnitView.refineStartingCoords(player, this);
+        }
 
-
-        this.P2 = new Player("P2",false,"Inferno");
-        this.P2.createUnitsObjects(this.P2);
-        this.P2.setUnitSeeding(squaresList);
-        this.P2.attachPhoto(this.P2);
-
+        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setLayoutX(0);
+        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setLayoutY(0);
+        System.out.println(P1.getUnitList().get(0).getUnitView().getDefaultPhoto().getTranslateX());
     }
 
 
@@ -64,8 +65,8 @@ public class Game extends Pane {
     }
 
 
-    private void createSquares(){
-        for(int listHeigth = 1; listHeigth <= 11; listHeigth++) {
+    private void createSquares() {
+        for (int listHeigth = 1; listHeigth <= 11; listHeigth++) {
             for (int listWidth = 1; listWidth <= 15; listWidth++) {
                 Square gameSquare = new Square(listWidth, listHeigth);
                 gameSquare.setBlurredBackground();
@@ -75,8 +76,6 @@ public class Game extends Pane {
                 addMouseEventHandlers(gameSquare);
                 squaresList.add(gameSquare);
                 getChildren().add(gameSquare);
-//                System.out.println(gameSquare.ge);
-
             }
         }
     }
@@ -87,7 +86,6 @@ public class Game extends Pane {
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
-
 
 
 }

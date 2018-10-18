@@ -65,24 +65,19 @@ public class Player extends Pane {
         }
     }
 
-    public void attachPhoto(Player player){
-        for(Unit unit : player.getUnitList()){
-            unit.getPosition().getChildren().add(unit.getUnitView().getDefaultPhoto());
-            unit.getPosition().getChildren().get(0).getParent().toFront();
-            unit.getUnitView().getDefaultPhoto().setTranslateX(-170);
-            unit.getUnitView().getDefaultPhoto().setTranslateY(-220);
-            if(unit.getTown().equals("Inferno")){
-//                unit.getUnitView().getDefaultPhoto().setTranslateZ(unit.getUnitView().getDefaultPhoto().getBoundsInLocal().getWidth() / 2.0);
-                unit.getUnitView().getDefaultPhoto().setTranslateX(-230);
-                unit.getUnitView().getDefaultPhoto().setRotationAxis(Rotate.Y_AXIS);
-                unit.getUnitView().getDefaultPhoto().setRotate(180);
-
-//                unit.getUnitView().getDefaultPhoto().setStyle("-fx-rotate:180");
-
-            }
-
-        }
-    }
+//    public void attachPhoto(Player player){
+//        for(Unit unit : player.getUnitList()){
+//            unit.getPosition().getChildren().add(unit.getUnitView().getDefaultPhoto());
+//            unit.getPosition().getChildren().get(0).getParent().toFront();
+//            unit.getUnitView().getDefaultPhoto().setTranslateX(-170);
+//            unit.getUnitView().getDefaultPhoto().setTranslateY(-220);
+//            if(unit.getTown().equals("Inferno")){
+//                unit.getUnitView().getDefaultPhoto().setTranslateX(-230);
+//                unit.getUnitView().getDefaultPhoto().setRotationAxis(Rotate.Y_AXIS);
+//                unit.getUnitView().getDefaultPhoto().setRotate(180);
+//            }
+//        }
+//    }
 
 
 //    public void addDefaultPhoto(Player player){

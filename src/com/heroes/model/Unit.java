@@ -124,6 +124,7 @@ public abstract class Unit extends Node {
         this.position = position;
     }
 
+
     public void move(){ }
     public int calculateAttackBonus(){
         return 69;

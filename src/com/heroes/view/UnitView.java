@@ -1,10 +1,16 @@
 package com.heroes.view;
 
+import com.heroes.model.Game;
+import com.heroes.model.Player;
 import com.heroes.model.Unit;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.collections.FXCollections;
+import javafx.scene.paint.Color;
+import javafx.scene.transform.Rotate;
 
 import java.io.File;
 import java.util.List;
@@ -23,7 +29,8 @@ public class UnitView extends ImageView {
 
     private Unit unit;
 
-    public UnitView(Unit unit){
+
+    public UnitView(Unit unit) {
         this.unit = unit;
         this.loadAnimations(unit);
     }
@@ -72,57 +79,58 @@ public class UnitView extends ImageView {
                 File innerfile = new File(child.getPath());
                 File[] innerfiles = innerfile.listFiles();
                 for (File innerchild : innerfiles) {
-                    ImageView img = new ImageView( new Image (innerchild.getPath().substring(10)) );
-                    if (innerchild.getParent().substring(innerchild.getParent().length() - 6).equals("attack")){
+                    ImageView img = new ImageView(new Image(innerchild.getPath().substring(10)));
+                    if (innerchild.getParent().substring(innerchild.getParent().length() - 6).equals("attack")) {
                         attackAnimation.add(img);
-                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 5).equals("death")){
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 5).equals("death")) {
                         deathAnimation.add(img);
-                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 3).equals("hit")){
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 3).equals("hit")) {
                         hitAnimation.add(img);
-                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 4).equals("move")){
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 4).equals("move")) {
                         moveAnimation.add(img);
-                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 5).equals("shoot")){
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 5).equals("shoot")) {
                         shootAnimation.add(img);
-                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 12).equals("defaultphoto")){
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 12).equals("defaultphoto")) {
                         defaultPhoto = img;
-                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 10).equals("deathphoto")){
+                    } else if (innerchild.getParent().substring(innerchild.getParent().length() - 10).equals("deathphoto")) {
                         deathphoto = img;
                     }
 
 
+                }
+            }
+        }
+    }
 
-//
-//                    switch (innerchild.getParent()) {
-//                        case
-//                            break;
-//                        case "resources/units/inferno/imp/visual/death":
-//                            deathAnimation.add(img);
-//                            break;
-//                        case "resources/units/inferno/imp/visual/hit":
-//                            hitAnimation.add(img);
-//                            break;
-//                        case "resources/units/inferno/imp/visual/move":
-//                            moveAnimation.add(img);
-//                            break;
-//                        case "resources/units/inferno/imp/visual/shoot":
-//                            shootAnimation.add(img);
-//                            break;
-//                        case "resources/units/inferno/imp/visual/defaultphoto":
-//                            defaultPhoto = img;
-//                            break;
-//                        case "resources/units/inferno/imp/visual/deathphoto":
-//                            deathphoto = img;
-//                            break;
+    public static void attachPhoto(Player player, Game game) {
+        for (Unit unit : player.getUnitList()) {
+            game.getChildren().add(unit.getUnitView().getDefaultPhoto());
+        }
+    }
 
-                    }
+    public static void refineStartingCoords(Player player, Game game) {
+        for (Unit unit : player.getUnitList()) {
+            if (unit.getName().equals("Angel")) {
+                double squarePositionX = unit.getPosition().getLayoutX();
+                double squarePositionY = unit.getPosition().getLayoutY();
+                unit.getUnitView().getDefaultPhoto().relocate(squarePositionX - 170, squarePositionY - 220);
+                unit.getUnitView().getDefaultPhoto().setTranslateX(100);
+                unit.getUnitView().getDefaultPhoto().setTranslateY(-80);
+            } else {
+                double squarePositionX = unit.getPosition().getLayoutX();
+                double squarePositionY = unit.getPosition().getLayoutY();
+                unit.getUnitView().getDefaultPhoto().relocate(squarePositionX - 170, squarePositionY - 220);
+                if (unit.getTown().equals("Inferno")) {
+                    unit.getUnitView().getDefaultPhoto().setTranslateX(-60);
+                    unit.getUnitView().getDefaultPhoto().setRotationAxis(Rotate.Y_AXIS);
+                    unit.getUnitView().getDefaultPhoto().setRotate(180);
                 }
             }
         }
 
+    }
 
-//    public void attachPhoto() {
-//        this.unit.getPosition().getChildren().add(this.defaultPhoto());
-//    }
 
-}
+
+    }
 
