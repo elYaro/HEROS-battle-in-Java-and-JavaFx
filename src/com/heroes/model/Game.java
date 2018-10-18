@@ -38,7 +38,8 @@ public class Game extends Pane {
 
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
-        MouseUtils.slideToDestCard(this.P1.getUnitList().get(0).getUnitView(), square);
+//        UnitView.animation(this.P1.getUnitList().get(4));
+        MouseUtils.slideToDestCard(this.P1.getUnitList().get(5), square);
 
     };
 

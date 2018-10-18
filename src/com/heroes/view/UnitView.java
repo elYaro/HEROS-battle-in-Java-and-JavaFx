@@ -3,6 +3,8 @@ package com.heroes.view;
 import com.heroes.model.Game;
 import com.heroes.model.Player;
 import com.heroes.model.Unit;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
@@ -13,19 +15,22 @@ import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
 import java.io.File;
+import javafx.util.Duration;
+
+import java.util.Collection;
 import java.util.List;
 
 
 public class UnitView extends ImageView {
 
-
     private ImageView defaultPhoto;
-    private ImageView deathphoto;
-    private List<ImageView> moveAnimation = FXCollections.observableArrayList();
-    private List<ImageView> hitAnimation = FXCollections.observableArrayList();
-    private List<ImageView> deathAnimation = FXCollections.observableArrayList();
-    private List<ImageView> attackAnimation = FXCollections.observableArrayList();
-    private List<ImageView> shootAnimation = FXCollections.observableArrayList();
+    private Image standPhoto;
+    private Image deathphoto;
+    private List<Image> moveAnimation = FXCollections.observableArrayList();
+    private List<Image> hitAnimation = FXCollections.observableArrayList();
+    private List<Image> deathAnimation = FXCollections.observableArrayList();
+    private List<Image> attackAnimation = FXCollections.observableArrayList();
+    private List<Image> shootAnimation = FXCollections.observableArrayList();
 
     private Unit unit;
 
@@ -33,6 +38,7 @@ public class UnitView extends ImageView {
     public UnitView(Unit unit) {
         this.unit = unit;
         this.loadAnimations(unit);
+        this.defaultPhoto = new ImageView(standPhoto);
     }
 
 
@@ -40,27 +46,31 @@ public class UnitView extends ImageView {
         return defaultPhoto;
     }
 
-    public ImageView getDeathphoto() {
+    public Image getStandPhoto() {
+        return standPhoto;
+    }
+
+    public Image getDeathphoto() {
         return deathphoto;
     }
 
-    public List<ImageView> getMoveAnimation() {
+    public List<Image> getMoveAnimation() {
         return moveAnimation;
     }
 
-    public List<ImageView> getHitAnimation() {
+    public List<Image> getHitAnimation() {
         return hitAnimation;
     }
 
-    public List<ImageView> getDeathAnimation() {
+    public List<Image> getDeathAnimation() {
         return deathAnimation;
     }
 
-    public List<ImageView> getAttackAnimation() {
+    public List<Image> getAttackAnimation() {
         return attackAnimation;
     }
 
-    public List<ImageView> getShootAnimation() {
+    public List<Image> getShootAnimation() {
         return shootAnimation;
     }
 
@@ -79,7 +89,7 @@ public class UnitView extends ImageView {
                 File innerfile = new File(child.getPath());
                 File[] innerfiles = innerfile.listFiles();
                 for (File innerchild : innerfiles) {
-                    ImageView img = new ImageView(new Image(innerchild.getPath().substring(10)));
+                    Image img = new Image(innerchild.getPath().substring(10));
                     if (innerchild.getParent().substring(innerchild.getParent().length() - 6).equals("attack")) {
                         attackAnimation.add(img);
                     } else if (innerchild.getParent().substring(innerchild.getParent().length() - 5).equals("death")) {
@@ -91,7 +101,7 @@ public class UnitView extends ImageView {
                     } else if (innerchild.getParent().substring(innerchild.getParent().length() - 5).equals("shoot")) {
                         shootAnimation.add(img);
                     } else if (innerchild.getParent().substring(innerchild.getParent().length() - 12).equals("defaultphoto")) {
-                        defaultPhoto = img;
+                        standPhoto = img;
                     } else if (innerchild.getParent().substring(innerchild.getParent().length() - 10).equals("deathphoto")) {
                         deathphoto = img;
                     }
@@ -130,7 +140,22 @@ public class UnitView extends ImageView {
 
     }
 
+//    public static void animation(Unit unit){
+//        Timeline timeLine = new Timeline();
+//        Collection<KeyFrame> frames = timeLine.getKeyFrames();
+//        Duration frameGap = Duration.millis(256);
+//        Duration frameTime = Duration.ZERO ;
+//        for (Image img : unit.getUnitView().getMoveAnimation()) {
+//            frameTime = frameTime.add(frameGap);
+//            frames.add(new KeyFrame(frameTime, e -> unit.getUnitView().getDefaultPhoto().setImage(img)));
+//        }
+//        timeLine.setCycleCount(Timeline.INDEFINITE);
+//        timeLine.play();
 
 
     }
+
+
+
+
 
