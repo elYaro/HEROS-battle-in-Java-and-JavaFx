@@ -24,18 +24,30 @@ public class Game extends Pane {
     private Player P1;
     private Player P2;
     private Player[] arrayOfPlayers = new Player[2];
+    private ArrayList<Unit> unitsInTheGame;
+    private int iterUnit;
 
 
-    public Game() throws IOException {
+    public Game() throws IOException {  //Game constructor
         createSquares();
         createPlayersAndTheirsUnits();
+        createArrayListOfAllUnitsInTheGame();
     }
 
+
+    /**
+     * @author Yaro
+     * event handler for specific unit in the ArrayList od all units in the game.
+     * After mouse click it increments the iter variable by one. Iter is used to pick specific unit from the Array of all units
+     */
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
-        MouseUtils.slideToDestCard(this.P1.getUnitList().get(0).getUnitView(), square);
-
+        MouseUtils.slideToDestCard(this.unitsInTheGame.get(iterUnit).getUnitView(), square);
+        if (iterUnit < 13) {
+            iterUnit++;
+        } else iterUnit = 0;
     };
+
 
     public void createPlayersAndTheirsUnits() throws IOException {
         this.P1 = new Player("P1", true, "Castle");
@@ -83,33 +95,31 @@ public class Game extends Pane {
     }
 
 
-
-public ArrayList<Unit> createArrayListOfAllUnitsInTheGame(){   //yaro
-        //tworzymy arrayList of unit Objects
+    /**
+     * author Yaro
+     * creates the ArrayList containing unit objects. Includes units of both Players.
+     * Then the ArrayList is sorted by initiative attribute descending
+     */
+    public void createArrayListOfAllUnitsInTheGame() {
         ArrayList<Unit> unitsInTheGame = new ArrayList<>();
-        for (Unit unit: P1.getUnitList()) {
+        for (Unit unit : P1.getUnitList()) {
             unitsInTheGame.add(unit);       //mamy liste unitow P1
         }
-        for (Unit unit: P2.getUnitList()) {
+        for (Unit unit : P2.getUnitList()) {
             unitsInTheGame.add(unit);       //mamy liste unitow P1 + P2
         }
 
-        // sortujemy inity w arrayList wg jednego z atrybutow : tu wg inicjatywa
-        Collections.sort(unitsInTheGame, new Comparator<>() {
+        Collections.sort(unitsInTheGame, new Comparator<>() {   //sort descending
             public int compare(Unit u1, Unit u2) {
                 return Integer.valueOf(u2.initiative).compareTo(u1.initiative); //example of decending sort, to have ascending switch to: u1 i u2
             }
         });
-        for (int i = 0; i < unitsInTheGame.size();i++){
+        for (int i = 0; i < unitsInTheGame.size(); i++) {
             System.out.println(unitsInTheGame.get(i).name + " posiada inicjatywe = " + unitsInTheGame.get(i).initiative);
         }
-    return unitsInTheGame;
+        this.unitsInTheGame = unitsInTheGame;
+    }
 }
 
-public void ruchGracza(){
-        ArrayList<Unit>unitsInTheGame = createArrayListOfAllUnitsInTheGame();
 
 
-}
-
-}
