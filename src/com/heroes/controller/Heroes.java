@@ -1,5 +1,6 @@
 package com.heroes.controller;
 import com.heroes.model.Game;
+import com.heroes.view.BackgroundView;
 import com.heroes.view.UnitView;
 
 import com.heroes.view.UnitView;
@@ -27,18 +28,14 @@ public class Heroes extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Game game = new Game();
-        game.setTableBackground(new Image("map/Map1.png"));
+
+        BackgroundView gameBackground = new BackgroundView(primaryStage);
+        gameBackground.changeBackground(gameBackground);
+
+        Game game = new Game(gameBackground);
+
         primaryStage.setTitle("Heroes");
-        primaryStage.setScene(new Scene(game, WINDOW_WIDTH, WINDOW_HEIGHT));
-        game.setStyle(
-                "-fx-background-image: url(" +
-                        "'map/Map1.png'" +
-                        "); " +
-                        "-fx-background-size: 100% 100% ;" +
-                        "-fx-background-position: center center;"+
-                        "-fx-background-repeat: stretch;"
-        );
+        primaryStage.setScene(new Scene(gameBackground, WINDOW_WIDTH, WINDOW_HEIGHT));
         primaryStage.setFullScreen(true);
         primaryStage.show();
 

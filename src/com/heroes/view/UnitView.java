@@ -112,9 +112,9 @@ public class UnitView extends ImageView {
         }
     }
 
-    public static void attachPhoto(Player player, Game game) {
+    public static void attachPhoto(Player player, BackgroundView gameBackground) {
         for (Unit unit : player.getUnitList()) {
-            game.getChildren().add(unit.getUnitView().getDefaultPhoto());
+            gameBackground.getChildren().add(unit.getUnitView().getDefaultPhoto());
         }
     }
 

@@ -1,5 +1,6 @@
 package com.heroes.model;
 
+import com.heroes.view.BackgroundView;
 import com.heroes.view.UnitView;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
@@ -26,6 +27,7 @@ public class Game extends Pane {
     private Player[] arrayOfPlayers = new Player[2];
     private ArrayList<Unit> unitsInTheGame;
     private int iterUnit;
+    private BackgroundView gameBackground;
 
 
     /**
@@ -33,7 +35,8 @@ public class Game extends Pane {
      * It calls up methods that create board of standable squares, players and their units,
      * and list of all units in the game which is used for for assigning order.
      * */
-    public Game() throws IOException {
+    public Game(BackgroundView gameBackground) throws IOException {
+        this.gameBackground = gameBackground;
         createSquares();
         createPlayersAndTheirsUnits();
         createArrayListOfAllUnitsInTheGame();
@@ -59,7 +62,7 @@ public class Game extends Pane {
      * In a loop it creates units, set their starting position(seeding), attach photos to them and corrects excatly where
      * they should spawn(setUnitSeeding method only assigns square object to unit not its coordinates).
      */
-    public void createPlayersAndTheirsUnits() throws IOException {
+    private void createPlayersAndTheirsUnits() throws IOException {
         this.P1 = new Player("P1", true, "Castle");
         this.P2 = new Player("P2", false, "Inferno");
         arrayOfPlayers[0] = P1;
@@ -67,7 +70,7 @@ public class Game extends Pane {
         for (Player player : arrayOfPlayers) {
             player.createUnitsObjects(player);
             player.setUnitSeeding(squaresList);
-            UnitView.attachPhoto(player, this);
+            UnitView.attachPhoto(player, this.gameBackground);
             UnitView.refineStartingCoords(player, this);
         }
     }
@@ -77,7 +80,7 @@ public class Game extends Pane {
      * Method that adds event handlers to squares. Important!!!
      */
 
-    public void addMouseEventHandlers(Square gamesquare) {
+    private void addMouseEventHandlers(Square gamesquare) {
         gamesquare.setOnMouseClicked(onMouseClickedHandler);
     }
 
@@ -95,19 +98,9 @@ public class Game extends Pane {
                 gameSquare.setId(gameSquare.getName());
                 addMouseEventHandlers(gameSquare);
                 squaresList.add(gameSquare);
-                getChildren().add(gameSquare);
+                this.gameBackground.getChildren().add(gameSquare);
             }
         }
-    }
-
-
-    /**
-     * Method that puts image on the background scene.
-     */
-    public void setTableBackground(Image tableBackground) {
-        setBackground(new Background(new BackgroundImage(tableBackground,
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
 
 
@@ -116,7 +109,7 @@ public class Game extends Pane {
      * creates the ArrayList containing unit objects. Includes units of both Players.
      * Then the ArrayList is sorted by initiative attribute descending
      */
-    public void createArrayListOfAllUnitsInTheGame() {
+    private void createArrayListOfAllUnitsInTheGame() {
         ArrayList<Unit> unitsInTheGame = new ArrayList<>();
         for (Unit unit : P1.getUnitList()) {
             unitsInTheGame.add(unit);       //mamy liste unitow P1
