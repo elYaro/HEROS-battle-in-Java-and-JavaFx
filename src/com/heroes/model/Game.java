@@ -1,16 +1,14 @@
 package com.heroes.model;
 
+import com.heroes.view.SquareView;
 import com.heroes.view.UnitView;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
+import javafx.geometry.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.shape.Rectangle;
 
 import java.util.Comparator;
 
@@ -30,8 +28,8 @@ public class Game extends Pane {
 
     public Game() throws IOException {  //Game constructor
         createSquares();
-        createPlayersAndTheirsUnits();
-        createArrayListOfAllUnitsInTheGame();
+//        createPlayersAndTheirsUnits();
+//        createArrayListOfAllUnitsInTheGame();
     }
 
 
@@ -41,11 +39,18 @@ public class Game extends Pane {
      * After mouse click it increments the iter variable by one. Iter is used to pick specific unit from the Array of all units
      */
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
-        Square square = (Square) e.getSource();
-        MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
-        if (iterUnit < 13) {
-            iterUnit++;
-        } else iterUnit = 0;
+        Rectangle squareView = (Rectangle) e.getSource();
+        System.out.println(squareView.getParent());
+        System.out.println(squareView.getBoundsInParent());
+        System.out.println(squareView.getScene());
+        System.out.println(squareView.getParent().getParent());
+
+
+
+//        MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
+//        if (iterUnit < 13) {
+//            iterUnit++;
+//        } else iterUnit = 0;
     };
 
 
@@ -61,36 +66,81 @@ public class Game extends Pane {
             UnitView.refineStartingCoords(player, this);
         }
 
-        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setLayoutX(0);
-        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setLayoutY(0);
-        System.out.println(P1.getUnitList().get(0).getUnitView().getDefaultPhoto().getTranslateX());
+
+//        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setLayoutX(0);
+//        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setLayoutY(0);
     }
 
 
-    public void addMouseEventHandlers(Square gamesquare) {
-        gamesquare.setOnMouseClicked(onMouseClickedHandler);
+    public void addMouseEventHandlers(Rectangle gameSquareView) {
+        gameSquareView.setOnMouseClicked(onMouseClickedHandler);
     }
 
 
     private void createSquares() {
-        for (int listHeigth = 1; listHeigth <= 11; listHeigth++) {
-            for (int listWidth = 1; listWidth <= 15; listWidth++) {
+        GridPane grid = new GridPane();
+//        grid.setPadding(new Insets(5, 5, 5, 5));
+        grid.setVgap(5);
+        grid.setHgap(5);
+
+
+
+        for (int listWidth = 1; listWidth <= 15; listWidth++) {
+            for (int listHeigth = 1; listHeigth <= 11; listHeigth++) {
+
                 Square gameSquare = new Square(listWidth, listHeigth);
-                gameSquare.setBlurredBackground();
-                gameSquare.setLayoutX(((listWidth - 1) * 55) + 270);
-                gameSquare.setLayoutY(((listHeigth - 1) * 55) + 140);
-                gameSquare.setId(gameSquare.getName());
-                addMouseEventHandlers(gameSquare);
+
+                SquareView gameSquareView = new SquareView(gameSquare);
+
+                gameSquare.setSquareView(gameSquareView);
+
+                GridPane.setConstraints(gameSquareView.getRect(), listWidth, listHeigth);
+                grid.getChildren().add(gameSquareView.getRect());
+                addMouseEventHandlers(gameSquareView.getRect());
+
+                gameSquareView.setRectView(grid.getChildren().get(grid.getChildren().size() -1));
+
                 squaresList.add(gameSquare);
-                getChildren().add(gameSquare);
+
             }
         }
+        grid.setPrefSize(865, 633);
+
+        this.getChildren().add(grid);
+        System.out.println(grid.getChildren().get(20).getBoundsInParent());
+        grid.setLayoutX((1366 - (15 * 53) - (14 * 5)) / 2);
+        grid.setLayoutY(115);
+
+
+        System.out.println(grid.getChildren().get(9).boundsInParentProperty().toString());
+
+
+
+
+
+
+
     }
 
+//    private void createSquares() {
+//        for (int listHeigth = 1; listHeigth <= 11; listHeigth++) {
+//            for (int listWidth = 1; listWidth <= 15; listWidth++) {
+//                Square gameSquare = new Square(listWidth, listHeigth);
+//                gameSquare.setBlurredBackground();
+//                gameSquare.setLayoutX(((listWidth - 1) * 55) + 270);
+//                gameSquare.setLayoutY(((listHeigth - 1) * 55) + 140);
+//                gameSquare.setId(gameSquare.getName());
+//                addMouseEventHandlers(gameSquare);
+//                squaresList.add(gameSquare);
+//                getChildren().add(gameSquare);
+//            }
+//        }
+//    }
 
+//
     public void setTableBackground(Image tableBackground) {
         setBackground(new Background(new BackgroundImage(tableBackground,
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
                 BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
     }
 

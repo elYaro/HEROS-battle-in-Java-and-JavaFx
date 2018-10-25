@@ -118,18 +118,22 @@ public class UnitView extends ImageView {
         }
     }
 
+
     public static void refineStartingCoords(Player player, Game game) {
         for (Unit unit : player.getUnitList()) {
             if (unit.getName().equals("Angel")) {
-                double squarePositionX = unit.getPosition().getLayoutX();
-                double squarePositionY = unit.getPosition().getLayoutY();
+                double squarePositionX = unit.getPosition().getSquareView().getRect().getLayoutX();
+                double squarePositionY = unit.getPosition().getSquareView().getRect().getLayoutY();
                 unit.getUnitView().getDefaultPhoto().relocate(squarePositionX - 170, squarePositionY - 220);
                 unit.getUnitView().getDefaultPhoto().setTranslateX(100);
                 unit.getUnitView().getDefaultPhoto().setTranslateY(-80);
             } else {
-                double squarePositionX = unit.getPosition().getLayoutX();
-                double squarePositionY = unit.getPosition().getLayoutY();
+                double squarePositionX = unit.getPosition().getSquareView().getRect().getLayoutX();
+                double squarePositionY = unit.getPosition().getSquareView().getRect().getLayoutY();
                 unit.getUnitView().getDefaultPhoto().relocate(squarePositionX - 170, squarePositionY - 220);
+//                System.out.println(unit.getPosition().getName());
+//                System.out.println(unit.getPosition().getSquareView().getName());
+//                System.out.println(unit.getPosition().getSquareView().getRect().getBoundsInLocal());
                 if (unit.getTown().equals("Inferno")) {
                     unit.getUnitView().getDefaultPhoto().setTranslateX(-60);
                     unit.getUnitView().getDefaultPhoto().setRotationAxis(Rotate.Y_AXIS);
@@ -138,6 +142,27 @@ public class UnitView extends ImageView {
             }
         }
     }
+
+//    public static void refineStartingCoords(Player player, Game game) {
+//        for (Unit unit : player.getUnitList()) {
+//            if (unit.getName().equals("Angel")) {
+//                double squarePositionX = unit.getPosition().getLayoutX();
+//                double squarePositionY = unit.getPosition().getLayoutY();
+//                unit.getUnitView().getDefaultPhoto().relocate(squarePositionX - 170, squarePositionY - 220);
+//                unit.getUnitView().getDefaultPhoto().setTranslateX(100);
+//                unit.getUnitView().getDefaultPhoto().setTranslateY(-80);
+//            } else {
+//                double squarePositionX = unit.getPosition().getLayoutX();
+//                double squarePositionY = unit.getPosition().getLayoutY();
+//                unit.getUnitView().getDefaultPhoto().relocate(squarePositionX - 170, squarePositionY - 220);
+//                if (unit.getTown().equals("Inferno")) {
+//                    unit.getUnitView().getDefaultPhoto().setTranslateX(-60);
+//                    unit.getUnitView().getDefaultPhoto().setRotationAxis(Rotate.Y_AXIS);
+//                    unit.getUnitView().getDefaultPhoto().setRotate(180);
+//                }
+//            }
+//        }
+//    }
 }
 
 

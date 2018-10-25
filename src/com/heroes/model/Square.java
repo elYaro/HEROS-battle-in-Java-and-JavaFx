@@ -1,5 +1,7 @@
 package com.heroes.model;
 
+import com.heroes.view.SquareView;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
@@ -25,6 +27,7 @@ public class Square extends Pane {
     private int locationX;
     private int locationY;
     private String name;
+    private SquareView squareView;
 
 
     public Square(int locationX, int locationY) {
@@ -58,6 +61,10 @@ public class Square extends Pane {
         return name;
     }
 
+    public SquareView getSquareView() {
+        return squareView;
+    }
+
     public void setName() {
         this.name = String.valueOf(this.locationX) + "/" + String.valueOf(this.locationY);
     }
@@ -66,14 +73,16 @@ public class Square extends Pane {
         isStandable = standable;
     }
 
-    public void setBlurredBackground() {
-        setPrefSize(squareHeigth, squareWidth);
-        BackgroundFill backgroundFill = new BackgroundFill(Color.gray(0.1, 0.4), null, null);
-        Background background = new Background(backgroundFill);
-        GaussianBlur gaussianBlur = new GaussianBlur(10);
-        setBackground(background);
-//        setEffect(gaussianBlur);
+//    public void setBlurredBackground() {
+//        setPrefSize(squareHeigth, squareWidth);
+//        BackgroundFill backgroundFill = new BackgroundFill(Color.gray(0.1, 0.4), null, null);
+//        Background background = new Background(backgroundFill);
+//        GaussianBlur gaussianBlur = new GaussianBlur(10);
+//        setBackground(background);
+////        setEffect(gaussianBlur);
+//    }
+
+    public void setSquareView(SquareView squareView) {
+        this.squareView = squareView;
     }
-
-
 }
