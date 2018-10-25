@@ -6,6 +6,7 @@ import javafx.geometry.Bounds;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
@@ -68,7 +69,7 @@ public class Square extends Pane {
 
     public void setBlurredBackground() {
         setPrefSize(squareHeigth, squareWidth);
-        BackgroundFill backgroundFill = new BackgroundFill(Color.gray(0.1, 0.4), null, null);
+        BackgroundFill backgroundFill = new BackgroundFill(Color.gray(0.1, 0.4), new CornerRadii(5), null);
         Background background = new Background(backgroundFill);
         setBackground(background);
     }
