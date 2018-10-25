@@ -70,9 +70,7 @@ public class Square extends Pane {
         setPrefSize(squareHeigth, squareWidth);
         BackgroundFill backgroundFill = new BackgroundFill(Color.gray(0.1, 0.4), null, null);
         Background background = new Background(backgroundFill);
-        GaussianBlur gaussianBlur = new GaussianBlur(10);
         setBackground(background);
-//        setEffect(gaussianBlur);
     }
 
 

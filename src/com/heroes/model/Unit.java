@@ -4,8 +4,6 @@ import com.heroes.view.*;
 import javafx.scene.Node;
 
 
-
-
 import java.lang.reflect.Array;
 
 public abstract class Unit extends Node {
@@ -30,7 +28,7 @@ public abstract class Unit extends Node {
 
     protected Square position;
 
-    public void setUnitView(UnitView arg){
+    public void setUnitView(UnitView arg) {
         unitView = arg;
     }
 
@@ -111,7 +109,6 @@ public abstract class Unit extends Node {
     }
 
 
-
     public void setX(int x) {
         this.x = x;
     }
@@ -125,10 +122,14 @@ public abstract class Unit extends Node {
     }
 
 
-    public void move(){ }
-    public int calculateAttackBonus(){
+    public void move() {
+    }
+
+    public int calculateAttackBonus() {
         return 69;
     }
-//    public void attack(bonus){}
-    public void defend(){ }
+
+    //    public void attack(bonus){}
+    public void defend() {
+    }
 }

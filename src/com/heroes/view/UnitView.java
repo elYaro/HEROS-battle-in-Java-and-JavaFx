@@ -15,6 +15,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
 import java.io.File;
+
 import javafx.util.Duration;
 
 import java.util.Collection;
@@ -79,7 +80,6 @@ public class UnitView extends ImageView {
     }
 
 
-
     private void loadAnimations(Unit unit) {
         String pathToUnitVisualFiles = "resources/units/" + unit.getTown().toLowerCase() + "/" + unit.getName().toLowerCase() + "/visual";
         File file = new File(pathToUnitVisualFiles);
@@ -120,21 +120,14 @@ public class UnitView extends ImageView {
 
     public static void refineStartingCoords(Player player, Game game) {
         for (Unit unit : player.getUnitList()) {
-            if (unit.getName().equals("Angel")) {
-                double squarePositionX = unit.getPosition().getLayoutX();
-                double squarePositionY = unit.getPosition().getLayoutY();
-                unit.getUnitView().getDefaultPhoto().relocate(squarePositionX - 170, squarePositionY - 220);
-                unit.getUnitView().getDefaultPhoto().setTranslateX(100);
-                unit.getUnitView().getDefaultPhoto().setTranslateY(-80);
-            } else {
-                double squarePositionX = unit.getPosition().getLayoutX();
-                double squarePositionY = unit.getPosition().getLayoutY();
-                unit.getUnitView().getDefaultPhoto().relocate(squarePositionX - 170, squarePositionY - 220);
-                if (unit.getTown().equals("Inferno")) {
-                    unit.getUnitView().getDefaultPhoto().setTranslateX(-60);
-                    unit.getUnitView().getDefaultPhoto().setRotationAxis(Rotate.Y_AXIS);
-                    unit.getUnitView().getDefaultPhoto().setRotate(180);
-                }
+
+            double squarePositionX = unit.getPosition().getLayoutX();
+            double squarePositionY = unit.getPosition().getLayoutY();
+            unit.getUnitView().getDefaultPhoto().relocate(squarePositionX - 170, squarePositionY - 220);
+            if (unit.getTown().equals("Inferno")) {
+                unit.getUnitView().getDefaultPhoto().setTranslateX(-60);
+                unit.getUnitView().getDefaultPhoto().setRotationAxis(Rotate.Y_AXIS);
+                unit.getUnitView().getDefaultPhoto().setRotate(180);
             }
         }
     }

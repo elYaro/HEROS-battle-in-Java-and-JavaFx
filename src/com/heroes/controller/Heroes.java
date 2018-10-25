@@ -17,9 +17,9 @@ import java.io.IOException;
 
 
 public class Heroes extends Application {
-//
-    private static final double WINDOW_WIDTH = 1000;
-    private static final double WINDOW_HEIGHT = 800;
+
+    private static final double WINDOW_WIDTH = 1280;
+    private static final double WINDOW_HEIGHT = 720;
 
     public static void main(String[] args) {
         launch(args);
@@ -30,15 +30,7 @@ public class Heroes extends Application {
         Game game = new Game();
         game.setTableBackground(new Image("map/Map1.png"));
         primaryStage.setTitle("Heroes");
-//        Label lbl = new Label("lol");
-//        game.getChildren().add(lbl);
         primaryStage.setScene(new Scene(game, WINDOW_WIDTH, WINDOW_HEIGHT));
-//        Screen screen = Screen.getPrimary();
-//        Rectangle2D bounds = screen.getVisualBounds();
-//        primaryStage.setX(bounds.getMinX());
-//        primaryStage.setY(bounds.getMinY());
-//        primaryStage.setWidth(bounds.getWidth());
-//        primaryStage.setHeight(bounds.getHeight());
         game.setStyle(
                 "-fx-background-image: url(" +
                         "'map/Map1.png'" +

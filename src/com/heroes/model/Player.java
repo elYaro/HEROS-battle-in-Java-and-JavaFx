@@ -11,17 +11,27 @@ import java.util.List;
 
 public class Player extends Pane {
 
+    public int[] P1seeding = {0, 31, 45, 76, 105, 121, 150};
+    /**
+     * name - name of the player: P1 or P2.
+     * town - one of the nine fractions available in homm3. In this case Castle or Inferno.
+     * canMove - boolean that determines if at certain point unit can move or not.
+     * unitlist - list containing Unit objects. Each player has a full set(7 units) of every unit available at his naitve town.
+     * leftUnits - int variable determining how many units remain alive
+     * startsOnLeftSide - starts on left or right
+     * seeding lists - list of indices in square list, specifying at which squares player's units should spawn.
+     */
+
     private String name;
     private String town;
     private Boolean canMove;
     private List<Unit> unitList = new ArrayList<Unit>();
     private int leftUnits;
     private boolean startsOnLeftSide;
-    public int[] P1seeding = {0, 31, 45, 76, 105, 121, 150};
     private int[] P2seeding = {14, 43, 59, 88, 119, 133, 164};
 
 
-    Player(String name, boolean leftSide, String town){
+    Player(String name, boolean leftSide, String town) {
         this.town = town;
         this.name = name;
         this.leftUnits = 7;
@@ -31,41 +41,48 @@ public class Player extends Pane {
     public String getName() {
         return name;
     }
+
     public boolean getIfCanMove() {
         return canMove;
-    }
-    public List<Unit> getUnitList(){
-        return unitList;
-    }
-    public int getLeftUnits() {
-        return leftUnits;
-    }
-    public boolean getIfStartsOnLeftSide() {
-        return startsOnLeftSide;
     }
 
     public void setIfCanMove(boolean yORn) {
         this.canMove = yORn;
     }
-    public void setUnitList(List<Unit> listOfUnits){
+
+    public List<Unit> getUnitList() {
+        return unitList;
+    }
+
+    public void setUnitList(List<Unit> listOfUnits) {
         this.unitList = listOfUnits;
     }
-    public void setLeftUnits(int numb){
+
+    public int getLeftUnits() {
+        return leftUnits;
+    }
+
+    public void setLeftUnits(int numb) {
         this.leftUnits = numb;
     }
 
+    public boolean getIfStartsOnLeftSide() {
+        return startsOnLeftSide;
+    }
 
-    public void createUnitsObjects(Player player)throws IOException {
+
+    public void createUnitsObjects(Player player) throws IOException {
         Utils utils = new Utils();
-        List<HashMap> ListOfUnitsProperties =  utils.fileRead(utils.createPath());
-        for(HashMap<String, String> unitProperties:ListOfUnitsProperties) {
+        List<HashMap> ListOfUnitsProperties = utils.fileRead(utils.createPath());
+        for (HashMap<String, String> unitProperties : ListOfUnitsProperties) {
             if (unitProperties.get("town").equals(this.town)) {
                 if (unitProperties.get("shooter").equals("true")) {
                     Unit unit = new Shooter(unitProperties, player);
                     unitList.add(unit);
                     UnitView unitView = new UnitView(unit);
                     unit.setUnitView(unitView);
-                }if (unitProperties.get("shooter").equals("false")){
+                }
+                if (unitProperties.get("shooter").equals("false")) {
                     Unit unit = new NonShooter(unitProperties, player);
                     unitList.add(unit);
                     UnitView unitView = new UnitView(unit);
@@ -76,20 +93,19 @@ public class Player extends Pane {
     }
 
 
-    public void setUnitSeeding(List<Square> squaresList){
-        if (this.startsOnLeftSide){
-            for (int i = 1; i <= this.unitList.size(); i++){
-                unitList.get(i-1).setPosition(squaresList.get(P1seeding[i-1]));
-                squaresList.get(P1seeding[i-1]).setStandable(false);
+    public void setUnitSeeding(List<Square> squaresList) {
+        if (this.startsOnLeftSide) {
+            for (int i = 1; i <= this.unitList.size(); i++) {
+                unitList.get(i - 1).setPosition(squaresList.get(P1seeding[i - 1]));
+                squaresList.get(P1seeding[i - 1]).setStandable(false);
             }
         } else {
-            for (int i = 1; i <= this.unitList.size(); i++){
-                unitList.get(i-1).setPosition(squaresList.get(P2seeding[i-1]));
-                squaresList.get(P2seeding[i-1]).setStandable(false);
+            for (int i = 1; i <= this.unitList.size(); i++) {
+                unitList.get(i - 1).setPosition(squaresList.get(P2seeding[i - 1]));
+                squaresList.get(P2seeding[i - 1]).setStandable(false);
             }
         }
     }
-
 
 
 }

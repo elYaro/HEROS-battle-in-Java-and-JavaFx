@@ -27,10 +27,10 @@ public class MouseUtils extends Pane {
         double targetX = 0;
         double targetY = square.getLayoutY() - 215;
 
-        if(unit.getOwner().getName().equals("P2")){
+        if (unit.getOwner().getName().equals("P2")) {
             targetX = square.getLayoutX() - 225;
         }
-        if(unit.getOwner().getName().equals("P1")){
+        if (unit.getOwner().getName().equals("P1")) {
             targetX = square.getLayoutX() - 165;
         }
 
@@ -41,7 +41,7 @@ public class MouseUtils extends Pane {
 
         Collection<KeyFrame> frames = timeLine.getKeyFrames();
         Duration frameGap = Duration.millis(146);
-        Duration frameTime = Duration.ZERO ;
+        Duration frameTime = Duration.ZERO;
         for (Image img : unit.getUnitView().getMoveAnimation()) {
             frameTime = frameTime.add(frameGap);
             frames.add(new KeyFrame(frameTime, e -> unit.getUnitView().getDefaultPhoto().setImage(img)));
@@ -49,7 +49,7 @@ public class MouseUtils extends Pane {
         timeLine.setCycleCount(Animation.INDEFINITE);
         timeLine.play();
 
-        double moveTime = (Math.sqrt(Math.pow((targetX-sourceX),2) + Math.pow((sourceY - targetY),2)))*6;
+        double moveTime = (Math.sqrt(Math.pow((targetX - sourceX), 2) + Math.pow((sourceY - targetY), 2))) * 6;
 
         animateCardMovement(unit, sourceX, sourceY, targetX, targetY, Duration.millis(moveTime));
 
@@ -59,8 +59,7 @@ public class MouseUtils extends Pane {
                 Thread.sleep((long) (Math.abs(moveTime)));
                 timeLine.stop();
                 unit.getUnitView().getDefaultPhoto().setImage(unit.getUnitView().getStandPhoto());
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.err.println(e);
             }
         }).start();
@@ -72,17 +71,12 @@ public class MouseUtils extends Pane {
             double targetX, double targetY, Duration duration) {
 
 
-
         Path path = new Path();
         path.getElements().add(new MoveToAbs(unit.getUnitView().getDefaultPhoto(), sourceX, sourceY));
         path.getElements().add(new LineToAbs(unit.getUnitView().getDefaultPhoto(), targetX, targetY));
 
         PathTransition pathTransition = new PathTransition(duration, path, unit.getUnitView().getDefaultPhoto());
         pathTransition.setInterpolator(Interpolator.EASE_IN);
-
-
-
-
 
 
         ParallelTransition pt = new ParallelTransition(unit.getUnitView().getDefaultPhoto(), pathTransition);

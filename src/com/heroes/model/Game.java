@@ -28,7 +28,12 @@ public class Game extends Pane {
     private int iterUnit;
 
 
-    public Game() throws IOException {  //Game constructor
+    /**
+     * Game Constructor
+     * It calls up methods that create board of standable squares, players and their units,
+     * and list of all units in the game which is used for for assigning order.
+     * */
+    public Game() throws IOException {
         createSquares();
         createPlayersAndTheirsUnits();
         createArrayListOfAllUnitsInTheGame();
@@ -49,6 +54,11 @@ public class Game extends Pane {
     };
 
 
+    /**
+     * Method that create players. First it creates two instances of players, then assign them to an array.
+     * In a loop it creates units, set their starting position(seeding), attach photos to them and corrects excatly where
+     * they should spawn(setUnitSeeding method only assigns square object to unit not its coordinates).
+     */
     public void createPlayersAndTheirsUnits() throws IOException {
         this.P1 = new Player("P1", true, "Castle");
         this.P2 = new Player("P2", false, "Inferno");
@@ -60,18 +70,21 @@ public class Game extends Pane {
             UnitView.attachPhoto(player, this);
             UnitView.refineStartingCoords(player, this);
         }
-
-        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setLayoutX(0);
-        P1.getUnitList().get(0).getUnitView().getDefaultPhoto().setLayoutY(0);
-        System.out.println(P1.getUnitList().get(0).getUnitView().getDefaultPhoto().getTranslateX());
     }
 
+
+    /**
+     * Method that adds event handlers to squares. Important!!!
+     */
 
     public void addMouseEventHandlers(Square gamesquare) {
         gamesquare.setOnMouseClicked(onMouseClickedHandler);
     }
 
 
+    /**
+     * Entire board is created here. Notice that event handlers are attached to squares at this point.
+     */
     private void createSquares() {
         for (int listHeigth = 1; listHeigth <= 11; listHeigth++) {
             for (int listWidth = 1; listWidth <= 15; listWidth++) {
@@ -88,6 +101,9 @@ public class Game extends Pane {
     }
 
 
+    /**
+     * Method that puts image on the background scene.
+     */
     public void setTableBackground(Image tableBackground) {
         setBackground(new Background(new BackgroundImage(tableBackground,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
