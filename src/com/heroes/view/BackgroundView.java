@@ -15,8 +15,10 @@ import javafx.stage.Stage;
 public class BackgroundView extends Pane {
 
     private static String pathToFieldMap = new String("map/Map1.png");
-    private static Stage primaryStage;
-
+    private static String pathToStartingMenuBackground = new String("menu/background/heroes_menu_plain.png");
+    private Stage primaryStage;
+    private static final double WINDOW_WIDTH = 1280;
+    private static final double WINDOW_HEIGHT = 720;
 
     public BackgroundView(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -26,27 +28,19 @@ public class BackgroundView extends Pane {
         return pathToFieldMap;
     }
 
-
-    public static void changeBackground(BackgroundView background){
-        background.setTableBackground(new Image(pathToFieldMap));
-        background.addStyle(background);
+    public String getPathToStartingMenuBackground() {
+        return pathToStartingMenuBackground;
     }
 
+    public static void changeBackground(BackgroundView background, String path){
+        background.setTableBackground(new Image(path));
+    }
 
 
     public void setTableBackground(Image tableBackground) {
         setBackground(new javafx.scene.layout.Background(new BackgroundImage(tableBackground,
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT,
-                BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
-    }
-
-    private void addStyle(BackgroundView background){
-        background.setStyle("-fx-background-image: url(" +
-                "'map/Map1.png'" +
-                "); " +
-                "-fx-background-size: 100% 100% ;" +
-                "-fx-background-position: center center;"+
-                "-fx-background-repeat: stretch;");
+                BackgroundPosition.CENTER, new BackgroundSize(WINDOW_WIDTH, WINDOW_HEIGHT, true, true, true, true))));
     }
 
 }
