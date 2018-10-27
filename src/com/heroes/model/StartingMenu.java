@@ -1,55 +1,76 @@
 package com.heroes.model;
 
+import com.heroes.controller.Heroes;
 import com.heroes.view.BackgroundView;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-import java.util.ArrayList;
-import java.util.Observable;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.io.IOException;
 
-
-public class StartingMenu extends Observable {
-    private Boolean doWeWantToSeeThisScreen = new Boolean(true);
+public class StartingMenu {
+    private static final String STANDARD_BUTTON_STYLE = "-fx-effect: dropshadow(gaussian, #4682b4 , 10, 0.5, 1, 1 );";
+    private static final String HOVERED_BUTTON_STYLE = "-fx-opacity: 0.5;";
+    private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+    private boolean iWantMenu = true;
     private BackgroundView startingMenu;
     private String pathToNewGame = new String("menu/buttons/heroes_new_game.png");
     private String pathToCredits = new String("menu/buttons/heroes_credits.png");
     private String pathToQuit = new String("menu/buttons/heroes_quit.png");
-    private static final String STANDARD_BUTTON_STYLE =   "-fx-effect: dropshadow(gaussian, #4682b4 , 10, 0.5, 1, 1 );";
-    private static final String HOVERED_BUTTON_STYLE  = "-fx-opacity: 0.5;";
 
+    /**
+     * Constructor for StartingMenu.
+     * It adds a property listener that calls up a Heroes.startGame method that loads next state of app.
+     * This method also calls up a createButtons method that creates a vBox with images that serves as a buttons.
+     * */
     public StartingMenu(BackgroundView startingMenu) {
+        pcs.addPropertyChangeListener(this::propertyChange);
         this.startingMenu = startingMenu;
         createButtons();
     }
 
-    public Boolean getDoWeWantToSeeThisScreen() {
-        return doWeWantToSeeThisScreen;
-    }
 
-    public void setDoWeWantToSeeThisScreen(Boolean doWeWantToSeeThisScreen) {
-        this.doWeWantToSeeThisScreen = doWeWantToSeeThisScreen;
-        setChanged();
-        notifyObservers(this.doWeWantToSeeThisScreen);
+    public void propertyChange(PropertyChangeEvent evt) {
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            System.out.println("Error Occurred.");
+            Heroes.startGame(Heroes.getGameBackground());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private void exitStartingMenu(){
-        removeButtons();
-        setDoWeWantToSeeThisScreen(false);
+    public Boolean getiWantMenu() {
+        return iWantMenu;
     }
 
-    private void createButtons(){
+
+    public void setiWantMenu(Boolean iDontWantMenu) {
+        Boolean iWantMenu = this.iWantMenu;
+        this.iWantMenu = iDontWantMenu;
+        this.pcs.firePropertyChange("value", iWantMenu, iDontWantMenu);
+    }
+
+    /**
+     * This is a method that is called up when a startGame button is pressed. First it removes
+     * everything that was created in createButtons then it changes the value of iWantMenu to false which
+     * triggers propertyListener.
+     * */
+    private void exitStartingMenu() {
+        removeButtons();
+        setiWantMenu(false);
+    }
+
+    private void removeButtons() {
+        this.startingMenu.getChildren().clear();
+    }
+
+    private void createButtons() {
         final ImageView startGameButton = new ImageView(new Image(pathToNewGame));
         startGameButton.setOnMouseClicked(event -> exitStartingMenu());
 
@@ -65,7 +86,7 @@ public class StartingMenu extends Observable {
         vbox.setLayoutX(900);
         this.startingMenu.getChildren().add(vbox);
 
-        for(ImageView img : images) {
+        for (ImageView img : images) {
             img.styleProperty().bind(
                     Bindings
                             .when(img.hoverProperty())
@@ -80,7 +101,4 @@ public class StartingMenu extends Observable {
         }
     }
 
-    private void removeButtons(){
-        this.startingMenu.getChildren().clear();
-    }
 }
