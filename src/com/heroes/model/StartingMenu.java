@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class StartingMenu {
     private static final String STANDARD_BUTTON_STYLE = "-fx-effect: dropshadow(gaussian, #4682b4 , 10, 0.5, 1, 1 );";
-    private static final String HOVERED_BUTTON_STYLE = "-fx-opacity: 0.5;";
+    private static final String HOVERED_BUTTON_STYLE = "-fx-opacity: 0.8;";
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private boolean iWantMenu = true;
     private BackgroundView startingMenu;

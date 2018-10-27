@@ -38,7 +38,6 @@ public class Heroes extends Application{
         primaryStage.setScene(new Scene(gameBackground, WINDOW_WIDTH, WINDOW_HEIGHT));
         primaryStage.setFullScreen(true);
         primaryStage.show();
-
     }
 
 
