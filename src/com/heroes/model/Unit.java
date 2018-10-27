@@ -1,10 +1,8 @@
 package com.heroes.model;
 
+import com.heroes.audio.UnitSounds;
 import com.heroes.view.*;
 import javafx.scene.Node;
-
-
-import java.lang.reflect.Array;
 
 public abstract class Unit extends Node {
     protected String name;
@@ -27,6 +25,13 @@ public abstract class Unit extends Node {
     protected UnitView unitView;
 
     protected Square position;
+
+    protected UnitSounds unitSound;
+
+
+    public void setUnitSound(UnitSounds unitSound) {
+        this.unitSound = unitSound;
+    }
 
     public void setUnitView(UnitView arg) {
         unitView = arg;
@@ -108,6 +113,9 @@ public abstract class Unit extends Node {
         return position;
     }
 
+    public UnitSounds getUnitSound() {
+        return unitSound;
+    }
 
     public void setX(int x) {
         this.x = x;

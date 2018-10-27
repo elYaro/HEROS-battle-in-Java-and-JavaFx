@@ -1,16 +1,11 @@
 package com.heroes.model;
 
+import com.heroes.audio.UnitSounds;
 import com.heroes.view.BackgroundView;
 import com.heroes.view.UnitView;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 
 import java.util.Comparator;
@@ -50,6 +45,7 @@ public class Game extends Pane {
      */
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
+        this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
         MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
         if (iterUnit < 13) {
             iterUnit++;

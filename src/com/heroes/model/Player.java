@@ -1,8 +1,8 @@
 package com.heroes.model;
 
+import com.heroes.audio.UnitSounds;
 import com.heroes.view.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.transform.Rotate;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -81,12 +81,16 @@ public class Player extends Pane {
                     unitList.add(unit);
                     UnitView unitView = new UnitView(unit);
                     unit.setUnitView(unitView);
+                    UnitSounds unitSound = new UnitSounds(unit);
+                    unit.setUnitSound(unitSound);
                 }
                 if (unitProperties.get("shooter").equals("false")) {
                     Unit unit = new NonShooter(unitProperties, player);
                     unitList.add(unit);
                     UnitView unitView = new UnitView(unit);
                     unit.setUnitView(unitView);
+                    UnitSounds unitSound = new UnitSounds(unit);
+                    unit.setUnitSound(unitSound);
                 }
             }
         }
