@@ -1,4 +1,5 @@
 package com.heroes.controller;
+import com.heroes.audio.Sountracks;
 import com.heroes.model.Game;
 import com.heroes.model.StartingMenu;
 import com.heroes.view.BackgroundView;
@@ -15,9 +16,14 @@ public class Heroes extends Application{
     private static final double WINDOW_WIDTH = 1280;
     private static final double WINDOW_HEIGHT = 720;
     private static BackgroundView gameBackground;
+    private static Thread activeThread;
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public static Thread getActiveThread() {
+        return activeThread;
     }
 
     public static BackgroundView getGameBackground() {
@@ -32,6 +38,15 @@ public class Heroes extends Application{
 
         gameBackground.changeBackground(gameBackground, gameBackground.getPathToStartingMenuBackground());
 
+        Sountracks sountrack = new Sountracks();
+//        sountrack.chooseSoundtrack(Sountracks.Themes.MAIN);
+
+        Sountracks.chooseSoundtrack(Sountracks.Themes.MAIN);
+
+//        Thread soundtrack = new Thread(new Sountracks(Sountracks.Themes.MAIN), "soundtrack");
+//        this.activeThread = soundtrack;
+//        soundtrack.start();
+
         StartingMenu startingMenu = new StartingMenu(gameBackground);
 
         primaryStage.setTitle("Heroes");
@@ -41,10 +56,14 @@ public class Heroes extends Application{
     }
 
 
-    public static void startGame(BackgroundView gameBackground) throws IOException {
+    public static void startGame(BackgroundView gameBackground ) throws IOException {
+//        oldThread.destroy();
+        Sountracks.chooseSoundtrackToStop(Sountracks.Themes.MAIN);
+        Sountracks.chooseSoundtrack(Sountracks.Themes.BATTLE);
         Game game = new Game(gameBackground);
         gameBackground.changeBackground(gameBackground, gameBackground.getPathToFieldMap());
     }
+
 
 
 }
