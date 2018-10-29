@@ -27,8 +27,8 @@ public class Utils {
      * @throws IOException
      * @returns hashMap object
      */
-    public List<HashMap> fileRead(ArrayList<String> paths) throws IOException{
-        for(String path : paths) {
+    public List<HashMap> fileRead(ArrayList<String> paths) throws IOException {
+        for (String path : paths) {
             HashMap<String, String> unitProperties = new HashMap<>();
             String line;
             BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -46,33 +46,33 @@ public class Utils {
             listOfHashMaps.add(unitProperties);
         }
         return listOfHashMaps;
-        }
-
-
-
-        /**
-         * creates ArryList of Strings containing full paths to txt files in directory units.
-         * it is needed to reach those txt files and read all data from them.
-         * @return ArrayList</ String>
-         */
-        public ArrayList<String> createPath () {
-            ArrayList<String> pathsToFilesInUnits = new ArrayList<>();
-            List<String> castleFileNames = List.of("angel", "archer", "cavalier", "griffin", "monk", "pikeman", "swordsman");
-            List<String> infernoFileNames = List.of("demon", "devil", "efreet", "gog", "hellHound", "imp", "pitFiend");
-
-            for (int i = 0; i < castleFileNames.size(); i++) {
-                String pathToAdd = "resources/units/castle/" + castleFileNames.get(i) + "/" + castleFileNames.get(i);
-                pathsToFilesInUnits.add(pathToAdd);
-            }
-
-            for (int i = 0; i < infernoFileNames.size(); i++) {
-                String pathToAdd = "resources/units/inferno/" + infernoFileNames.get(i) + "/" + infernoFileNames.get(i);
-                pathsToFilesInUnits.add(pathToAdd);
-            }
-            return pathsToFilesInUnits;
-
-        }
     }
+
+
+    /**
+     * creates ArryList of Strings containing full paths to txt files in directory units.
+     * it is needed to reach those txt files and read all data from them.
+     *
+     * @return ArrayList</       String>
+     */
+    public ArrayList<String> createPath() {
+        ArrayList<String> pathsToFilesInUnits = new ArrayList<>();
+        List<String> castleFileNames = List.of("angel", "archer", "cavalier", "griffin", "monk", "pikeman", "swordsman");
+        List<String> infernoFileNames = List.of("demon", "devil", "efreet", "gog", "hellhound", "imp", "pitfiend");
+
+        for (int i = 0; i < castleFileNames.size(); i++) {
+            String pathToAdd = "resources/units/castle/" + castleFileNames.get(i) + "/" + castleFileNames.get(i);
+            pathsToFilesInUnits.add(pathToAdd);
+        }
+
+        for (int i = 0; i < infernoFileNames.size(); i++) {
+            String pathToAdd = "resources/units/inferno/" + infernoFileNames.get(i) + "/" + infernoFileNames.get(i);
+            pathsToFilesInUnits.add(pathToAdd);
+        }
+        return pathsToFilesInUnits;
+
+    }
+}
 
 
 

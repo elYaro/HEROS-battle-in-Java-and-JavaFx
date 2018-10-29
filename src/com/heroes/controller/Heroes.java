@@ -1,54 +1,69 @@
 package com.heroes.controller;
+import com.heroes.audio.Sountracks;
 import com.heroes.model.Game;
-import com.heroes.view.UnitView;
+import com.heroes.model.StartingMenu;
+import com.heroes.view.BackgroundView;
 
-import com.heroes.view.UnitView;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
-import javafx.stage.*;
 
 import java.io.IOException;
 
 
-public class Heroes extends Application {
-//
-    private static final double WINDOW_WIDTH = 1000;
-    private static final double WINDOW_HEIGHT = 800;
+public class Heroes extends Application{
+
+    private static final double WINDOW_WIDTH = 1280;
+    private static final double WINDOW_HEIGHT = 720;
+    private static BackgroundView gameBackground;
+    private static Thread activeThread;
 
     public static void main(String[] args) {
         launch(args);
     }
 
+    public static Thread getActiveThread() {
+        return activeThread;
+    }
+
+    public static BackgroundView getGameBackground() {
+        return gameBackground;
+    }
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Game game = new Game();
-        game.setTableBackground(new Image("map/Map1.png"));
+
+        BackgroundView gameBackground = new BackgroundView(primaryStage);
+        this.gameBackground = gameBackground;
+
+        gameBackground.changeBackground(gameBackground, gameBackground.getPathToStartingMenuBackground());
+
+        Sountracks sountrack = new Sountracks();
+//        sountrack.chooseSoundtrack(Sountracks.Themes.MAIN);
+
+        Sountracks.chooseSoundtrack(Sountracks.Themes.MAIN);
+
+//        Thread soundtrack = new Thread(new Sountracks(Sountracks.Themes.MAIN), "soundtrack");
+//        this.activeThread = soundtrack;
+//        soundtrack.start();
+
+        StartingMenu startingMenu = new StartingMenu(gameBackground);
+
         primaryStage.setTitle("Heroes");
-        primaryStage.setScene(new Scene(game, WINDOW_WIDTH, WINDOW_HEIGHT));
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-        primaryStage.setX(bounds.getMinX());
-        primaryStage.setY(bounds.getMinY());
-        primaryStage.setWidth(bounds.getWidth());
-        primaryStage.setHeight(bounds.getHeight());
-        game.setStyle(
-                "-fx-background-image: url(" +
-                        "'map/Map1.png'" +
-                        "); " +
-                        "-fx-background-size: 100% 100% ;" +
-                        "-fx-background-position: center center;"+
-                        "-fx-background-repeat: stretch;"
-        );
+        primaryStage.setScene(new Scene(gameBackground, WINDOW_WIDTH, WINDOW_HEIGHT));
         primaryStage.setFullScreen(true);
         primaryStage.show();
-        System.out.println(screen.getVisualBounds());
-
     }
+
+
+    public static void startGame(BackgroundView gameBackground ) throws IOException {
+//        oldThread.destroy();
+        Sountracks.chooseSoundtrackToStop(Sountracks.Themes.MAIN);
+        Sountracks.chooseSoundtrack(Sountracks.Themes.BATTLE);
+        Game game = new Game(gameBackground);
+        gameBackground.changeBackground(gameBackground, gameBackground.getPathToFieldMap());
+    }
+
 
 
 }
