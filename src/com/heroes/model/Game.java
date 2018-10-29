@@ -35,21 +35,26 @@ public class Game extends Pane {
         createSquares();
         createPlayersAndTheirsUnits();
         createArrayListOfAllUnitsInTheGame();
+        Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), squaresList);
+
     }
 
 
     /**
      * @author Yaro
-     * event handler for specific unit in the ArrayList od all units in the game.
+     * event handler for specific unit in the ArrayList of all units in the game.
      * After mouse click it increments the iter variable by one. Iter is used to pick specific unit from the Array of all units
      */
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
         this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
+
+
         MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
         if (iterUnit < 13) {
             iterUnit++;
         } else iterUnit = 0;
+        Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), squaresList);
     };
 
 
