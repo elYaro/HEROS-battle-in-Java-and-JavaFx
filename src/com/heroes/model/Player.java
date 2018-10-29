@@ -96,6 +96,13 @@ public class Player extends Pane {
         }
     }
 
+    /**
+     * iterates through the list of units for both Players and updates their positions X and Y to the correct values
+     * beginning X and Y values are incorrect because they are taken from txt file where all X = 1 and all Y = 1
+     * sets standable field in Unit to false
+     * @param squaresList
+     */
+
 
     public void setUnitSeeding(List<Square> squaresList) {
         if (this.startsOnLeftSide) {
@@ -103,20 +110,27 @@ public class Player extends Pane {
                 unitList.get(i - 1).setPosition(squaresList.get(P1seeding[i - 1]));
 
                 System.out.println(unitList.get(i-1).getName());                            //checking and debuging
-                System.out.println("before position X = " + unitList.get(i-1).getX());      //checking and debuging
-                System.out.println("before position Y = " + unitList.get(i-1).getY());      //checking and debuging
+                System.out.println("from txt file position X = " + unitList.get(i-1).getX());      //checking and debuging
+                System.out.println("from txt file position Y = " + unitList.get(i-1).getY());      //checking and debuging
 
                 unitList.get(i-1).setX(((P1seeding[i-1])%15)+1);                            //updating unit X based on the square number
                 unitList.get(i-1).setY(((P1seeding[i-1])/15)+1);                            //updating unit Y based on the square number
 
-                System.out.println("after X = " + unitList.get(i-1).getX());                //checking and debuging
-                System.out.println("after Y = " + unitList.get(i-1).getY());                //checking and debuging
+                System.out.println("after updating X = " + unitList.get(i-1).getX());                //checking and debuging
+                System.out.println("after updating Y = " + unitList.get(i-1).getY());                //checking and debuging
 
                 squaresList.get(P1seeding[i - 1]).setStandable(false);
             }
         } else {
             for (int i = 1; i <= this.unitList.size(); i++) {
                 unitList.get(i - 1).setPosition(squaresList.get(P2seeding[i - 1]));
+
+                System.out.println(unitList.get(i-1).getName());
+                unitList.get(i-1).setX(((P2seeding[i-1])%15)+1);                            //updating unit X based on the square number
+                unitList.get(i-1).setY(((P2seeding[i-1])/15)+1);
+                System.out.println("after updating X = " + unitList.get(i-1).getX());                //checking and debuging
+                System.out.println("after updating Y = " + unitList.get(i-1).getY());
+
                 squaresList.get(P2seeding[i - 1]).setStandable(false);
             }
         }
