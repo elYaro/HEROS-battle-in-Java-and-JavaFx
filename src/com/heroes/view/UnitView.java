@@ -2,6 +2,7 @@ package com.heroes.view;
 
 import com.heroes.model.Game;
 import com.heroes.model.Player;
+import com.heroes.model.Square;
 import com.heroes.model.Unit;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -11,6 +12,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import javafx.collections.FXCollections;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 

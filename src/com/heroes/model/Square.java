@@ -74,5 +74,16 @@ public class Square extends Pane {
         setBackground(background);
     }
 
+    private void highlightSquare(){
+            BackgroundFill backgroundFill = new BackgroundFill(Color.gray(0.1, 0.8), new CornerRadii(5), null);
+            Background background = new Background(backgroundFill);
+            setBackground(background);
+    }
+
+    public static void highlightStandableSquares(List<Square> standableSquaresArray){
+        for(Square square : standableSquaresArray){
+            square.highlightSquare();
+        }
+    }
 
 }

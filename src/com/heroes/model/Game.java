@@ -24,6 +24,8 @@ public class Game extends Pane {
     private int iterUnit;
     private BackgroundView gameBackground;
 
+    private List<Square> test = FXCollections.observableArrayList();
+
 
     /**
      * Game Constructor
@@ -45,12 +47,17 @@ public class Game extends Pane {
      */
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
+        Square.highlightStandableSquares(this.test);
         this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
         MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
         if (iterUnit < 13) {
             iterUnit++;
         } else iterUnit = 0;
     };
+
+    private void setOrder(ArrayList<Unit> unitsInTheGame){
+
+    }
 
 
     /**
@@ -95,6 +102,9 @@ public class Game extends Pane {
                 addMouseEventHandlers(gameSquare);
                 squaresList.add(gameSquare);
                 this.gameBackground.getChildren().add(gameSquare);
+                if (listHeigth < 3){
+                    test.add(gameSquare);
+                }
             }
         }
     }
