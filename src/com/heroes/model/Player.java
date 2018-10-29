@@ -101,6 +101,17 @@ public class Player extends Pane {
         if (this.startsOnLeftSide) {
             for (int i = 1; i <= this.unitList.size(); i++) {
                 unitList.get(i - 1).setPosition(squaresList.get(P1seeding[i - 1]));
+
+                System.out.println(unitList.get(i-1).getName());                            //checking and debuging
+                System.out.println("before position X = " + unitList.get(i-1).getX());      //checking and debuging
+                System.out.println("before position Y = " + unitList.get(i-1).getY());      //checking and debuging
+
+                unitList.get(i-1).setX(((P1seeding[i-1])%15)+1);                            //updating unit X based on the square number
+                unitList.get(i-1).setY(((P1seeding[i-1])/15)+1);                            //updating unit Y based on the square number
+
+                System.out.println("after X = " + unitList.get(i-1).getX());                //checking and debuging
+                System.out.println("after Y = " + unitList.get(i-1).getY());                //checking and debuging
+
                 squaresList.get(P1seeding[i - 1]).setStandable(false);
             }
         } else {
