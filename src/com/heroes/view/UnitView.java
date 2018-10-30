@@ -6,6 +6,9 @@ import com.heroes.model.Square;
 import com.heroes.model.Unit;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
 import javafx.scene.image.Image;
@@ -15,13 +18,27 @@ import javafx.collections.FXCollections;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
+
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.*;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
+import javafx.beans.value.ObservableValue;
+import javafx.beans.value.ChangeListener;
+
+
 
 import java.io.File;
 
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
@@ -36,6 +53,8 @@ public class UnitView extends ImageView {
     private List<Image> deathAnimation = FXCollections.observableArrayList();
     private List<Image> attackAnimation = FXCollections.observableArrayList();
     private List<Image> shootAnimation = FXCollections.observableArrayList();
+
+
 
     private Unit unit;
 
@@ -118,8 +137,20 @@ public class UnitView extends ImageView {
 
     public static void attachPhoto(Player player, BackgroundView gameBackground) {
         for (Unit unit : player.getUnitList()) {
+
             gameBackground.getChildren().add(unit.getUnitView().getDefaultPhoto());
+
+            Label counter = new Label(String.valueOf(unit.getQuantity()));
+            gameBackground.getChildren().add(counter);
+
+            unit.getUnitView().getDefaultPhoto().layoutXProperty().addListener((v, oldValue, newValue) ->
+                    counter.setLayoutX((Double) newValue));
+
+            unit.getUnitView().getDefaultPhoto().layoutYProperty().addListener((v, oldValue, newValue) ->
+                    counter.setLayoutY((Double) newValue));
+
         }
+
     }
 
     public static void refineStartingCoords(Player player, Game game) {
@@ -135,6 +166,15 @@ public class UnitView extends ImageView {
             }
         }
     }
+
+
+//    public void propertyChange(PropertyChangeEvent evt) {
+//        try {
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
 
 
