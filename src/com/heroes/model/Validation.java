@@ -18,7 +18,7 @@ public class Validation {
     public static void createArrayOfSquareToMove(Unit unit, List<Square> squaresList){
         ArrayList<Square>squaresToMove = new ArrayList<>();
         for (Square square : squaresList){
-            if ((Math.abs(square.getLocationX() - unit.getX()) + Math.abs(square.getLocationY()-unit.getY()) <= 2) && square.getIsStandable()){
+            if ((Math.abs(square.getLocationX() - unit.getX()) + Math.abs(square.getLocationY()-unit.getY()) <= unit.getMoveRange()) && square.getIsStandable()){
                 squaresToMove.add(square);
             }
         }
