@@ -52,10 +52,10 @@ public class MouseUtils extends Pane {
         double moveTime = (Math.sqrt(Math.pow((targetX - sourceX), 2) + Math.pow((sourceY - targetY), 2))) * 6;
 
         animateCardMovement(unit, sourceX, sourceY, targetX, targetY, Duration.millis(moveTime));
-        System.out.println("DUPA 1" + unit.getName() + " " + unit.getX() + " " + unit.getY());
+
         unit.setX(square.getLocationX());       //@Yaro: updates the location X of unit to the destination X
         unit.setY(square.getLocationY());       //@Yaro: updates the location Y of unit to the destination Y
-        System.out.println("DUPA 2" + unit.getName() + " " + unit.getX() + " " + unit.getY());
+
         new Thread(() -> {
             try {
                 Thread.sleep((long) (Math.abs(moveTime)));
