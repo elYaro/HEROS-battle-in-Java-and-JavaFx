@@ -15,6 +15,7 @@ import javafx.scene.shape.*;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -26,6 +27,11 @@ public class Square extends Pane {
     private int locationX;
     private int locationY;
     private String name;
+
+    private static final HashMap <String, Double> squareOpacityValues = new HashMap<String, Double>(){{
+        put("Normal",0.4);
+        put("Highlight",0.7);
+    }};
 
 
     public Square(int locationX, int locationY) {
@@ -59,12 +65,22 @@ public class Square extends Pane {
         return name;
     }
 
+    public static HashMap<String, Double> getSquareOpacityValues() {
+        return squareOpacityValues;
+    }
+
     public void setName() {
         this.name = String.valueOf(this.locationX) + "/" + String.valueOf(this.locationY);
     }
 
+
     public void setStandable(boolean standable) {
         isStandable = standable;
+    }
+
+    public void setSquareOpacityValues() {
+        this.squareOpacityValues.put("Normal", 0.4);
+        this.squareOpacityValues.put("Normal", 0.7);
     }
 
     public void setBlurredBackground() {
@@ -74,16 +90,18 @@ public class Square extends Pane {
         setBackground(background);
     }
 
-    private void highlightSquare(){
-            BackgroundFill backgroundFill = new BackgroundFill(Color.gray(0.1, 0.8), new CornerRadii(5), null);
+    private void highlightSquare(Double value){
+            BackgroundFill backgroundFill = new BackgroundFill(Color.gray(0.1, value), new CornerRadii(5), null);
             Background background = new Background(backgroundFill);
             setBackground(background);
     }
 
-    public static void highlightStandableSquares(List<Square> standableSquaresArray){
+    public static void highlightStandableSquares(List<Square> standableSquaresArray, Double value){
         for(Square square : standableSquaresArray){
-            square.highlightSquare();
+            square.highlightSquare(value);
         }
     }
+
+
 
 }

@@ -15,10 +15,10 @@ public class Validation {
      * @param squaresList
      * @return ArrayList<Square>
      */
-    public static void createArrayOfSquareToMove(Unit unit, List<Square> squaresList){
-        ArrayList<Square>squaresToMove = new ArrayList<>();
+    public static List<Square> createArrayOfSquareToMove(Unit unit, List<Square> squaresList){
+        List<Square>squaresToMove = new ArrayList<>();
         for (Square square : squaresList){
-            if ((Math.abs(square.getLocationX() - unit.getX()) + Math.abs(square.getLocationY()-unit.getY()) <= 2) && square.getIsStandable()){
+            if ((Math.abs(square.getLocationX() - unit.getX()) + Math.abs(square.getLocationY()-unit.getY()) <= unit.getMoveRange()) && square.getIsStandable()){
                 squaresToMove.add(square);
             }
         }
@@ -26,5 +26,6 @@ public class Validation {
         for (int i = 0; i < squaresToMove.size(); i++){                 //testing and debuging
             System.out.println(squaresToMove.get(i).getName());         //testing and debuging
         }
+        return squaresToMove;
     }
 }

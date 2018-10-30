@@ -37,8 +37,8 @@ public class Game extends Pane {
         createSquares();
         createPlayersAndTheirsUnits();
         createArrayListOfAllUnitsInTheGame();
-        Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), squaresList);
-
+        List<Square> firstUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+        Square.highlightStandableSquares(firstUnitSquaresRange, Square.getSquareOpacityValues().get("Highlight"));
     }
 
 
@@ -49,20 +49,17 @@ public class Game extends Pane {
      */
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
-        Square.highlightStandableSquares(this.test);
+        List<Square> previousUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+        Square.highlightStandableSquares(previousUnitSquaresRange, Square.getSquareOpacityValues().get("Normal"));
         this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
-
-
         MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
         if (iterUnit < 13) {
             iterUnit++;
         } else iterUnit = 0;
-        Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), squaresList);
+        List<Square> nextUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+        Square.highlightStandableSquares(nextUnitSquaresRange, Square.getSquareOpacityValues().get("Highlight"));
     };
 
-    private void setOrder(ArrayList<Unit> unitsInTheGame){
-
-    }
 
 
     /**
