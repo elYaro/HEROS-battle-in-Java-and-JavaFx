@@ -23,6 +23,8 @@ public class Game extends Pane {
     private int iterUnit;
     private BackgroundView gameBackground;
 
+    private List<Square> test = FXCollections.observableArrayList();
+
 
     /**
      * Game Constructor
@@ -36,8 +38,11 @@ public class Game extends Pane {
         createArrayListOfAllUnitsInTheGame();
         Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), squaresList);
 
-
         attack(unitsInTheGame.get(0), unitsInTheGame.get(1));   // @YARO this line is just to call and test the attack method
+
+        List<Square> firstUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+        List<Unit> UnitsToAttackByFirstUnit = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
+        Square.highlightStandableSquares(firstUnitSquaresRange, Square.getSquareOpacityValues().get("Highlight"));
     }
 
 
@@ -48,15 +53,18 @@ public class Game extends Pane {
      */
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
         Square square = (Square) e.getSource();
+        List<Square> previousUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+        Square.highlightStandableSquares(previousUnitSquaresRange, Square.getSquareOpacityValues().get("Normal"));
         this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
-
-
         MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
         if (iterUnit < 13) {
             iterUnit++;
         } else iterUnit = 0;
-        Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), squaresList);
+        List<Square> nextUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+        List<Unit> UnitsToAttackByFirstUnit = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
+        Square.highlightStandableSquares(nextUnitSquaresRange, Square.getSquareOpacityValues().get("Highlight"));
     };
+
 
 
     /**
@@ -101,6 +109,9 @@ public class Game extends Pane {
                 addMouseEventHandlers(gameSquare);
                 squaresList.add(gameSquare);
                 this.gameBackground.getChildren().add(gameSquare);
+                if (listHeigth < 3){
+                    test.add(gameSquare);
+                }
             }
         }
     }
