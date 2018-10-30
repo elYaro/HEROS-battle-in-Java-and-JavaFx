@@ -7,9 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-
 import java.util.Comparator;
-
+import java.util.concurrent.ThreadLocalRandom;
 
 import java.io.IOException;
 import java.util.*;
@@ -37,6 +36,8 @@ public class Game extends Pane {
         createArrayListOfAllUnitsInTheGame();
         Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), squaresList);
 
+
+        attack(unitsInTheGame.get(0), unitsInTheGame.get(1));   // @YARO this line is just to call and test the attack method
     }
 
 
@@ -106,7 +107,7 @@ public class Game extends Pane {
 
 
     /**
-     * author Yaro
+     * @author Yaro
      * creates the ArrayList containing unit objects. Includes units of both Players.
      * Then the ArrayList is sorted by initiative attribute descending
      */
@@ -129,7 +130,59 @@ public class Game extends Pane {
         }
         this.unitsInTheGame = unitsInTheGame;
     }
-}
+
+    /**
+     * method takes attacking and attacked unit and does the calculations and logic of attack.
+     * updates the quantity and health left in attacked unit.
+     * @author Yaro
+     * @param attackingUnit is a unit which attacks
+     * @param attackedUnit  is a unit attacked
+     */
+    private void attack(Unit attackingUnit, Unit attackedUnit){
+
+        int totalAttackDamage = 0;
+        double attackBonus = 0;
+        double defenceBonus;
+        int attackFinalPower;
+        int attackedUnitsTotalHealthBeforeAttack;
+        int attackedUnitsTotalHealthAfterAttack;
+
+        // for testing
+        System.out.printf("attacker is %s and defender is %s\n" ,attackingUnit.getName(),attackedUnit.getName());
+        System.out.printf("defender: quantity of units before attack = %d , health left before attack  = %d\n",attackedUnit.getQuantity(), attackedUnit.getHealthPointsLeft());
+
+        for (int i = 1; i <= attackedUnit.getQuantity(); i++){
+            int randomNum = ThreadLocalRandom.current().nextInt(attackingUnit.getMinAttackDamage(), attackingUnit.getMaxAttackDamage() + 1);
+            totalAttackDamage += randomNum;
+        }
+        int attackPowerVsDefencePower = attackingUnit.getAttackPower() - attackedUnit.getDefencePower();
+        if (attackPowerVsDefencePower > 0) {
+            attackBonus = (attackPowerVsDefencePower * 0.05);
+            if (attackBonus > 3){attackBonus = 3;} //attack bonus max 300% which is 60points difference
+            attackFinalPower = (int) (totalAttackDamage + (totalAttackDamage * attackBonus));
+
+        } else {
+            defenceBonus = (Math.abs(attackPowerVsDefencePower * 0.025));
+            if (defenceBonus > 0.3) {defenceBonus = 0.3;} //defence bonus max 30% which is 12points difference
+            attackFinalPower = (int) (totalAttackDamage - (totalAttackDamage * defenceBonus));
+        }
+        attackedUnitsTotalHealthBeforeAttack = ((attackedUnit.getQuantity() - 1) * attackedUnit.getHealthPoints()) + attackedUnit.getHealthPointsLeft();
+        attackedUnitsTotalHealthAfterAttack = attackedUnitsTotalHealthBeforeAttack - attackFinalPower;
+        attackedUnit.setQuantity((attackedUnitsTotalHealthAfterAttack / attackedUnit.getHealthPoints()) + 1 );
+        attackedUnit.setHealthPointsLeft(attackedUnitsTotalHealthAfterAttack % attackedUnit.getHealthPoints());
+
+        // for testing
+        System.out.printf("defender: quantity of units after attack = %d , health left after attack  = %d\n",attackedUnit.getQuantity(), attackedUnit.getHealthPointsLeft());
+
+
+
+
+
+    }
+
+
+    }
+
 
 
 
