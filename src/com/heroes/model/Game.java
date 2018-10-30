@@ -38,6 +38,7 @@ public class Game extends Pane {
         createPlayersAndTheirsUnits();
         createArrayListOfAllUnitsInTheGame();
         List<Square> firstUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+        List<Unit> UnitsToAttackByFirstUnit = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
         Square.highlightStandableSquares(firstUnitSquaresRange, Square.getSquareOpacityValues().get("Highlight"));
     }
 
@@ -57,6 +58,7 @@ public class Game extends Pane {
             iterUnit++;
         } else iterUnit = 0;
         List<Square> nextUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+        List<Unit> UnitsToAttackByFirstUnit = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
         Square.highlightStandableSquares(nextUnitSquaresRange, Square.getSquareOpacityValues().get("Highlight"));
     };
 
