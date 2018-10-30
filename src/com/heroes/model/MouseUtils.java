@@ -53,7 +53,9 @@ public class MouseUtils extends Pane {
 
         animateCardMovement(unit, sourceX, sourceY, targetX, targetY, Duration.millis(moveTime));
 
-
+        unit.setX(square.getLocationX());       //@Yaro: updates the location X of unit to the destination X
+        unit.setY(square.getLocationY());       //@Yaro: updates the location Y of unit to the destination Y
+        unit.getPosition().setStandable(true);  //@Yaro & Karol, updating standable old square
         new Thread(() -> {
             try {
                 Thread.sleep((long) (Math.abs(moveTime)));
