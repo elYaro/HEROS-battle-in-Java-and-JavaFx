@@ -28,6 +28,13 @@ public abstract class Unit extends Node {
 
     protected UnitSounds unitSound;
 
+    public void setHealthPointsLeft(int healthPointsLeft) {
+        this.healthPointsLeft = healthPointsLeft;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public void setUnitSound(UnitSounds unitSound) {
         this.unitSound = unitSound;
