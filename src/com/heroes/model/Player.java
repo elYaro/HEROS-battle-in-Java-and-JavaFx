@@ -2,12 +2,14 @@ package com.heroes.model;
 
 import com.heroes.audio.UnitSounds;
 import com.heroes.view.*;
+import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import javafx.scene.input.MouseEvent;
 
 public class Player extends Pane {
 
@@ -74,7 +76,7 @@ public class Player extends Pane {
     public void createUnitsObjects(Player player) throws IOException {
         Utils utils = new Utils();
         List<HashMap> ListOfUnitsProperties = utils.fileRead(utils.createPath());
-        for (HashMap<String, String> unitProperties : ListOfUnitsProperties) {
+        for (HashMap<String, String> unitProperties : ListOfUnitsProperties)
             if (unitProperties.get("town").equals(this.town)) {
                 if (unitProperties.get("shooter").equals("true")) {
                     Unit unit = new Shooter(unitProperties, player);
@@ -93,7 +95,6 @@ public class Player extends Pane {
                     unit.setUnitSound(unitSound);
                 }
             }
-        }
     }
 
     /**

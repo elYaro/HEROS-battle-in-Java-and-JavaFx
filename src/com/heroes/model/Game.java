@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import javax.swing.text.html.ImageView;
 import java.util.Comparator;
 
 
@@ -49,17 +50,30 @@ public class Game extends Pane {
      * After mouse click it increments the iter variable by one. Iter is used to pick specific unit from the Array of all units
      */
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
-        Square square = (Square) e.getSource();
-        List<Square> previousUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
-        Square.highlightStandableSquares(previousUnitSquaresRange, Square.getSquareOpacityValues().get("Normal"));
-        this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
-        MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
-        if (iterUnit < 13) {
-            iterUnit++;
-        } else iterUnit = 0;
-        List<Square> nextUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
-        List<Unit> UnitsToAttackByFirstUnit = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
-        Square.highlightStandableSquares(nextUnitSquaresRange, Square.getSquareOpacityValues().get("Highlight"));
+//        System.out.println(e.getSource().toString());
+        if(e.getSource().getClass().getName().equals("com.heroes.model.Square")) {
+            Square square = (Square) e.getSource();
+            List<Square> previousUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+            Square.highlightStandableSquares(previousUnitSquaresRange, Square.getSquareOpacityValues().get("Normal"));
+            this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
+            MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
+            if (iterUnit < 13) {
+                iterUnit++;
+            } else iterUnit = 0;
+            List<Square> nextUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+            List<Unit> UnitsToAttackByFirstUnit = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
+            Square.highlightStandableSquares(nextUnitSquaresRange, Square.getSquareOpacityValues().get("Highlight"));
+        }
+        if(e.getSource().getClass().getName().equals("javafx.scene.image.ImageView")){
+            System.out.println(e.getTarget().toString());
+            System.out.println(this.unitsInTheGame.get(iterUnit).getUnitView().getDefaultPhoto().toString());
+            if(e.getTarget().toString().equals(this.unitsInTheGame.get(iterUnit).getUnitView().getDefaultPhoto().toString())){
+                System.out.println("elo");
+            }
+
+//            e.getTarget()
+//            unit.
+        }
     };
 
 
@@ -122,9 +136,12 @@ public class Game extends Pane {
     private void createArrayListOfAllUnitsInTheGame() {
         ArrayList<Unit> unitsInTheGame = new ArrayList<>();
         for (Unit unit : P1.getUnitList()) {
+            unit.getUnitView().getDefaultPhoto().setOnMouseClicked(onMouseClickedHandler);
             unitsInTheGame.add(unit);       //mamy liste unitow P1
         }
         for (Unit unit : P2.getUnitList()) {
+//            unit.setOnMouseClicked(event -> System.out.println("elo"));
+            unit.getUnitView().getDefaultPhoto().setOnMouseClicked(onMouseClickedHandler);
             unitsInTheGame.add(unit);       //mamy liste unitow P1 + P2
         }
 
