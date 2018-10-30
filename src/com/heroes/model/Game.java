@@ -27,6 +27,8 @@ public class Game extends Pane {
 
     private List<Square> test = FXCollections.observableArrayList();
 
+    private List<Square> squaresToMove;
+    List<Unit> possibleUnitsToAttack;
 
     /**
      * Game Constructor
@@ -38,9 +40,9 @@ public class Game extends Pane {
         createSquares();
         createPlayersAndTheirsUnits();
         createArrayListOfAllUnitsInTheGame();
-        List<Square> firstUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
-        List<Unit> UnitsToAttackByFirstUnit = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
-        Square.highlightStandableSquares(firstUnitSquaresRange, Square.getSquareOpacityValues().get("Highlight"));
+        this.squaresToMove = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+        this.possibleUnitsToAttack = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
+        Square.highlightStandableSquares(squaresToMove, Square.getSquareOpacityValues().get("Highlight"));
     }
 
 
@@ -53,23 +55,66 @@ public class Game extends Pane {
 //        System.out.println(e.getSource().toString());
         if(e.getSource().getClass().getName().equals("com.heroes.model.Square")) {
             Square square = (Square) e.getSource();
-            List<Square> previousUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
-            Square.highlightStandableSquares(previousUnitSquaresRange, Square.getSquareOpacityValues().get("Normal"));
-            this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
-            MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
-            if (iterUnit < 13) {
-                iterUnit++;
-            } else iterUnit = 0;
-            List<Square> nextUnitSquaresRange = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
-            List<Unit> UnitsToAttackByFirstUnit = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
-            Square.highlightStandableSquares(nextUnitSquaresRange, Square.getSquareOpacityValues().get("Highlight"));
+            for (Square squareToMove: this.squaresToMove){
+                if (squareToMove.getName() == square.getName()){
+                    Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Normal"));
+                    this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
+                    MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
+                    this.unitsInTheGame.get(iterUnit).setPosition(square);
+//                    if (iterUnit < 13) {
+//                        iterUnit++;
+//                    } else iterUnit = 0;
+                    this.squaresToMove = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+                    this.possibleUnitsToAttack = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
+                    Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Highlight"));
+                }
+            }
+
+
         }
         if(e.getSource().getClass().getName().equals("javafx.scene.image.ImageView")){
-            System.out.println(e.getTarget().toString());
-            System.out.println(this.unitsInTheGame.get(iterUnit).getUnitView().getDefaultPhoto().toString());
-            if(e.getTarget().toString().equals(this.unitsInTheGame.get(iterUnit).getUnitView().getDefaultPhoto().toString())){
-                System.out.println("elo");
+//            System.out.println(e.getTarget().toString());
+//            System.out.println(this.unitsInTheGame.get(iterUnit).getUnitView().getDefaultPhoto().toString());
+
+
+            mainLoop : for( Unit unit : unitsInTheGame){
+
+                if(e.getTarget().toString().equals(unit.getUnitView().getDefaultPhoto().toString())){
+                    if (this.unitsInTheGame.get(iterUnit).getName().equals(unit.getName())){
+                        System.out.println(unit.getName()+" is defending");
+                        Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Normal"));
+                        if (iterUnit < 13) {
+                            iterUnit++;
+                        } else iterUnit = 0;
+                        this.squaresToMove = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+                        this.possibleUnitsToAttack = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
+                        Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Highlight"));
+                        break;
+                    }
+                    for (Unit unitToAttact : this.possibleUnitsToAttack){
+                        if (unitToAttact.getName().equals(unit.getName())){
+                            System.out.println(unit.getName()+" is attacted by "+ this.unitsInTheGame.get(iterUnit).getName());
+                            Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Normal"));
+                            if (iterUnit < 13) {
+                                iterUnit++;
+                            } else iterUnit = 0;
+                            this.squaresToMove = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+                            this.possibleUnitsToAttack = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
+                            Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Highlight"));
+                            break mainLoop;
+                        }
+                    }
+                    if (unit.getTown().equals(this.unitsInTheGame.get(iterUnit).getTown())){
+                        System.out.println( unit.getName()+ "its your teammate");
+                    }else {
+                        System.out.println("you are too far away from "+unit.getName());
+                    }
+                    break;
+                }
             }
+//            if(e.getTarget().toString().equals(this.unitsInTheGame.get(iterUnit).getUnitView().getDefaultPhoto().toString())){
+//                System.out.println("elo");
+//            }
 
 //            e.getTarget()
 //            unit.
