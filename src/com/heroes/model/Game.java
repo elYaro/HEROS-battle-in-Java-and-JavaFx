@@ -101,7 +101,7 @@ public class Game extends Pane {
                             checkPossibleUnitsToAttack();
                             new Thread(() -> {
                                 try {
-                                    Thread.sleep((long) (Math.abs(MouseUtils.moveTime)));
+                                    Thread.sleep(MouseUtils.moveTime);
                                     if (this.possibleUnitsToAttack.size() == 0){
                                         System.out.println("there is no possible attack for "+ this.unitsInTheGame.get(iterUnit).getName());
                                         changeIterUnitToNextUnit();
@@ -113,14 +113,12 @@ public class Game extends Pane {
                                     System.err.println(error);
                                 }
                             }).start();
-
                         }
                     }
                 }
             }
             if (e.getSource().getClass().getName().equals("javafx.scene.image.ImageView")) {
-                mainLoop:
-                for (Unit unit : unitsInTheGame) {
+                mainLoop:for (Unit unit : unitsInTheGame) {
                     if (e.getTarget().toString().equals(unit.getUnitView().getDefaultPhoto().toString())) {
                         if (!wasMove){
                             if (this.unitsInTheGame.get(iterUnit).getName().equals(unit.getName())) {
@@ -136,11 +134,27 @@ public class Game extends Pane {
                         for (Unit unitToAttact : this.possibleUnitsToAttack) {
                             if (unitToAttact.getName().equals(unit.getName())) {
                                 attack(this.unitsInTheGame.get(iterUnit),unit);
+                                MouseUtils.attackAnimation(this.unitsInTheGame.get(iterUnit));
+                                MouseUtils.defenceAnimation(unit);
                                 deleteSquareShadows();
-                                changeIterUnitToNextUnit();
-                                checkWhereCanMove();
-                                checkPossibleUnitsToAttack();
-                                makeSquareShadows();
+                                new Thread(() -> {
+                                    try {
+                                    Thread.sleep((long) (MouseUtils.attackTime*1.2));
+
+                                        changeIterUnitToNextUnit();
+                                        checkWhereCanMove();
+                                        checkPossibleUnitsToAttack();
+                                        makeSquareShadows();
+                                        if (P1.getLeftUnits() == 0 || P2.getLeftUnits() == 0) {
+//                                    END GAME
+                                            System.out.println("GAME OVER");
+                                        }
+
+
+                                    } catch (Exception error) {
+                                        System.err.println(error);
+                                    }
+                                }).start();
                                 break mainLoop;
                             }
                         }
@@ -149,18 +163,24 @@ public class Game extends Pane {
                         } else {
                             System.out.println("you are too far away from " + unit.getName());
                         }
+
                         break;
                     }
                 }
             }
         }
-        if (P1.getLeftUnits() >= 0 && P2.getLeftUnits() >= 0);
+
     };
 
 
     private void changeIterUnitToNextUnit(){
-        if (iterUnit < 13) {
-            iterUnit++;
+        if (iterUnit < 13 ) {
+            do {
+                iterUnit++;
+            }
+            while(this.unitsInTheGame.get(iterUnit).isDead);
+
+
         } else iterUnit = 0;
         setWasMove(false);
     }
