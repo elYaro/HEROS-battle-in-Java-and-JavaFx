@@ -30,6 +30,7 @@ public class Game extends Pane {
     private BackgroundView gameBackground;
     private static boolean isMoving = false;
     private static boolean wasMove = false;
+    private static boolean canClickSkipTurn = true;
 
     private List<Square> test = FXCollections.observableArrayList();
 
@@ -71,11 +72,13 @@ public class Game extends Pane {
 
 
     private EventHandler<MouseEvent> endMoveButtonClicked = e -> {
-        deleteSquareShadows();
-        changeIterUnitToNextUnit();
-        checkWhereCanMove();
-        checkPossibleUnitsToAttack();
-        makeSquareShadows();
+        if (!isMoving) {
+            deleteSquareShadows();
+            changeIterUnitToNextUnit();
+            checkWhereCanMove();
+            checkPossibleUnitsToAttack();
+            makeSquareShadows();
+        }
 
     };
     /**
