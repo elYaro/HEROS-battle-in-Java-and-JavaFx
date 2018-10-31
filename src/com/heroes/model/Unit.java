@@ -136,6 +136,9 @@ public abstract class Unit extends Node {
         this.position = position;
     }
 
+    public void setDefending(boolean defending) {
+        isDefending = defending;
+    }
 
     public void move() {
     }
