@@ -310,6 +310,7 @@ public class Game extends Pane {
             attackedUnit.setQuantity(0);
             attackedUnit.setHealthPointsLeft(0);
             attackedUnit.setDead(true);
+            attackedUnit.getOwner().setLeftUnits(attackedUnit.getOwner().getLeftUnits()-1);
 
 
         }
