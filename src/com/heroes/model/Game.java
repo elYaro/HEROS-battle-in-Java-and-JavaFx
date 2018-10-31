@@ -135,7 +135,7 @@ public class Game extends Pane {
                         }
                         for (Unit unitToAttact : this.possibleUnitsToAttack) {
                             if (unitToAttact.getName().equals(unit.getName())) {
-                                System.out.println(unit.getName() + " is attacted by " + this.unitsInTheGame.get(iterUnit).getName());
+                                attack(this.unitsInTheGame.get(iterUnit),unit);
                                 deleteSquareShadows();
                                 changeIterUnitToNextUnit();
                                 checkWhereCanMove();
