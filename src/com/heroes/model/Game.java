@@ -152,7 +152,7 @@ public class Game extends Pane {
     private void attack(Unit attackingUnit, Unit attackedUnit){
 
         int totalAttackDamage = 0;
-        double attackBonus = 0;
+        double attackBonus;
         double defenceBonus;
         int attackFinalPower;
         int attackedUnitsTotalHealthBeforeAttack;
@@ -177,10 +177,14 @@ public class Game extends Pane {
             if (defenceBonus > 0.3) {defenceBonus = 0.3;} //defence bonus max 30% which is 12points difference
             attackFinalPower = (int) (totalAttackDamage - (totalAttackDamage * defenceBonus));
         }
+        if (attackedUnit.isDefending()){    // if the attcked unit isDefending the attackPower is reduced by -30%
+            attackFinalPower *= 0.7;
+        }
         attackedUnitsTotalHealthBeforeAttack = ((attackedUnit.getQuantity() - 1) * attackedUnit.getHealthPoints()) + attackedUnit.getHealthPointsLeft();
         attackedUnitsTotalHealthAfterAttack = attackedUnitsTotalHealthBeforeAttack - attackFinalPower;
         attackedUnit.setQuantity((attackedUnitsTotalHealthAfterAttack / attackedUnit.getHealthPoints()) + 1 );
         attackedUnit.setHealthPointsLeft(attackedUnitsTotalHealthAfterAttack % attackedUnit.getHealthPoints());
+        attackedUnit.setDefending(false);
 
         // for testing
         System.out.printf("defender: quantity of units after attack = %d , health left after attack  = %d\n",attackedUnit.getQuantity(), attackedUnit.getHealthPointsLeft());
