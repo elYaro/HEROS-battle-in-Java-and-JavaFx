@@ -142,6 +142,10 @@ public abstract class Unit extends Node {
         isDefending = defending;
     }
 
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
     public void move() {
     }
 
