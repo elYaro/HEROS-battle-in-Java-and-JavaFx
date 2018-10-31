@@ -5,6 +5,7 @@ import com.heroes.view.BackgroundView;
 import com.heroes.view.UnitView;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -14,6 +15,7 @@ import java.util.Comparator;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.List;
 
 public class Game extends Pane {
 
@@ -24,6 +26,8 @@ public class Game extends Pane {
     private ArrayList<Unit> unitsInTheGame;
     private int iterUnit;
     private BackgroundView gameBackground;
+    private static boolean isMoving = false;
+    private static boolean wasMove = false;
 
     private List<Square> test = FXCollections.observableArrayList();
 
@@ -40,87 +44,142 @@ public class Game extends Pane {
         createSquares();
         createPlayersAndTheirsUnits();
         createArrayListOfAllUnitsInTheGame();
-        this.squaresToMove = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
-        this.possibleUnitsToAttack = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
-        Square.highlightStandableSquares(squaresToMove, Square.getSquareOpacityValues().get("Highlight"));
+        addButton();
+//        prepare move for first unit
+        checkWhereCanMove();
+        checkPossibleUnitsToAttack();
+        makeSquareShadows();
     }
 
 
+    public static void setMoving(boolean moving) {
+        isMoving = moving;
+    }
+
+    public static void setWasMove(boolean wasMove) {
+        Game.wasMove = wasMove;
+    }
+    public void addButton(){
+        Button button = new Button("finish the move");
+        button.setLayoutX(100);
+        button.setLayoutY(680);
+        button.setOnMouseClicked(endMoveButtonClicked);
+        this.gameBackground.getChildren().add(button);
+    }
+
+
+    private EventHandler<MouseEvent> endMoveButtonClicked = e -> {
+        deleteSquareShadows();
+        changeIterUnitToNextUnit();
+        checkWhereCanMove();
+        checkPossibleUnitsToAttack();
+        makeSquareShadows();
+
+    };
     /**
      * @author Yaro
      * event handler for specific unit in the ArrayList of all units in the game.
      * After mouse click it increments the iter variable by one. Iter is used to pick specific unit from the Array of all units
      */
     private EventHandler<MouseEvent> onMouseClickedHandler = e -> {
-//        System.out.println(e.getSource().toString());
-        if(e.getSource().getClass().getName().equals("com.heroes.model.Square")) {
-            Square square = (Square) e.getSource();
-            for (Square squareToMove: this.squaresToMove){
-                if (squareToMove.getName() == square.getName()){
-                    Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Normal"));
-                    this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
-                    MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
-                    this.unitsInTheGame.get(iterUnit).setPosition(square);
-//                    if (iterUnit < 13) {
-//                        iterUnit++;
-//                    } else iterUnit = 0;
-                    this.squaresToMove = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
-                    this.possibleUnitsToAttack = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
-                    Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Highlight"));
-                }
-            }
 
+        if (!isMoving) {
+            if (e.getSource().getClass().getName().equals("com.heroes.model.Square")) {
+                if (!wasMove) {
+                    Square square = (Square) e.getSource();
+                    for (Square squareToMove : this.squaresToMove) {
+                        if (squareToMove.getName() == square.getName()) {
+                            setMoving(true);
+                            setWasMove(true);
+                            deleteSquareShadows();
+                            move(square);
+                            checkPossibleUnitsToAttack();
+                            new Thread(() -> {
+                                try {
+                                    Thread.sleep((long) (Math.abs(MouseUtils.moveTime)));
+                                    if (this.possibleUnitsToAttack.size() == 0){
+                                        System.out.println("there is no possible attack for "+ this.unitsInTheGame.get(iterUnit).getName());
+                                        changeIterUnitToNextUnit();
+                                        checkWhereCanMove();
+                                        checkPossibleUnitsToAttack();
+                                        makeSquareShadows();
+                                    }
+                                } catch (Exception error) {
+                                    System.err.println(error);
+                                }
+                            }).start();
 
-        }
-        if(e.getSource().getClass().getName().equals("javafx.scene.image.ImageView")){
-//            System.out.println(e.getTarget().toString());
-//            System.out.println(this.unitsInTheGame.get(iterUnit).getUnitView().getDefaultPhoto().toString());
-
-
-            mainLoop : for( Unit unit : unitsInTheGame){
-
-                if(e.getTarget().toString().equals(unit.getUnitView().getDefaultPhoto().toString())){
-                    if (this.unitsInTheGame.get(iterUnit).getName().equals(unit.getName())){
-                        System.out.println(unit.getName()+" is defending");
-                        Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Normal"));
-                        if (iterUnit < 13) {
-                            iterUnit++;
-                        } else iterUnit = 0;
-                        this.squaresToMove = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
-                        this.possibleUnitsToAttack = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
-                        Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Highlight"));
-                        break;
-                    }
-                    for (Unit unitToAttact : this.possibleUnitsToAttack){
-                        if (unitToAttact.getName().equals(unit.getName())){
-                            System.out.println(unit.getName()+" is attacted by "+ this.unitsInTheGame.get(iterUnit).getName());
-                            Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Normal"));
-                            if (iterUnit < 13) {
-                                iterUnit++;
-                            } else iterUnit = 0;
-                            this.squaresToMove = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
-                            this.possibleUnitsToAttack = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
-                            Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Highlight"));
-                            break mainLoop;
                         }
                     }
-                    if (unit.getTown().equals(this.unitsInTheGame.get(iterUnit).getTown())){
-                        System.out.println( unit.getName()+ "its your teammate");
-                    }else {
-                        System.out.println("you are too far away from "+unit.getName());
-                    }
-                    break;
                 }
             }
-//            if(e.getTarget().toString().equals(this.unitsInTheGame.get(iterUnit).getUnitView().getDefaultPhoto().toString())){
-//                System.out.println("elo");
-//            }
-
-//            e.getTarget()
-//            unit.
+            if (e.getSource().getClass().getName().equals("javafx.scene.image.ImageView")) {
+                mainLoop:
+                for (Unit unit : unitsInTheGame) {
+                    if (e.getTarget().toString().equals(unit.getUnitView().getDefaultPhoto().toString())) {
+                        if (!wasMove){
+                            if (this.unitsInTheGame.get(iterUnit).getName().equals(unit.getName())) {
+                                System.out.println(unit.getName() + " is defending");
+                                deleteSquareShadows();
+                                changeIterUnitToNextUnit();
+                                checkWhereCanMove();
+                                checkPossibleUnitsToAttack();
+                                makeSquareShadows();
+                                break;
+                            }
+                        }
+                        for (Unit unitToAttact : this.possibleUnitsToAttack) {
+                            if (unitToAttact.getName().equals(unit.getName())) {
+                                System.out.println(unit.getName() + " is attacted by " + this.unitsInTheGame.get(iterUnit).getName());
+                                deleteSquareShadows();
+                                changeIterUnitToNextUnit();
+                                checkWhereCanMove();
+                                checkPossibleUnitsToAttack();
+                                makeSquareShadows();
+                                break mainLoop;
+                            }
+                        }
+                        if (unit.getTown().equals(this.unitsInTheGame.get(iterUnit).getTown())) {
+                            System.out.println(unit.getName() + "its your teammate");
+                        } else {
+                            System.out.println("you are too far away from " + unit.getName());
+                        }
+                        break;
+                    }
+                }
+            }
         }
+        if (P1.getLeftUnits() >= 0 && P2.getLeftUnits() >= 0);
     };
 
+    private void makeUnitDefend(Unit unit){
+        unit.setDefending(true);
+    }
+
+    private void changeIterUnitToNextUnit(){
+        if (iterUnit < 13) {
+            iterUnit++;
+        } else iterUnit = 0;
+        setWasMove(false);
+    }
+    private void makeSquareShadows(){
+        Square.highlightStandableSquares(squaresToMove, Square.getSquareOpacityValues().get("Highlight"));
+    }
+    private void deleteSquareShadows(){
+        Square.highlightStandableSquares(this.squaresToMove, Square.getSquareOpacityValues().get("Normal"));
+    }
+    private void checkWhereCanMove(){
+        this.squaresToMove = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
+    }
+    private void checkPossibleUnitsToAttack(){
+        this.possibleUnitsToAttack = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
+    }
+    private void move(Square square){
+        this.unitsInTheGame.get(iterUnit).setDefending(false);
+        this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
+        MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
+
+    }
 
 
     /**

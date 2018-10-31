@@ -18,6 +18,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 
+import java.awt.*;
 import java.io.File;
 
 import javafx.util.Duration;
@@ -135,6 +136,7 @@ public class UnitView extends ImageView {
             }
         }
     }
+
 }
 
 

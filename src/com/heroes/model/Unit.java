@@ -28,6 +28,9 @@ public abstract class Unit extends Node {
 
     protected UnitSounds unitSound;
 
+    public void setDefending(boolean defending) {
+        isDefending = defending;
+    }
 
     public void setUnitSound(UnitSounds unitSound) {
         this.unitSound = unitSound;

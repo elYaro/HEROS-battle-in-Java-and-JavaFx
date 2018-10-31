@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class MouseUtils extends Pane {
-
+    public static int moveTime;
 
     public static void moveToSquare(Unit unit, Square square) {
         if (unit.getUnitView().getDefaultPhoto() == null)
@@ -49,19 +49,22 @@ public class MouseUtils extends Pane {
         timeLine.setCycleCount(Animation.INDEFINITE);
         timeLine.play();
 
-        double moveTime = (Math.sqrt(Math.pow((targetX - sourceX), 2) + Math.pow((sourceY - targetY), 2))) * 6;
+        moveTime = (int) ((Math.sqrt(Math.pow((targetX - sourceX), 2) + Math.pow((sourceY - targetY), 2))) * 6);
 
         animateCardMovement(unit, sourceX, sourceY, targetX, targetY, Duration.millis(moveTime));
 
         unit.setX(square.getLocationX());       //@Yaro: updates the location X of unit to the destination X
         unit.setY(square.getLocationY());       //@Yaro: updates the location Y of unit to the destination Y
-        unit.getPosition().setStandable(true);  //@Yaro & Karol, updating standable old square
+        unit.getPosition().setStandable(true);
+        unit.setPosition(square);//@Yaro & Karol, updating standable old square
         square.setStandable(false);
+
         new Thread(() -> {
             try {
                 Thread.sleep((long) (Math.abs(moveTime)));
                 timeLine.stop();
                 unit.getUnitView().getDefaultPhoto().setImage(unit.getUnitView().getStandPhoto());
+                Game.setMoving(false);
             } catch (Exception e) {
                 System.err.println(e);
             }
