@@ -28,8 +28,14 @@ public abstract class Unit extends Node {
 
     protected UnitSounds unitSound;
 
-    public void setDefending(boolean defending) {
-        isDefending = defending;
+
+    public void setHealthPointsLeft(int healthPointsLeft) {
+        this.healthPointsLeft = healthPointsLeft;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+
     }
 
     public void setUnitSound(UnitSounds unitSound) {
@@ -132,6 +138,9 @@ public abstract class Unit extends Node {
         this.position = position;
     }
 
+    public void setDefending(boolean defending) {
+        isDefending = defending;
+    }
 
     public void move() {
     }
