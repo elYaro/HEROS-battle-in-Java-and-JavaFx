@@ -172,6 +172,14 @@ public abstract class Unit extends Node {
         this.pcs.removePropertyChangeListener(listener);
     }
 
+    /**
+     * method takes attacking and attacked unit and does the calculations and logic of attack.
+     * updates the quantity and health left in attacked unit.
+     * @author Yaro
+     * @param attackingUnit is a unit which attacks
+     * @param attackedUnit  is a unit attacked
+     */
+
     public void attack(Unit attackingUnit, Unit attackedUnit){
 
         int totalAttackDamage = 0;
