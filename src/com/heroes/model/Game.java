@@ -133,7 +133,7 @@ public class Game extends Pane {
                         }
                         for (Unit unitToAttact : this.possibleUnitsToAttack) {
                             if (unitToAttact.getName().equals(unit.getName())) {
-                                attack(this.unitsInTheGame.get(iterUnit),unit);
+                                unitToAttact.attack(this.unitsInTheGame.get(iterUnit),unit);
                                 MouseUtils.attackAnimation(this.unitsInTheGame.get(iterUnit));
                                 MouseUtils.defenceAnimation(unit);
                                 deleteSquareShadows();
@@ -219,6 +219,7 @@ public class Game extends Pane {
             player.setUnitSeeding(squaresList);
             UnitView.attachPhoto(player, this.gameBackground);
             UnitView.refineStartingCoords(player, this);
+            player.createVboxWithUnitCounters(player, this.gameBackground);
         }
     }
 
@@ -289,65 +290,7 @@ public class Game extends Pane {
      * @param attackingUnit is a unit which attacks
      * @param attackedUnit  is a unit attacked
      */
-    private void attack(Unit attackingUnit, Unit attackedUnit){
 
-        int totalAttackDamage = 0;
-        double attackBonus;
-        double defenceBonus;
-        int attackFinalPower;
-        int attackedUnitsTotalHealthBeforeAttack;
-        int attackedUnitsTotalHealthAfterAttack;
-
-        // for testing
-        System.out.printf("attacker is %s and defender is %s\n" ,attackingUnit.getName(),attackedUnit.getName());
-        System.out.printf("defender: quantity of units before attack = %d , health left before attack  = %d\n",attackedUnit.getQuantity(), attackedUnit.getHealthPointsLeft());
-
-        for (int i = 1; i <= attackedUnit.getQuantity(); i++){
-            int randomNum = ThreadLocalRandom.current().nextInt(attackingUnit.getMinAttackDamage(), attackingUnit.getMaxAttackDamage() + 1);
-            totalAttackDamage += randomNum;
-        }
-        int attackPowerVsDefencePower = attackingUnit.getAttackPower() - attackedUnit.getDefencePower();
-        if (attackPowerVsDefencePower > 0) {
-            attackBonus = (attackPowerVsDefencePower * 0.05);
-            if (attackBonus > 3){attackBonus = 3;} //attack bonus max 300% which is 60points difference
-            attackFinalPower = (int) (totalAttackDamage + (totalAttackDamage * attackBonus));
-
-        } else {
-            defenceBonus = (Math.abs(attackPowerVsDefencePower * 0.025));
-            if (defenceBonus > 0.3) {defenceBonus = 0.3;} //defence bonus max 30% which is 12points difference
-            attackFinalPower = (int) (totalAttackDamage - (totalAttackDamage * defenceBonus));
-        }
-        if (attackedUnit.isDefending()){    // if the attcked unit isDefending the attackPower is reduced by -30%
-            attackFinalPower *= 0.7;
-        }
-        attackedUnitsTotalHealthBeforeAttack = ((attackedUnit.getQuantity() - 1) * attackedUnit.getHealthPoints()) + attackedUnit.getHealthPointsLeft();
-        attackedUnitsTotalHealthAfterAttack = attackedUnitsTotalHealthBeforeAttack - attackFinalPower;
-        if (attackedUnitsTotalHealthAfterAttack > 0){
-            attackedUnit.setQuantity((attackedUnitsTotalHealthAfterAttack / attackedUnit.getHealthPoints()) + 1 );
-            attackedUnit.setHealthPointsLeft(attackedUnitsTotalHealthAfterAttack % attackedUnit.getHealthPoints());
-            attackedUnit.setDefending(false);
-        } else {
-            attackedUnit.setQuantity(0);
-            attackedUnit.setHealthPointsLeft(0);
-            attackedUnit.setDead(true);
-            attackedUnit.getOwner().setLeftUnits(attackedUnit.getOwner().getLeftUnits()-1);
-
-
-        }
-
-
-
-
-
-
-        // for testing
-        System.out.printf("defender: quantity of units after attack = %d , health left after attack  = %d\n",attackedUnit.getQuantity(), attackedUnit.getHealthPointsLeft());
-
-
-
-
-
-    }
 
 
     }

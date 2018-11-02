@@ -4,7 +4,12 @@ import com.heroes.audio.UnitSounds;
 import com.heroes.view.*;
 import javafx.scene.Node;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.util.concurrent.ThreadLocalRandom;
+
 public abstract class Unit extends Node {
+
     protected String name;
     protected String town;
     protected boolean shooter;
@@ -28,14 +33,16 @@ public abstract class Unit extends Node {
 
     protected UnitSounds unitSound;
 
+    protected final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
     public void setHealthPointsLeft(int healthPointsLeft) {
         this.healthPointsLeft = healthPointsLeft;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-
+    public void setQuantity(int newValue) {
+        int oldValue = this.quantity;
+        this.quantity = newValue;
+        this.pcs.firePropertyChange("value", oldValue, newValue);
     }
 
     public void setUnitSound(UnitSounds unitSound) {
@@ -155,5 +162,61 @@ public abstract class Unit extends Node {
 
     //    public void attack(bonus){}
     public void defend() {
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        this.pcs.removePropertyChangeListener(listener);
+    }
+
+    public void attack(Unit attackingUnit, Unit attackedUnit){
+
+        int totalAttackDamage = 0;
+        double attackBonus;
+        double defenceBonus;
+        int attackFinalPower;
+        int attackedUnitsTotalHealthBeforeAttack;
+        int attackedUnitsTotalHealthAfterAttack;
+
+        // for testing
+        System.out.printf("attacker is %s and defender is %s\n" ,attackingUnit.getName(),attackedUnit.getName());
+        System.out.printf("defender: quantity of units before attack = %d , health left before attack  = %d\n",attackedUnit.getQuantity(), attackedUnit.getHealthPointsLeft());
+
+        for (int i = 1; i <= attackedUnit.getQuantity(); i++){
+            int randomNum = ThreadLocalRandom.current().nextInt(attackingUnit.getMinAttackDamage(), attackingUnit.getMaxAttackDamage() + 1);
+            totalAttackDamage += randomNum;
+        }
+        int attackPowerVsDefencePower = attackingUnit.getAttackPower() - attackedUnit.getDefencePower();
+        if (attackPowerVsDefencePower > 0) {
+            attackBonus = (attackPowerVsDefencePower * 0.05);
+            if (attackBonus > 3){attackBonus = 3;} //attack bonus max 300% which is 60points difference
+            attackFinalPower = (int) (totalAttackDamage + (totalAttackDamage * attackBonus));
+
+        } else {
+            defenceBonus = (Math.abs(attackPowerVsDefencePower * 0.025));
+            if (defenceBonus > 0.3) {defenceBonus = 0.3;} //defence bonus max 30% which is 12points difference
+            attackFinalPower = (int) (totalAttackDamage - (totalAttackDamage * defenceBonus));
+        }
+        if (attackedUnit.isDefending()){    // if the attcked unit isDefending the attackPower is reduced by -30%
+            attackFinalPower *= 0.7;
+        }
+        attackedUnitsTotalHealthBeforeAttack = ((attackedUnit.getQuantity() - 1) * attackedUnit.getHealthPoints()) + attackedUnit.getHealthPointsLeft();
+        attackedUnitsTotalHealthAfterAttack = attackedUnitsTotalHealthBeforeAttack - attackFinalPower;
+        if (attackedUnitsTotalHealthAfterAttack > 0){
+            attackedUnit.setQuantity((attackedUnitsTotalHealthAfterAttack / attackedUnit.getHealthPoints()) + 1 );
+            attackedUnit.setHealthPointsLeft(attackedUnitsTotalHealthAfterAttack % attackedUnit.getHealthPoints());
+            attackedUnit.setDefending(false);
+        } else {
+            attackedUnit.setQuantity(0);
+            attackedUnit.setHealthPointsLeft(0);
+            attackedUnit.setDead(true);
+            attackedUnit.getOwner().setLeftUnits(attackedUnit.getOwner().getLeftUnits()-1);
+        }
+
+        // for testing
+        System.out.printf("defender: quantity of units after attack = %d , health left after attack  = %d\n",attackedUnit.getQuantity(), attackedUnit.getHealthPointsLeft());
     }
 }

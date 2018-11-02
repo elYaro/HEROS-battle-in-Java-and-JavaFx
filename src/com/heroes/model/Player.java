@@ -2,14 +2,15 @@ package com.heroes.model;
 
 import com.heroes.audio.UnitSounds;
 import com.heroes.view.*;
-import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
 public class Player extends Pane {
 
@@ -137,5 +138,29 @@ public class Player extends Pane {
         }
     }
 
+    /**
+     * Creates two vBox that contains labels with quantity of lefts units
+     * */
 
+    public void createVboxWithUnitCounters(Player player, BackgroundView gamebackground){
+        VBox vbox = new VBox(40);
+        vbox.setPadding(new Insets(200, 10, 10, 10));
+        vbox.setAlignment(Pos.BASELINE_CENTER);
+        gamebackground.getChildren().add(vbox);
+
+        for(Unit unit : player.getUnitList()){
+            Label counter = new Label();
+            counter.setText(unit.getName() + " : " + String.valueOf(unit.getQuantity()));
+            unit.pcs.addPropertyChangeListener(evt -> {
+                counter.setText(unit.getName() + " : " + String.valueOf(evt.getNewValue()));
+            });
+            counter.setStyle("-fx-text-fill: #ffd700; -fx-font-size: 14px; -fx-font-weight: 800;");
+            vbox.getChildren().add(counter);
+            vbox.setAlignment(Pos.CENTER_RIGHT);
+        }
+
+        if (!player.startsOnLeftSide){
+            vbox.setLayoutX(1215);
+        }
+    }
 }
