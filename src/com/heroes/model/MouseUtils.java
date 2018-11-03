@@ -50,12 +50,12 @@ public class MouseUtils extends Pane {
 
     }
 
-    public static void defenceAnimation(Unit unit){
+    public static void universalAnimation(Unit unit, List<Image> animationList){
         Timeline timeLine = new Timeline();
         Collection<KeyFrame> frames = timeLine.getKeyFrames();
         Duration frameGap = Duration.millis(146);
         Duration frameTime = Duration.ZERO;
-        for (Image img : unit.getUnitView().getHitAnimation()) {
+        for (Image img : animationList) {
             frameTime = frameTime.add(frameGap);
             frames.add(new KeyFrame(frameTime, e -> unit.getUnitView().getDefaultPhoto().setImage(img)));
         }
@@ -65,8 +65,11 @@ public class MouseUtils extends Pane {
         new Thread(() -> {
             try {
                 Thread.sleep(146*(unit.getUnitView().getHitAnimation().size()+1));
-
-                unit.getUnitView().getDefaultPhoto().setImage(unit.getUnitView().getStandPhoto());
+                if (animationList.equals(unit.getUnitView().getDeathAnimation())){
+                    unit.getUnitView().getDefaultPhoto().setImage(unit.getUnitView().getDeathphoto());
+                } else {
+                    unit.getUnitView().getDefaultPhoto().setImage(unit.getUnitView().getStandPhoto());
+                }
                 Game.setMoving(false);
             } catch (Exception e) {
                 System.err.println(e);

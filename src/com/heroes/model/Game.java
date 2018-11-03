@@ -122,6 +122,7 @@ public class Game extends Pane {
                     if (e.getTarget().toString().equals(unit.getUnitView().getDefaultPhoto().toString())) {
                         if (!wasMove){
                             if (this.unitsInTheGame.get(iterUnit).getName().equals(unit.getName())) {
+                                this.unitsInTheGame.get(iterUnit).setDefending(true);
                                 System.out.println(unit.getName() + " is defending");
                                 deleteSquareShadows();
                                 changeIterUnitToNextUnit();
@@ -134,8 +135,12 @@ public class Game extends Pane {
                         for (Unit unitToAttact : this.possibleUnitsToAttack) {
                             if (unitToAttact.getName().equals(unit.getName())) {
                                 unitToAttact.attack(this.unitsInTheGame.get(iterUnit),unit);
-                                MouseUtils.attackAnimation(this.unitsInTheGame.get(iterUnit));
-                                MouseUtils.defenceAnimation(unit);
+                                MouseUtils.universalAnimation(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame.get(iterUnit).getUnitView().getAttackAnimation());
+                                if (unit.isDead() == false) {
+                                    MouseUtils.universalAnimation(unit, unit.getUnitView().getHitAnimation());
+                                } else {
+                                    MouseUtils.universalAnimation(unit, unit.getUnitView().getDeathAnimation());
+                                }
                                 deleteSquareShadows();
                                 new Thread(() -> {
                                     try {

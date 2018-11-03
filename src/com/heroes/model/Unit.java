@@ -189,6 +189,8 @@ public abstract class Unit extends Node {
         int attackedUnitsTotalHealthBeforeAttack;
         int attackedUnitsTotalHealthAfterAttack;
 
+        attackingUnit.setDefending(false);
+
         // for testing
         System.out.printf("attacker is %s and defender is %s\n" ,attackingUnit.getName(),attackedUnit.getName());
         System.out.printf("defender: quantity of units before attack = %d , health left before attack  = %d\n",attackedUnit.getQuantity(), attackedUnit.getHealthPointsLeft());
