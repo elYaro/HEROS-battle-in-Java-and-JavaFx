@@ -137,6 +137,17 @@ public class UnitView extends ImageView {
         }
     }
 
+    public static void higlightUnit(Unit unit){
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setSpread(0.5);
+        dropShadow.setColor(Color.GOLD);
+        unit.getUnitView().getDefaultPhoto().setEffect(dropShadow);
+    }
+
+    public static void removeHighlightFromUnit(Unit unit){
+        unit.getUnitView().getDefaultPhoto().setEffect(null);
+    }
+
 }
 
 

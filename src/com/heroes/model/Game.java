@@ -52,6 +52,7 @@ public class Game extends Pane {
         checkWhereCanMove();
         checkPossibleUnitsToAttack();
         makeSquareShadows();
+        UnitView.higlightUnit(unitsInTheGame.get(iterUnit));
     }
 
 
@@ -74,7 +75,9 @@ public class Game extends Pane {
     private EventHandler<MouseEvent> endMoveButtonClicked = e -> {
         if (!isMoving) {
             deleteSquareShadows();
+            UnitView.removeHighlightFromUnit(unitsInTheGame.get(iterUnit));
             changeIterUnitToNextUnit();
+            UnitView.higlightUnit(unitsInTheGame.get(iterUnit));
             checkWhereCanMove();
             checkPossibleUnitsToAttack();
             makeSquareShadows();
@@ -104,9 +107,11 @@ public class Game extends Pane {
                                     Thread.sleep(MouseUtils.moveTime);
                                     if (this.possibleUnitsToAttack.size() == 0){
                                         System.out.println("there is no possible attack for "+ this.unitsInTheGame.get(iterUnit).getName());
+                                        UnitView.removeHighlightFromUnit(unitsInTheGame.get(iterUnit));
                                         changeIterUnitToNextUnit();
                                         checkWhereCanMove();
                                         checkPossibleUnitsToAttack();
+                                        UnitView.higlightUnit(unitsInTheGame.get(iterUnit));
                                         makeSquareShadows();
                                     }
                                 } catch (Exception error) {
@@ -125,9 +130,11 @@ public class Game extends Pane {
                                 this.unitsInTheGame.get(iterUnit).setDefending(true);
                                 System.out.println(unit.getName() + " is defending");
                                 deleteSquareShadows();
+                                UnitView.removeHighlightFromUnit(unitsInTheGame.get(iterUnit));
                                 changeIterUnitToNextUnit();
                                 checkWhereCanMove();
                                 checkPossibleUnitsToAttack();
+                                UnitView.higlightUnit(unitsInTheGame.get(iterUnit));
                                 makeSquareShadows();
                                 break;
                             }
@@ -145,10 +152,11 @@ public class Game extends Pane {
                                 new Thread(() -> {
                                     try {
                                     Thread.sleep((long) (MouseUtils.attackTime*1.2));
-
+                                        UnitView.removeHighlightFromUnit(unitsInTheGame.get(iterUnit));
                                         changeIterUnitToNextUnit();
                                         checkWhereCanMove();
                                         checkPossibleUnitsToAttack();
+                                        UnitView.higlightUnit(unitsInTheGame.get(iterUnit));
                                         makeSquareShadows();
                                         if (P1.getLeftUnits() == 0 || P2.getLeftUnits() == 0) {
 //                                    END GAME
