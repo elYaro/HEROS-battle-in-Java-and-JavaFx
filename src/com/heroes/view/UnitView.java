@@ -137,16 +137,35 @@ public class UnitView extends ImageView {
         }
     }
 
-    public static void higlightUnit(Unit unit){
+    public static void higlightUnit(UnitView unitView){
         DropShadow dropShadow = new DropShadow();
         dropShadow.setSpread(0.5);
         dropShadow.setColor(Color.GOLD);
-        unit.getUnitView().getDefaultPhoto().setEffect(dropShadow);
+        unitView.getDefaultPhoto().setEffect(dropShadow);
     }
 
-    public static void removeHighlightFromUnit(Unit unit){
-        unit.getUnitView().getDefaultPhoto().setEffect(null);
+    public static void removeHighlightFromUnit(UnitView unitView){
+        unitView.getDefaultPhoto().setEffect(null);
     }
+
+    public static void highlightGroupOfUnits(List<Unit> listOfUnits){
+        for(Unit unit : listOfUnits){
+            if (unit.isDead() == false) {
+                DropShadow dropShadow = new DropShadow();
+                dropShadow.setSpread(0.5);
+                dropShadow.setColor(Color.RED);
+                unit.getUnitView().getDefaultPhoto().setEffect(dropShadow);
+            }
+        }
+    }
+
+    public static void removeHighlightFromGroupOfUnits(List<Unit> listOfUnits){
+        for(Unit unit : listOfUnits){
+            unit.getUnitView().getDefaultPhoto().setEffect(null);
+        }
+    }
+
+
 
 }
 
