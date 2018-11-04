@@ -22,33 +22,6 @@ public class MouseUtils extends Pane {
     public static int moveTime;
     public static int attackTime;
 
-    public static void attackAnimation(Unit unit){
-        Timeline timeLine = new Timeline();
-        Collection<KeyFrame> frames = timeLine.getKeyFrames();
-        Duration frameGap = Duration.millis(146);
-        Duration frameTime = Duration.ZERO;
-        for (Image img : unit.getUnitView().getAttackAnimation()) {
-            frameTime = frameTime.add(frameGap);
-            frames.add(new KeyFrame(frameTime, e -> unit.getUnitView().getDefaultPhoto().setImage(img)));
-        }
-        timeLine.setCycleCount(0);
-        timeLine.play();
-
-        attackTime = 146*(unit.getUnitView().getAttackAnimation().size()+1);
-
-        new Thread(() -> {
-            try {
-                Thread.sleep(attackTime);
-
-                unit.getUnitView().getDefaultPhoto().setImage(unit.getUnitView().getStandPhoto());
-                Game.setMoving(false);
-            } catch (Exception e) {
-                System.err.println(e);
-            }
-        }).start();
-
-
-    }
 
     public static void universalAnimation(Unit unit, List<Image> animationList){
         Timeline timeLine = new Timeline();
@@ -64,7 +37,7 @@ public class MouseUtils extends Pane {
 
         new Thread(() -> {
             try {
-                Thread.sleep(146*(unit.getUnitView().getHitAnimation().size()+1));
+                Thread.sleep(146*(animationList.size()+1));
                 if (animationList.equals(unit.getUnitView().getDeathAnimation())){
                     unit.getUnitView().getDefaultPhoto().setImage(unit.getUnitView().getDeathphoto());
                 } else {
@@ -75,10 +48,7 @@ public class MouseUtils extends Pane {
                 System.err.println(e);
             }
         }).start();
-
-
     }
-
 
 
     public static void moveToSquare(Unit unit, Square square) {
@@ -123,19 +93,17 @@ public class MouseUtils extends Pane {
 
         moveTime = (int) ((Math.sqrt(Math.pow((targetX - sourceX), 2) + Math.pow((sourceY - targetY), 2))) * 6);
 
-        animateCardMovement(unit, sourceX, sourceY, targetX, targetY, Duration.millis(moveTime));
+        animateSpriteMovement(unit, sourceX, sourceY, targetX, targetY, Duration.millis(moveTime));
 
         unit.setX(square.getLocationX());       //@Yaro: updates the location X of unit to the destination X
         unit.setY(square.getLocationY());       //@Yaro: updates the location Y of unit to the destination Y
         unit.getPosition().setStandable(true);
         unit.setPosition(square);//@Yaro & Karol, updating standable old square
         square.setStandable(false);
-
-
-
     }
 
-    private static void animateCardMovement(
+
+    private static void animateSpriteMovement(
             Unit unit, double sourceX, double sourceY,
             double targetX, double targetY, Duration duration) {
 
@@ -159,6 +127,7 @@ public class MouseUtils extends Pane {
                     y - node.getLayoutY() + node.getLayoutBounds().getHeight() / 2);
         }
     }
+
 
     private static class LineToAbs extends LineTo {
         LineToAbs(Node node, double x, double y) {
