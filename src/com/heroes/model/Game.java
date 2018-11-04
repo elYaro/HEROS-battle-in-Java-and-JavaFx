@@ -31,9 +31,6 @@ public class Game extends Pane {
     private static boolean isMoving = false;
     private static boolean wasMove = false;
     private static boolean canClickSkipTurn = true;
-
-    private List<Square> test = FXCollections.observableArrayList();
-
     private List<Square> squaresToMove;
     List<Unit> possibleUnitsToAttack;
 
@@ -213,7 +210,6 @@ public class Game extends Pane {
         this.unitsInTheGame.get(iterUnit).setDefending(false);
         this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);
         MouseUtils.moveToSquare(this.unitsInTheGame.get(iterUnit), square);
-
     }
 
 
@@ -260,9 +256,6 @@ public class Game extends Pane {
                 addMouseEventHandlers(gameSquare);
                 squaresList.add(gameSquare);
                 this.gameBackground.getChildren().add(gameSquare);
-                if (listHeigth < 3){
-                    test.add(gameSquare);
-                }
             }
         }
     }
