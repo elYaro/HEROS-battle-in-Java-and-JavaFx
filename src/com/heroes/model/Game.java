@@ -180,7 +180,7 @@ public class Game extends Pane {
             do {
                 iterUnit++;
             }
-            while(this.unitsInTheGame.get(iterUnit).isDead);
+            while(this.unitsInTheGame.get(iterUnit).isDead && iterUnit < 13);
 
 
         } else iterUnit = 0;
