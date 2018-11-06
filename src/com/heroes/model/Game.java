@@ -145,7 +145,7 @@ public class Game extends Pane {
                         for (Unit unitToAttact : this.possibleUnitsToAttack) {
                             if (unitToAttact.getName().equals(unit.getName())) {
                                 unitToAttact.attack(this.unitsInTheGame.get(iterUnit),unit);
-                                if(this.unitsInTheGame.get(iterUnit).isShooter()){
+                                if(this.unitsInTheGame.get(iterUnit).isShooter() && ((Math.abs(this.unitsInTheGame.get(iterUnit).getX() - unitToAttact.getX()) > 1 || Math.abs(this.unitsInTheGame.get(iterUnit).getY() - unitToAttact.getY()) > 1))){
                                     MouseUtils.universalAnimation(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame.get(iterUnit).getUnitView().getShootAnimation());
                                 }else {
                                     MouseUtils.universalAnimation(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame.get(iterUnit).getUnitView().getAttackAnimation());
