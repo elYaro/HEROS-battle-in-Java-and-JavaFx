@@ -29,18 +29,27 @@ public class Validation {
         return squaresToMove;
     }
 
-    public static List<Unit> createArrayOfUnitsToAttack(Unit movingUnit, List<Unit> unitsInTheGame){
-        List<Unit> unitsToAttack = new ArrayList<>();
-        for (Unit unit : unitsInTheGame){
-            if (Math.abs(unit.getX() - movingUnit.getX()) <= 1 && Math.abs(unit.getY() - movingUnit.getY()) <= 1 && !(unit.getTown().equals(movingUnit.getTown()))) {
-                unitsToAttack.add(unit);
-            }
-        }
-//        System.out.println(movingUnit.getName() + "is attacker");                             //testing and debuging
-//        for (int i = 0; i < unitsToAttack.size(); i++){                 //testing and debuging
-//            System.out.println(unitsToAttack.get(i).getName());         //testing and debuging
+//    public static List<Unit> createArrayOfUnitsToAttack(Unit movingUnit, List<Unit> unitsInTheGame){
+//        List<Unit> unitsToAttack = new ArrayList<>();
+//        for (Unit unit : unitsInTheGame){
+//            if (Math.abs(unit.getX() - movingUnit.getX()) <= 1 && Math.abs(unit.getY() - movingUnit.getY()) <= 1 && !(unit.getTown().equals(movingUnit.getTown())) && !(unit.isDead)) {
+//                unitsToAttack.add(unit);
+//            }
 //        }
-        return unitsToAttack;
+//
+//        return unitsToAttack;
+//
+//    }
 
-    }
+//    public static List<Unit> createArrayOfUnitsToShoot(Unit movingUnit, List<Unit> unitsInTheGame){
+//        List<Unit> unitsToShoot = new ArrayList<>();
+//        for (Unit unit : unitsInTheGame){
+//            if ( !(unit.getTown().equals(movingUnit.getTown())) && !(unit.isDead)) {
+//                unitsToShoot.add(unit);
+//            }
+//        }
+////
+//        return unitsToShoot;
+//
+//    }
 }

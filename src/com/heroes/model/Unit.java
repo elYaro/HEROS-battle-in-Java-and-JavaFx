@@ -6,6 +6,8 @@ import javafx.scene.Node;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Unit extends Node {
@@ -179,6 +181,18 @@ public abstract class Unit extends Node {
      * @param attackingUnit is a unit which attacks
      * @param attackedUnit  is a unit attacked
      */
+
+    public List<Unit> createArrayOfUnitsToAttack(Unit movingUnit, List<Unit> unitsInTheGame){
+        List<Unit> unitsToAttack = new ArrayList<>();
+        for (Unit unit : unitsInTheGame){
+            if (Math.abs(unit.getX() - movingUnit.getX()) <= 1 && Math.abs(unit.getY() - movingUnit.getY()) <= 1 && !(unit.getTown().equals(movingUnit.getTown())) && !(unit.isDead)) {
+                unitsToAttack.add(unit);
+            }
+        }
+
+        return unitsToAttack;
+
+    }
 
     public void attack(Unit attackingUnit, Unit attackedUnit){
 

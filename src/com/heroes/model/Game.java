@@ -34,6 +34,7 @@ public class Game extends Pane {
     private static boolean canClickSkipTurn = true;
     private List<Square> squaresToMove;
     List<Unit> possibleUnitsToAttack;
+//    List<Unit> possibleUnitsToShoot;
 
     /**
      * Game Constructor
@@ -48,7 +49,7 @@ public class Game extends Pane {
         addButton();
 //        prepare move for first unit
         checkWhereCanMove();
-        checkPossibleUnitsToAttack();
+        checkPossibleUnitsToAttack(unitsInTheGame.get(iterUnit));
         makeSquareShadows();
         UnitView.higlightUnit(unitsInTheGame.get(iterUnit).getUnitView());
     }
@@ -83,7 +84,7 @@ public class Game extends Pane {
         changeIterUnitToNextUnit();
         UnitView.higlightUnit(unitsInTheGame.get(iterUnit).getUnitView());
         checkWhereCanMove();
-        checkPossibleUnitsToAttack();
+        checkPossibleUnitsToAttack(unitsInTheGame.get(iterUnit));
         UnitView.highlightGroupOfUnits(this.possibleUnitsToAttack);
         makeSquareShadows();
     }
@@ -108,7 +109,12 @@ public class Game extends Pane {
                             deleteSquareShadows();
                             move(square);
                             UnitView.removeHighlightFromGroupOfUnits(this.possibleUnitsToAttack);
-                            checkPossibleUnitsToAttack();
+                            checkPossibleUnitsToAttack(unitsInTheGame.get(iterUnit));
+
+//                            if(this.unitsInTheGame.get(iterUnit).isShooter()){
+//                                checkPossibleUnitsToShoot();
+//                            }
+
                             UnitView.highlightGroupOfUnits(this.possibleUnitsToAttack);
                             new Thread(() -> {
                                 try {
@@ -139,7 +145,12 @@ public class Game extends Pane {
                         for (Unit unitToAttact : this.possibleUnitsToAttack) {
                             if (unitToAttact.getName().equals(unit.getName())) {
                                 unitToAttact.attack(this.unitsInTheGame.get(iterUnit),unit);
-                                MouseUtils.universalAnimation(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame.get(iterUnit).getUnitView().getAttackAnimation());
+                                if(this.unitsInTheGame.get(iterUnit).isShooter()){
+                                    MouseUtils.universalAnimation(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame.get(iterUnit).getUnitView().getShootAnimation());
+                                }else {
+                                    MouseUtils.universalAnimation(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame.get(iterUnit).getUnitView().getAttackAnimation());
+                                }
+
                                 if (unit.isDead() == false) {
                                     MouseUtils.universalAnimation(unit, unit.getUnitView().getHitAnimation());
                                 } else {
@@ -179,8 +190,11 @@ public class Game extends Pane {
         if (iterUnit < 13 ) {
             do {
                 iterUnit++;
+                if (iterUnit > 13){
+                    iterUnit = 0;
+                }
             }
-            while(this.unitsInTheGame.get(iterUnit).isDead && iterUnit < 13);
+            while(this.unitsInTheGame.get(iterUnit).isDead );
 
 
         } else iterUnit = 0;
@@ -195,9 +209,12 @@ public class Game extends Pane {
     private void checkWhereCanMove(){
         this.squaresToMove = Validation.createArrayOfSquareToMove(this.unitsInTheGame.get(iterUnit), this.squaresList);
     }
-    private void checkPossibleUnitsToAttack(){
-        this.possibleUnitsToAttack = Validation.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
+    private void checkPossibleUnitsToAttack(Unit unit){
+        this.possibleUnitsToAttack = unit.createArrayOfUnitsToAttack(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
     }
+//    private void checkPossibleUnitsToShoot(){
+//        this.possibleUnitsToShoot = Validation.createArrayOfUnitsToShoot(this.unitsInTheGame.get(iterUnit), this.unitsInTheGame);
+//    }
     private void move(Square square){
         this.unitsInTheGame.get(iterUnit).setDefending(false);
         this.unitsInTheGame.get(iterUnit).getUnitSound().playSound(this.unitsInTheGame.get(iterUnit), UnitSounds.UnitSound.MOVE);

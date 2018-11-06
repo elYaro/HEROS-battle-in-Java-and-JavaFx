@@ -1,6 +1,8 @@
 package com.heroes.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Shooter extends Unit {
     public Shooter(HashMap<String,String> UnitParameters,Player player){
@@ -24,5 +26,13 @@ public class Shooter extends Unit {
     }
 
     @Override
-    public void move(){}
+    public List<Unit> createArrayOfUnitsToAttack(Unit movingUnit, List<Unit> unitsInTheGame) {
+        List<Unit> unitsToAttack = new ArrayList<>();
+        for (Unit unit : unitsInTheGame) {
+            if (!(unit.getTown().equals(movingUnit.getTown())) && !(unit.isDead)) {
+                unitsToAttack.add(unit);
+            }
+        }
+        return unitsToAttack;
+    }
 }
