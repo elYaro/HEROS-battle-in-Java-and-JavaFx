@@ -26,7 +26,7 @@ public class MouseUtils extends Pane {
     public static void universalAnimation(Unit unit, List<Image> animationList){
         Timeline timeLine = new Timeline();
         Collection<KeyFrame> frames = timeLine.getKeyFrames();
-        Duration frameGap = Duration.millis(146);
+        Duration frameGap = Duration.millis(106);
         Duration frameTime = Duration.ZERO;
         for (Image img : animationList) {
             frameTime = frameTime.add(frameGap);
@@ -37,7 +37,7 @@ public class MouseUtils extends Pane {
 
         new Thread(() -> {
             try {
-                Thread.sleep(146*(animationList.size()+1));
+                Thread.sleep(106*(animationList.size()+1));
                 if (animationList.equals(unit.getUnitView().getDeathAnimation())){
                     unit.getUnitView().getDefaultPhoto().setImage(unit.getUnitView().getDeathphoto());
                 } else {

@@ -160,11 +160,12 @@ public class Game extends Pane {
                                 new Thread(() -> {
                                     try {
                                     Thread.sleep((long) (MouseUtils.attackTime*1.2));
-                                        endTurn();
+
                                         if (P1.getLeftUnits() == 0 || P2.getLeftUnits() == 0) {
 //                                    END GAME
                                             System.out.println("GAME OVER");
                                         }
+                                        endTurn();
                                     } catch (Exception error) {
                                         System.err.println(error);
                                     }

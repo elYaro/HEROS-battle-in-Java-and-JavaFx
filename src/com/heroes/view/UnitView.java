@@ -23,6 +23,9 @@ import java.io.File;
 
 import javafx.util.Duration;
 
+import java.io.FilenameFilter;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -93,6 +96,7 @@ public class UnitView extends ImageView {
             for (File child : files) {
                 File innerfile = new File(child.getPath());
                 File[] innerfiles = innerfile.listFiles();
+                Arrays.sort(innerfiles);
                 for (File innerchild : innerfiles) {
                     Image img = new Image(innerchild.getPath().substring(10));
                     if (innerchild.getParent().substring(innerchild.getParent().length() - 6).equals("attack")) {
