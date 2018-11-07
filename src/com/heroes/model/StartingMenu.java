@@ -6,9 +6,12 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -70,13 +73,16 @@ public class StartingMenu {
         this.startingMenu.getChildren().clear();
     }
 
+
     private void createButtons() {
         final ImageView startGameButton = new ImageView(new Image(pathToNewGame));
         startGameButton.setOnMouseClicked(event -> exitStartingMenu());
 
         final ImageView creditsButton = new ImageView(new Image(pathToCredits));
+        creditsButton.setOnMouseClicked(event -> createCredits());
 
         final ImageView quitButton = new ImageView(new Image(pathToQuit));
+        quitButton.setOnMouseClicked(event -> exitApp());
 
         ImageView[] images = {startGameButton, creditsButton, quitButton};
 
@@ -99,6 +105,47 @@ public class StartingMenu {
             );
             vbox.getChildren().add(img);
         }
+    }
+
+
+    private void createCredits(){
+        ImageView creditsFrame = new ImageView(new Image("menu/buttons/heroes_small_menu_plain.png"));
+        creditsFrame.setLayoutX(450);
+        creditsFrame.setLayoutY(250);
+        creditsFrame.setFitWidth(500);
+        creditsFrame.setPreserveRatio(true);
+        this.startingMenu.getChildren().add(creditsFrame);
+
+        Label credits = new Label("" +
+                "Heroes of Might and Magic III is a turn-based strategy game developed by Jon Van Caneghem " +
+                "through New World Computing originally released for Microsoft Windows by the 3DO Company in 1999." +
+                "\n\n" +
+                "However this game was developed by HEROESEX team in order to pay tribute to the original HOMM game" +
+                " and learn basics of Java language. We aimed to recreate the battle between Castle and Inferno." +
+                " We hope you like the result." +
+                "\n\n" +
+                "Enjoy!");
+
+        credits.setStyle("-fx-text-fill: #ffd700; -fx-font-size: 14px; -fx-font-weight: 800;");
+        credits.setWrapText(true);
+        credits.setPrefWidth(creditsFrame.getLayoutX() - 10);
+        credits.setTextAlignment(TextAlignment.JUSTIFY);
+        credits.setLayoutX(creditsFrame.getLayoutX() + 30);
+        credits.setLayoutY(creditsFrame.getLayoutY() + 30);
+        this.startingMenu.getChildren().add(credits);
+
+        ImageView creditsQuitButton = new ImageView(new Image("menu/buttons/heroes_refuse.png"));
+        creditsQuitButton.setLayoutX(creditsFrame.getLayoutX() + 390);
+        creditsQuitButton.setLayoutY(creditsFrame.getLayoutY() + 230);
+        creditsQuitButton.setFitWidth(80);
+        creditsQuitButton.setPreserveRatio(true);
+        creditsQuitButton.setOnMouseClicked(event -> startingMenu.getChildren().removeAll(creditsFrame, credits, creditsQuitButton));
+        this.startingMenu.getChildren().add(creditsQuitButton);
+    }
+
+
+        public static void exitApp(){
+        System.exit(0);
     }
 
 }

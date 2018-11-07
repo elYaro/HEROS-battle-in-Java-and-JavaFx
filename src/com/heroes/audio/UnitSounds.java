@@ -2,6 +2,7 @@ package com.heroes.audio;
 
 import com.heroes.model.Unit;
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -10,7 +11,7 @@ import java.util.HashMap;
 
 public class UnitSounds {
     private MediaPlayer attackSound;
-    private MediaPlayer moveSound;
+    private AudioClip moveSound;
     private MediaPlayer hitkSound;
     private MediaPlayer deathSound;
     private MediaPlayer shootSound;
@@ -29,25 +30,19 @@ public class UnitSounds {
         this.loadSounds(unit);
     }
 
-    public MediaPlayer getMoveSound() {
+    public AudioClip getMoveSound() {
         return moveSound;
     }
 
     private void loadSounds(Unit unit) {
         String pathToUnitAudioFiles = "resources/units/" + unit.getTown().toLowerCase() + "/" + unit.getName().toLowerCase() + "/audio";
-//        String pathToUnitAudioFiles = "resources/units/castle/angel/audio";
         File file = new File(pathToUnitAudioFiles);
         File[] files = file.listFiles();
         if (files != null) {
             for (File child : files) {
-//                System.out.println(child.getPath().substring(child.getPath().length() - 8));
-//                System.out.println(child.getPath().substring(child.getPath().length() - 8).toLowerCase());
-
-                if (child.getPath().substring(child.getPath().length() - 8).equals(endOfMovePath.toLowerCase()) ||
-                        child.getPath().substring(child.getPath().length() - 8).equals(endOfMovePath.toUpperCase())) {
-                    System.out.println(child.getPath().substring(10));
-                    Media sound = new Media("file:///" + child.getAbsolutePath());
-                    this.moveSound = new MediaPlayer(sound);
+                if (child.getPath().substring(child.getPath().length() - 8).equals(endOfMovePath.toLowerCase())) {
+                    AudioClip moveSound = new AudioClip("file:///" + child.getAbsolutePath());
+                    this.moveSound = moveSound;
                 }
             }
         }
@@ -56,6 +51,7 @@ public class UnitSounds {
     public static void playSound (Unit unit, UnitSound chosenSound){
         switch(chosenSound){
             case MOVE:
+//                unit.getUnitSound().moveSound.stop();
                 unit.getUnitSound().moveSound.play();
         }
     }

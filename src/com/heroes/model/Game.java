@@ -3,14 +3,15 @@ package com.heroes.model;
 import com.heroes.audio.UnitSounds;
 import com.heroes.view.BackgroundView;
 import com.heroes.view.UnitView;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-
-
-import javax.swing.text.html.ImageView;
 
 import java.awt.event.MouseListener;
 import java.util.Comparator;
@@ -22,6 +23,8 @@ import java.util.List;
 
 public class Game extends Pane {
 
+    private static final String STANDARD_BUTTON_STYLE = "-fx-effect: dropshadow(gaussian,  #8b4513 , 10, 0.5, 1, 1 );";
+    private static final String HOVERED_BUTTON_STYLE = "-fx-opacity: 0.8;";
     private List<Square> squaresList = FXCollections.observableArrayList();
     private Player P1;
     private Player P2;
@@ -46,7 +49,8 @@ public class Game extends Pane {
         createSquares();
         createPlayersAndTheirsUnits();
         createArrayListOfAllUnitsInTheGame();
-        addButton();
+        addNextCreatureButton();
+        addQuitButton();
 //        prepare move for first unit
         checkWhereCanMove();
         checkPossibleUnitsToAttack(unitsInTheGame.get(iterUnit));
@@ -62,12 +66,45 @@ public class Game extends Pane {
     public static void setWasMove(boolean wasMove) {
         Game.wasMove = wasMove;
     }
-    public void addButton(){
-        Button button = new Button("finish the move");
-        button.setLayoutX(100);
-        button.setLayoutY(680);
-        button.setOnMouseClicked(endMoveButtonClicked);
-        this.gameBackground.getChildren().add(button);
+
+
+    public void addNextCreatureButton(){
+        ImageView nextCreatureButton = new ImageView(new Image("menu/buttons/heroes_next_creature.png"));
+        nextCreatureButton.setLayoutY(730);
+        nextCreatureButton.setOnMouseClicked(endMoveButtonClicked);
+        nextCreatureButton.setFitWidth(153);
+        nextCreatureButton.setPreserveRatio(true);
+        nextCreatureButton.styleProperty().bind(
+                Bindings
+                        .when(nextCreatureButton.hoverProperty())
+                        .then(
+                                new SimpleStringProperty(HOVERED_BUTTON_STYLE)
+                        )
+                        .otherwise(
+                                new SimpleStringProperty(STANDARD_BUTTON_STYLE)
+                        )
+        );
+        this.gameBackground.getChildren().add(nextCreatureButton);
+    }
+
+    public void addQuitButton(){
+        ImageView quitButton = new ImageView(new Image("menu/buttons/heroes_quit.png"));
+        quitButton.setLayoutY(620);
+        quitButton.setLayoutX(1220);
+        quitButton.setOnMouseClicked(event ->  StartingMenu.exitApp());
+        quitButton.setFitWidth(140);
+        quitButton.setPreserveRatio(true);
+        quitButton.styleProperty().bind(
+                Bindings
+                        .when(quitButton.hoverProperty())
+                        .then(
+                                new SimpleStringProperty(HOVERED_BUTTON_STYLE)
+                        )
+                        .otherwise(
+                                new SimpleStringProperty(STANDARD_BUTTON_STYLE)
+                        )
+        );
+        this.gameBackground.getChildren().add(quitButton);
     }
 
 
