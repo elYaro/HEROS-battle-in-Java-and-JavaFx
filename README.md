@@ -1,6 +1,6 @@
 # Heroes III battle
 
-Heroes of Might and Magic III is a turn-based strategy game developed by Jon Van Caneghem through New World Computing originally released for Microsoft Windows by the 3DO Company in 1999. It involves capturing and developing towns, gathering resources, assembling armies and sending them into combat.
+Heroes of Might and Magic III is a turn-based strategy game developed by Jon Van Caneghem through New World Computing originally released for Microsoft Windows by the 3DO Company in 1999. It involves capturing and developing towns, gathering resources, assembling armies and sending them into combat. For more information visit https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_III.
 
 ## About project:
 This game was developed by HEROESEX team in order to pay tribute to the original HOMM game and learn basics of Java language with used MVC (Model, View, Controller) design pattern. We aimed to recreate the battle between Castle and Inferno.
@@ -10,7 +10,7 @@ This game was developed by HEROESEX team in order to pay tribute to the original
 * JavaFx
 
 ## Gameplay video:
-You can watch gameplay here: https://www.youtube.com/watch?v=glIUpIUBfUU 
+You can watch gameplay here: https://www.youtube.com/watch?v=glIUpIUBfUU.
 
 ## Screenshots:
 Start screen: 
